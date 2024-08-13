@@ -3,7 +3,7 @@
   "descripion": "Conceptos básicos de linux",
   "details": {
     "intro": {
-      "text": "intro.md"
+      "text": "intro.yaml"
     },
     "steps": [
       {
