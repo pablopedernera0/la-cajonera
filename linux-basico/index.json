@@ -39,5 +39,8 @@
       "title": "Conclusiones",
       "content": "Resumiremos los puntos clave aprendidos y proporcionaremos recursos adicionales para que los participantes profundicen en Linux."
     }
-  ]
+  ],
+  "backend": {
+    "imageid": "ubuntu"
+  }
 }
