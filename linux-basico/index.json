@@ -16,14 +16,7 @@
         "text": "cli.md"
       },
       {
-        "title": "Actividad Práctica: Navegación y Manipulación de Archivos",
-        "content": "En esta actividad, crearás directorios y archivos, listarás contenido, moverás y copiarás archivos, y eliminarás archivos y directorios.",
-        "commands": [
-          "mkdir mi_directorio",
-          "cd mi_directorio",
-          "touch archivo.txt",
-          "ls"
-        ]
+        "text": "cli-practice.md"
       },
       {
         "title": "Gestión de Paquetes",
