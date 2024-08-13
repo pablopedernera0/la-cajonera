@@ -1,10 +1,10 @@
-title: "Conceptos Básicos de Linux"
-description: "Una introducción a los conceptos fundamentales de Linux."
-author: "Tu Nombre"
-difficulty: "beginner"
-duration: "120"  # Duración en minutos
+# Conceptos Básicos de Linux
+## Una introducción a los conceptos fundamentales de Linux
+### Author: "Pablo Pedernera"
+### Nivel: "Inicial"
+### Duracion: "120"  # Duración en minutos
 
-tasks:
+#### tasks:
   - type: "text"
     title: "Introducción a Linux"
     content: |
