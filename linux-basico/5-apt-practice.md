@@ -11,8 +11,8 @@
 `nano archivo-de-texto.txt`{{exec}}
 
 #### Instalar ping
-`apt install inetutils-ping`
+`apt install inetutils-ping`{{exec}}
 
 #### Comprobar que ping se instalo correctamente
-`ping google.com`
+`ping google.com`{{exec}}
 
