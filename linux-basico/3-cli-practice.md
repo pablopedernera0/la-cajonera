@@ -85,7 +85,7 @@ La opción -r permite buscar en todos los archivos dentro de un directorio y sus
 
 grep soporta expresiones regulares, lo que permite realizar búsquedas avanzadas, como buscar patrones de texto más complejos.
 
-`grep "^[Hh]ola" archivo.txt`{{exec}}
+`grep "^[Hh]ola" archivo.txt`run{{exec}}
 
 
 ### Pipe
