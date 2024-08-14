@@ -3,40 +3,33 @@
   "descripion": "Conceptos básicos de linux",
   "details": {
     "intro": {
-      "text": "intro.md"
+      "text": "1-intro.md"
     },
     "steps": [
+
       {
-        "text": "linux_basics.md"
+        "text": "2-cli.md"
       },
       {
-        "text": "step1.md"
+        "text": "3-cli-practice.md"
       },
       {
-        "text": "cli.md"
+        "text": "4-apt.md"
       },
       {
-        "text": "cli-practice.md"
+        "text": "5-apt-practice.md"
       },
       {
-        "title": "Gestión de Paquetes",
-        "content": "Aprenderemos sobre la gestión de paquetes en Linux, incluyendo cómo instalar, actualizar y eliminar paquetes usando `apt`, `yum` o `dnf`."
+        "text": "6-filesystem.md"
       },
       {
-        "title": "Sistema de Archivos",
-        "content": "Comprenderemos la estructura del sistema de archivos en Linux y los directorios importantes como `/`, `/home`, `/etc`, y más."
+        "text": "7-process-services.md"
       },
       {
-        "title": "Procesos y Servicios",
-        "content": "Esta sección cubre los procesos en Linux, cómo gestionarlos con comandos como `ps`, `top`, y `kill`, así como iniciar y detener servicios."
+        "text": "8-process-services-practice.md"
       },
       {
-        "title": "Preguntas y Respuestas",
-        "content": "Abre el espacio para preguntas y discusión sobre los temas cubiertos."
-      },
-      {
-        "title": "Conclusiones",
-        "content": "Resumiremos los puntos clave aprendidos y proporcionaremos recursos adicionales para que los participantes profundicen en Linux."
+        "text": "9-final.md"
       }
     ]
   },
