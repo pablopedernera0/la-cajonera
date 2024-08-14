@@ -1,0 +1,1 @@
+### Actividad Práctica: Instalar y remover paquetes en linux

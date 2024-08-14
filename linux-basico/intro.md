@@ -1,51 +1,12 @@
 # Conceptos Básicos de Linux
 ## Una introducción a los conceptos fundamentales de Linux
-### Author: "Pablo Pedernera"
+### Autor: "Pablo Pedernera"
 ### Nivel: "Inicial"
-### Duracion: "120"  # Duración en minutos
+### Duracion: "120 minutos"
 
-#### tasks:
-  - type: "text"
-    title: "Introducción a Linux"
-    content: |
+Contenido:
+  - "Introducción a Linux"
+  
       Linux es un sistema operativo de código abierto que es ampliamente utilizado en servidores y dispositivos embebidos. En esta sección, exploraremos su historia, distribuciones populares y ventajas.
 
-  - type: "text"
-    title: "Interfaz de Línea de Comandos (CLI)"
-    content: |
-      La CLI es una herramienta poderosa en Linux. Aprenderemos comandos básicos como `ls`, `cd`, `mkdir`, `rm`, y cómo redirigir la entrada/salida.
-
-  - type: "interactive"
-    title: "Actividad Práctica: Navegación y Manipulación de Archivos"
-    content: |
-      En esta actividad, crearás directorios y archivos, listarás contenido, moverás y copiarás archivos, y eliminarás archivos y directorios.
-    commands:
-      - "mkdir mi_directorio"
-      - "cd mi_directorio"
-      - "touch archivo.txt"
-      - "ls"
-
-  - type: "text"
-    title: "Gestión de Paquetes"
-    content: |
-      Aprenderemos sobre la gestión de paquetes en Linux, incluyendo cómo instalar, actualizar y eliminar paquetes usando `apt`, `yum` o `dnf`.
-
-  - type: "text"
-    title: "Sistema de Archivos"
-    content: |
-      Comprenderemos la estructura del sistema de archivos en Linux y los directorios importantes como `/`, `/home`, `/etc`, y más.
-
-  - type: "text"
-    title: "Procesos y Servicios"
-    content: |
-      Esta sección cubre los procesos en Linux, cómo gestionarlos con comandos como `ps`, `top`, y `kill`, así como iniciar y detener servicios.
-
-  - type: "text"
-    title: "Preguntas y Respuestas"
-    content: |
-      Abre el espacio para preguntas y discusión sobre los temas cubiertos.
-
-  - type: "text"
-    title: "Conclusiones"
-    content: |
-      Resumiremos los puntos clave aprendidos y proporcionaremos recursos adicionales para que los participantes profundicen en Linux.
+      Linux es un sistema operativo de código abierto creado por Linus Torvalds en 1991, inspirado en Unix. Su núcleo, o kernel, es el componente central que gestiona los recursos del hardware. Desde su creación, Linux ha evolucionado gracias a la colaboración global de desarrolladores, convirtiéndose en el sistema operativo preferido para servidores y supercomputadoras. Entre las distribuciones populares se encuentran Ubuntu, orientada a la facilidad de uso; Debian, conocida por su estabilidad; Fedora, que ofrece las últimas tecnologías; y Arch Linux, dirigida a usuarios avanzados. Las ventajas de Linux incluyen su seguridad, personalización, rendimiento, y el hecho de ser gratuito y comunitario, lo que fomenta la innovación y la rápida resolución de problemas.
