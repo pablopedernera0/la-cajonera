@@ -10,6 +10,12 @@
 #### Comprobar que nano se instalo correctamente
 `nano archivo-de-texto.txt`{{exec}}
 
+ Agregar cualquier texto al archivo.
+
+ Comprobar que el texto se agrego al archivo
+
+ `cat archivo-de-texto.txt`{{exec}}
+
 #### Instalar ping
 `apt install inetutils-ping`{{exec}}
 
