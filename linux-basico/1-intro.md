@@ -2,7 +2,6 @@
 ## Una introducción a los conceptos fundamentales de Linux
 ### Autor: "Pablo Pedernera"
 ### Nivel: "Inicial"
-### Duracion: "120 minutos"
 
 Contenido:
   - "Introducción a Linux"

@@ -46,3 +46,20 @@ Las páginas de man están estructuradas en secciones, que suelen incluir:
     h: Mostrar ayuda sobre el uso de man.
 
 El comando man es invaluable para aprender a utilizar las herramientas de Linux, ya que proporciona documentación oficial y detallada directamente desde la línea de comandos.
+
+### 6. `tail` y `head`
+
+Los comandos `tail` y `head` muestran el final y el principio de un archivo. Por defecto, muestra las primeras 10 líneas, pero este comportamiento se puede ajustar mediante opciones.
+
+
+#### Mostrar las primeras 10 lineas de un archivo
+
+`head archivo.txt`
+
+#### Mostrar las últimas 10 lineas de un archivo
+
+`tail archivo.txt`
+
+Una opción muy interesante del comando `tail` es agregar la opción `-f`, que permite monitorear un archivo en tiempo real, mostrando nuevas líneas a medida que se añaden, lo que es especialmente útil para archivos de registro (`.log`).
+
+`tail -f archivo.log`

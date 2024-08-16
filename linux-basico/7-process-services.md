@@ -60,9 +60,8 @@ El comando kill se utiliza para enviar señales a los procesos, la más común e
 En sistemas modernos basados en systemd (como Ubuntu y muchas otras distribuciones), los servicios se gestionan utilizando el comando `systemctl`.
 
 #### 1.Iniciar un servicio
-El comando kill se utiliza para enviar señales a los procesos, la más común es la señal para terminar un proceso.
 
-- **Terminar un proceso específico**:
+- **Ejemplo**:
   ```bash
   systemctl start nombre_servicio
   ```
@@ -110,3 +109,5 @@ El comando kill se utiliza para enviar señales a los procesos, la más común e
   ```
   Evita que el servicio se inicie automáticamente al arrancar el sistema.
 
+#### El comando `service`
+`service` es un comando más antiguo que se utiliza para gestionar servicios en sistemas basados en SysVinit, el sistema de inicio que era ampliamente utilizado antes de la adopción de systemd. Aunque service sigue siendo útil en sistemas más antiguos o en sistemas modernos que mantienen compatibilidad con SysVinit, en distribuciones modernas basadas en systemd, service actúa como un frontend o envoltura para systemctl.
