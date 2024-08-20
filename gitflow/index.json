@@ -1,6 +1,6 @@
 {
   "title": "Git y Gitflow",
-  "description": "Qué es Git y  Gitflow",
+  "description": "Qué es Git y cómo funciona Gitflow",
   "details": {
     "intro": {
       "text": "0-git-intro.md"
