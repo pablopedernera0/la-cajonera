@@ -1,13 +1,34 @@
 {
-  "title": "Gitflow",
-  "description": "Como usar Gitflow",
+  "title": "Git y Gitflow",
+  "description": "Qué es Git y  Gitflow",
   "details": {
     "intro": {
-      "text": "intro.md"
+      "text": "0-git-intro.md"
     },
     "steps": [
       {
-        "text": "step1.md"
+        "text": "1-git-installation.md"
+      },
+      {
+        "text": "2-git-basics-commands.md"
+      },
+      {
+        "text": "3-git-initializing-repo.md"
+      },
+      {
+        "text": "4-git-commit-changes.md"
+      },
+      {
+        "text": "5-git-pull-changes.md"
+      },
+      {
+        "text": "6-gitflow-intro.md"
+      },
+      {
+        "text": "7-gitflow-branches.md"
+      },
+      {
+        "text": "8-gitflow-basics-commands.md"
       }
     ]
   },
