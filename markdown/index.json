@@ -1,0 +1,39 @@
+{
+  "title": "Tutorial de Markdown",
+  "descripion": "Tutorial de conceptos basicos de markdown",
+  "details": {
+    "intro": {
+      "text": "1-intro.md"
+    },
+    "steps": [
+
+      {
+        "text": "2-cli.md"
+      },
+      {
+        "text": "3-cli-practice.md"
+      },
+      {
+        "text": "4-apt.md"
+      },
+      {
+        "text": "5-apt-practice.md"
+      },
+      {
+        "text": "6-filesystem.md"
+      },
+      {
+        "text": "7-process-services.md"
+      },
+      {
+        "text": "8-process-services-practice.md"
+      },
+      {
+        "text": "9-final.md"
+      }
+    ]
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
