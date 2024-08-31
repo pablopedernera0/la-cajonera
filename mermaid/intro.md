@@ -1,8 +1,8 @@
 ```mermaid
 classDiagram
-    class Book {
-        +String title
-        +String author
+    class Libro {
+        +String titulo
+        +String autores
         +String isbn
         +boolean isAvailable()
     }
@@ -30,6 +30,6 @@ classDiagram
         +removeMember(Member member)
     }
 
-    Book --> Library : contains
-    Member --> Library : registers
-    Librarian --> Library : manages
+    Libro --> Library : contiene
+    Member --> Library : registra
+    Librarian --> Library : administra
