@@ -30,6 +30,6 @@ classDiagram
         +removeMember(Member member)
     }
 
-    Libro --> Library : contiene
+    Libro <--> Library : contiene
     Member --> Library : registra
     Librarian --> Library : administra
