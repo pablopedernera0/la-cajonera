@@ -13,7 +13,7 @@ services:
    web:
      image: nginx
      volumes:
-       - ./web:/var/www/html
+       - ./web:/usr/share/nginx/html
      ports:
       - "80:80"
 </pre>
