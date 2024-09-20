@@ -1,0 +1,27 @@
+{
+  "title": "Conceptos Básicos de Docker",
+  "descripion": "Conceptos básicos de Docker",
+  "details": {
+    "intro": {
+      "text": "1-intro.md"
+    },
+    "steps": [
+
+      {
+        "text": "2-docker.md"
+      },
+      {
+        "text": "3-docker-practice.md"
+      },
+      {
+        "text": "4-docker-compose.md"
+      },
+      {
+        "text": "5-docker-compose-practice.md"
+      }
+    ]
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
