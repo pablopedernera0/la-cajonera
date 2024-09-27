@@ -17,6 +17,9 @@ Empecemos por generar el directorio que vamos a compartir con el container
 
 `mkdir web`{{exec}}
 
+Ahora creamos el archivo 'docker-compose.yml'
+`nano docker-compose.yml`{{exec}}
+
 #### Modificar el archivo docker-compose.yml y agregar el 'volumen' compartido
 <pre>
 version: '3'
@@ -30,5 +33,5 @@ services:
 </pre>
 
 #### Arrancando los servicios
-`docker-compose up`{{exec}}
+`docker-compose up -d`{{exec}}
 
