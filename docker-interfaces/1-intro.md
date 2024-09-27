@@ -9,16 +9,3 @@ Hemos visto que Docker se puede complementar con una herramienta de gestión de 
 
 Una característica muy importante de `docker compose` es que permite gestionar de forma muy sencilla volumenes, que no son mas que directorios compartidos entre la computadora 'anfitrión' o 'host' y los containers que ejecutan alguna aplicación, sistema o servidor.
 
-#### Estructura de un archivo 'docker-compose.yml'
-
-Recordemos que un archivo docker-compose.yml podía tener el siguiente contenido
-
-<pre>
-version: '3'
-services:
-   web:
-     image: nginx
-     ports:
-      - "80:80"
-</pre>
-

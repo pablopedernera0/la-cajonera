@@ -1,3 +1,16 @@
+#### Estructura de un archivo 'docker-compose.yml'
+
+Recordemos que un archivo docker-compose.yml podía tener el siguiente contenido
+
+<pre>
+version: '3'
+services:
+   web:
+     image: nginx
+     ports:
+      - "80:80"
+</pre>
+
 #### Añadiendo un directorio local compartido con el container
 
 Empecemos por generar el directorio que vamos a compartir con el container
