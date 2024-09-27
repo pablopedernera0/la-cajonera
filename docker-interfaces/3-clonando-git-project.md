@@ -2,7 +2,7 @@
 
 Ahora vamos a clonar un repositorio git dentro del directorio web
 
-`cd web`{{exec}}ejecutar
+`cd web`{{exec}}
 
 `git clone https://github.com/pablopedernera0/interfaces.git`{{exec}}
 
