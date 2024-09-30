@@ -1,0 +1,22 @@
+{
+  "title": "MySQL y PhpMyAdmin con Docker",
+  "descripion": "Instalando MySQL y PhpMyAdmin dentro con Docker",
+  "details": {
+    "intro": {
+      "text": "1-intro.md"
+    },
+    "steps": [
+
+      {
+        "text": "2-docker-compose.md"
+      },
+
+      {
+        "text": "3-ejecutando-sql.md"
+      }
+    ]
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
