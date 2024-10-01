@@ -1,0 +1,22 @@
+{
+  "title": "Diseño web interfaces web con Docker",
+  "descripion": "Aplicando conceptos de diseño web de interfaces dentro de un container Docker",
+  "details": {
+    "intro": {
+      "text": "1-intro.md"
+    },
+    "steps": [
+
+      {
+        "text": "2-docker-compose.md"
+      },
+
+      {
+        "text": "3-clonando-git-project.md"
+      }
+    ]
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
