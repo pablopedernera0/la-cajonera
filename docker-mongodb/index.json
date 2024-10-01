@@ -1,6 +1,6 @@
 {
-  "title": "Diseño web interfaces web con Docker",
-  "descripion": "Aplicando conceptos de diseño web de interfaces dentro de un container Docker",
+  "title": "MongoDB y Docker",
+  "descripion": "Instalando MongoDB y MongoDB Express dentro con Docker",
   "details": {
     "intro": {
       "text": "1-intro.md"
