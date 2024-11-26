@@ -22,7 +22,7 @@ correctamente.
 
 
 #### Ingresando a PhpMyAdmin
-Si todo lo anterior se ejecutó normalmente, veremos la pantalla de principal de PhpMyAdmin.
+Si todo lo anterior se ejecutó normalmente, veremos la pantalla principal de PhpMyAdmin.
 
 #### Ejecutando SQL en PhpMyAdmin
 En la pantalla de PhpMyAdmin, sólo veremos las bases de datos del servidor MySQL y las necesarias para ejecutar PhpMyAdmin, pero todavía no veremos ninguna base de datos generada por nosotros.
