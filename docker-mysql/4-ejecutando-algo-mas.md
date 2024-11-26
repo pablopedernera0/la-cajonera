@@ -5,7 +5,8 @@ Vamos a generar un archivo en el directorio web
 
 y dentro vamos a colocar el siguiente contenido
 
-```<!DOCTYPE html>
+```html
+<!DOCTYPE html>
  <html lang="en">
  <head>
      <meta charset="UTF-8">
@@ -33,7 +34,9 @@ y dentro vamos a colocar el siguiente contenido
      <h1>Your Server IP Address:</h1>
      <p id="ipAddress">Loading...</p>
  </body>
- </html>```
+ </html>
+```
 
+Para generar el archivo podemos ejecutar el comando
 
 `nano web/ver-mi-ip.html`{{exec}}
