@@ -39,4 +39,4 @@ y dentro vamos a colocar el siguiente contenido
 
 Para generar el archivo podemos ejecutar el comando
 
-`nano web/ver-mi-ip.html`{{exec}}
+`nano web/index.html`{{exec}}
