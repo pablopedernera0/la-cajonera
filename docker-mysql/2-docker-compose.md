@@ -42,7 +42,7 @@ services:
       - mysql
     networks:
       - mynetwork
-   web:
+  web:
      image: nginx
      volumes:
        - ./web:/usr/share/nginx/html
