@@ -22,14 +22,7 @@ correctamente.
 
 
 #### Ingresando a PhpMyAdmin
-Si todo lo anterior se ejecutó normalmente, veremos la pantalla de login de PhpMyAdmin.
-
-Para ingresar, alcanza con ingresar el usuario y la contraseña que definimos en el archivo docker-compose.yml
-
-<pre>
-PMA_USER: root
-PMA_PASSWORD: mysecretpassword
-</pre>
+Si todo lo anterior se ejecutó normalmente, veremos la pantalla de principal de PhpMyAdmin.
 
 #### Ejecutando SQL en PhpMyAdmin
 En la pantalla de PhpMyAdmin, sólo veremos las bases de datos del servidor MySQL y las necesarias para ejecutar PhpMyAdmin, pero todavía no veremos ninguna base de datos generada por nosotros.

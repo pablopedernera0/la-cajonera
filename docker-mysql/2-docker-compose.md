@@ -23,7 +23,6 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: mysecretpassword
-      MYSQL_DATABASE: mydatabase
     networks:
       - mynetwork
 

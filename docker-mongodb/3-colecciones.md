@@ -14,7 +14,7 @@ Bajo el título Host1 -> Common Ports -> 8080 se encuentra el link para poder
 
 El link se parece a algo así
 
-https://eba91415-6f7a-489d-9913-5a263242fb25-10-244-3-65-80.saci.r.killercoda.com:8080/
+https://eba91415-6f7a-489d-9913-5a263242fb25-10-244-3-65-80.saci.r.killercoda.com/
 
 si hacemos click en en el que aparece en nuestra pc, se abre una nueva pestaña
 donde podremos verificar si los cambios que hicimos en la página web, se guardaron 
@@ -22,3 +22,5 @@ donde podremos verificar si los cambios que hicimos en la página web, se guarda
 
 #### Ingresando a MongoDB Express
 Si todo lo anterior se ejecutó normalmente, veremos la pantalla de login de MongoDB Express.
+
+Accedemos con el usuario "admin" y la contraseña "pass"
