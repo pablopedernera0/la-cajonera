@@ -11,6 +11,9 @@ services:
       - "80:80"
 </pre>
 
+#### Generando un directorio
+`mkdir web`{{exec}}
+
 #### Generando el archivo docker-compose
 
 Vamos a crear el archivo 'docker-compose.yml' que deberá tener el siguiente contenido
@@ -39,7 +42,12 @@ services:
       - mysql
     networks:
       - mynetwork
-
+   web:
+     image: nginx
+     volumes:
+       - ./web:/usr/share/nginx/html
+     ports:
+      - "80:80"
 networks:
   mynetwork:
 </pre>
