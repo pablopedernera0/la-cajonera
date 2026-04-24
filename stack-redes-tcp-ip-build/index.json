@@ -1,0 +1,39 @@
+{
+  "title": "Configuración de servicios de red en Linux",
+  "description": "Configurá interfaces de red, servicios DHCP y DNS en un entorno Ubuntu Server. Aprendé a usar herramientas de diagnóstico de red.",
+  "difficulty": "intermediate",
+  "time": "45",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Paso 1 — Interfaces de red",
+        "text": "step1/step1.md"
+      },
+      {
+        "title": "Paso 2 — IP estática con Netplan",
+        "text": "step2/step2.md"
+      },
+      {
+        "title": "Paso 3 — Servidor DHCP",
+        "text": "step3/step3.md"
+      },
+      {
+        "title": "Paso 4 — DNS local con bind9",
+        "text": "step4/step4.md"
+      },
+      {
+        "title": "Paso 5 — Comandos de diagnóstico",
+        "text": "step5/step5.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu:2204"
+  }
+}
