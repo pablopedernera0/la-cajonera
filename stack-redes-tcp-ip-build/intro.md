@@ -1,27 +1,25 @@
 # Configuración de servicios de red en Linux
 
-En este escenario vas a trabajar sobre un entorno **Ubuntu Server 22.04** configurando los servicios de red más comunes en infraestructura Linux.
+En este escenario vas a configurar interfaces de red, un servidor DHCP y un servidor DNS local en Ubuntu Server, y a practicar las herramientas de diagnóstico más usadas en producción.
 
-## ¿Qué vas a hacer?
+## Antes de empezar — esperá que el entorno esté listo
 
-- Explorar las interfaces de red disponibles en el sistema
-- Asignar una dirección IP estática usando **Netplan**
-- Instalar y configurar un servidor **DHCP** con `isc-dhcp-server`
-- Configurar un servidor **DNS local** con `bind9`
-- Usar herramientas de diagnóstico de red
+El entorno se está preparando en segundo plano (instalando paquetes y configurando interfaces virtuales). Ejecutá este comando y esperá el mensaje **"Entorno listo"** antes de continuar:
 
-## Entorno de trabajo
-
-El sistema ya tiene instalados los paquetes necesarios. Tu trabajo es configurarlos.
-
-> **Nota:** Para proteger la conectividad del entorno, la configuración de IP estática se realizará sobre una interfaz virtual llamada `dummy0`. Esta interfaz es funcionalmente equivalente a una interfaz física y se usa habitualmente en laboratorios y entornos de testing.
-
-## Antes de empezar
-
-Verificá que el entorno esté listo ejecutando:
-
-```
-ls /tmp/background_done
+```bash
+while [ ! -f /tmp/background_done ]; do
+  echo "Preparando entorno..."; sleep 3
+done && echo "Entorno listo ✓"
 ```
 
-Si el archivo existe, podés continuar. Si no aparece, esperá unos segundos y volvé a intentarlo.
+> ℹ️ Si querés ver el detalle de lo que hizo el script de fondo, revisá `/tmp/background.log`.
+
+## Lo que vas a aprender
+
+- Identificar y configurar interfaces de red con `ip` y Netplan
+- Asignar una IP estática a una interfaz virtual (`dummy0`)
+- Instalar y configurar `isc-dhcp-server`
+- Resolver nombres locales con `bind9`
+- Usar `ping`, `dig`, `ss` y `journalctl` para diagnosticar problemas
+
+¡Empecemos!
