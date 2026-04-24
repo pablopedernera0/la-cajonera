@@ -99,17 +99,19 @@ named-checkzone laboratorio.local /etc/bind/zones/laboratorio.local.db
 
 Si todo está bien, el segundo comando responde `OK`.
 
-## 4.7 — Iniciar bind9
+## 4.7 — Iniciar named (bind9)
+
+Named en algunos sistemas se puede instalar como bind9
 
 ```
-systemctl start bind9
-systemctl enable bind9
+systemctl start named
+systemctl enable named
 ```
 
 ## 4.8 — Verificar el estado
 
 ```
-systemctl status bind9
+systemctl status named
 ```
 
 ## 4.9 — Probar la resolución de nombres

@@ -14,7 +14,8 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y \
     bind9utils \
     dnsutils \
     net-tools \
-    iproute2
+    iproute2 \
+    inetutils-traceroute
 
 echo "[3/4] Deteniendo servicios (los configurás vos)..."
 systemctl stop isc-dhcp-server 2>/dev/null || true
