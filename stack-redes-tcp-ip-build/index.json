@@ -33,10 +33,12 @@
       "text": "finish.md"
     }
   },
+  "assets": {
+    "host01": [
+      {"file": "setup.sh", "target": "/root/setup.sh", "chmod": "+x"}
+    ]
+  },
   "backend": {
-    "imageid": "ubuntu",
-    "scripts": {
-      "background": "background.sh"
-    }
+    "imageid": "ubuntu"
   }
 }

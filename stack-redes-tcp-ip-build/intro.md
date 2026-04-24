@@ -4,13 +4,11 @@ En este escenario vas a configurar interfaces de red, un servidor DHCP y un serv
 
 ## Preparar el entorno
 
-El entorno necesita una interfaz de red virtual para practicar sin riesgo.
-Ejecutá estos comandos antes de continuar:
+El entorno necesita configurarse, hay que instalar servicios y una interfaz de red virtual para practicar sin riesgo.
+Ejecutá este comando antes de continuar:
 
 ```bash
-modprobe dummy
-ip link add dummy0 type dummy
-ip link set dummy0 up
+bash /root/setup.sh
 ```
 
 Verificá que la interfaz existe:
