@@ -34,6 +34,9 @@
     }
   },
   "backend": {
-    "imageid": "ubuntu"
+    "imageid": "ubuntu",
+    "scripts": {
+      "background": "background.sh"
+    }
   }
 }
