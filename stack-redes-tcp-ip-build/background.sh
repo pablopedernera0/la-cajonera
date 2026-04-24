@@ -20,28 +20,8 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
     net-tools \
     iproute2 || echo "[WARN] Algún paquete no instaló correctamente"
 
-# ── 2. Cargar módulo dummy con reintentos ──────────────────────────────────────
-echo "[$(date)] Cargando módulo dummy..."
-DUMMY_OK=false
-for i in 1 2 3 4 5; do
-    modprobe dummy && DUMMY_OK=true && echo "[$(date)] Módulo dummy cargado (intento $i)" && break
-    echo "[$(date)] Intento $i fallido, reintentando en 5s..."
-    sleep 5
-done
-$DUMMY_OK || echo "[WARN] Módulo dummy no disponible en este kernel"
-
-# ── 3. Crear interfaz dummy0 ───────────────────────────────────────────────────
-echo "[$(date)] Configurando interfaz dummy0..."
-if ip link show dummy0 > /dev/null 2>&1; then
-    echo "[$(date)] dummy0 ya existe"
-else
-    ip link add dummy0 type dummy 2>&1 || echo "[WARN] No se pudo crear dummy0"
-fi
-ip link set dummy0 up 2>&1 || echo "[WARN] No se pudo levantar dummy0"
-ip link show dummy0 2>&1 || echo "[WARN] dummy0 no visible"
-
 # ── 4. Detener servicios ───────────────────────────────────────────────────────
-echo "[$(date)] Deteniendo servicios...]"
+echo "[$(date)] Deteniendo servicios..."
 systemctl stop isc-dhcp-server 2>/dev/null || true
 systemctl stop bind9           2>/dev/null || true
 systemctl disable isc-dhcp-server 2>/dev/null || true

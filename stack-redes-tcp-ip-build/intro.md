@@ -2,17 +2,24 @@
 
 En este escenario vas a configurar interfaces de red, un servidor DHCP y un servidor DNS local en Ubuntu Server, y a practicar las herramientas de diagnóstico más usadas en producción.
 
-## Antes de empezar — esperá que el entorno esté listo
+## Preparar el entorno
 
-El entorno se está preparando en segundo plano (instalando paquetes y configurando interfaces virtuales). Ejecutá este comando y esperá el mensaje **"Entorno listo"** antes de continuar:
+El entorno necesita una interfaz de red virtual para practicar sin riesgo.
+Ejecutá estos comandos antes de continuar:
 
 ```bash
-while [ ! -f /tmp/background_done ]; do
-  echo "Preparando entorno..."; sleep 3
-done && echo "Entorno listo ✓"
+modprobe dummy
+ip link add dummy0 type dummy
+ip link set dummy0 up
 ```
 
-> ℹ️ Si querés ver el detalle de lo que hizo el script de fondo, revisá `/tmp/background.log`.
+Verificá que la interfaz existe:
+
+```bash
+ip link show dummy0
+```
+
+Si ves `dummy0` en la lista, estás listo para continuar.
 
 ## Lo que vas a aprender
 
