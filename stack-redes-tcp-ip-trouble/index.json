@@ -1,0 +1,31 @@
+{
+  "title": "Troubleshooting de servicios de red en Linux",
+  "description": "El entorno tiene servicios de red configurados con errores. Tu tarea es diagnosticar qué falló y repararlo.",
+  "difficulty": "intermediate",
+  "time": "30",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Paso 1 — Diagnóstico inicial",
+        "text": "step1/step1.md"
+      },
+      {
+        "title": "Paso 2 — Reparar el servidor DNS",
+        "text": "step2/step2.md"
+      },
+      {
+        "title": "Paso 3 — Reparar el servidor DHCP",
+        "text": "step3/step3.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu:2204"
+  }
+}
