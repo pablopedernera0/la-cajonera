@@ -1,6 +1,6 @@
 {
   "title": "Conceptos Básicos de Linux",
-  "descripion": "Conceptos básicos de linux",
+  "description": "Conceptos básicos de linux",
   "details": {
     "intro": {
       "text": "1-intro.md"

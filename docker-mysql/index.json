@@ -1,6 +1,6 @@
 {
   "title": "MySQL y PhpMyAdmin con Docker",
-  "descripion": "Instalando MySQL y PhpMyAdmin dentro con Docker",
+  "description": "Instalando MySQL y PhpMyAdmin dentro con Docker",
   "details": {
     "intro": {
       "text": "1-intro.md"

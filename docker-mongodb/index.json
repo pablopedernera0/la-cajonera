@@ -1,6 +1,6 @@
 {
   "title": "MongoDB y Docker",
-  "descripion": "Instalando MongoDB y MongoDB Express dentro con Docker",
+  "description": "Instalando MongoDB y MongoDB Express dentro con Docker",
   "details": {
     "intro": {
       "text": "1-intro.md"

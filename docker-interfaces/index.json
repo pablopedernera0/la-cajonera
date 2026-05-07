@@ -1,6 +1,6 @@
 {
   "title": "Diseño web interfaces web con Docker",
-  "descripion": "Aplicando conceptos de diseño web de interfaces dentro de un container Docker",
+  "description": "Aplicando conceptos de diseño web de interfaces dentro de un container Docker",
   "details": {
     "intro": {
       "text": "1-intro.md"
