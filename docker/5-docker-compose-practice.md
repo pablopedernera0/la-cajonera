@@ -1,6 +1,6 @@
 ### Docker Compose
 
-#### Instalar Docker Compose
+#### Trabajando con Docker Compose
 
 
 #### Crear un archivo 'docker-compose.yml'
