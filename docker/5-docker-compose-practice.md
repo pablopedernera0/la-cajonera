@@ -18,7 +18,18 @@ services:
       - "80:80"
 </pre>
 
-`nano docker-compose.yml`{{exec}}
+```
+cat > docker-compose.yml << 'EOF'
+services:
+   web:
+     image: nginx
+     volumes:
+       - ./web:/usr/share/nginx/html
+     ports:
+      - "80:80"
+EOF
+```
+> **Importante:** En YAML la indentación es parte de la sintaxis. Usá siempre espacios, nunca tabs.
 
 #### Generar el directorio local "web"
 
