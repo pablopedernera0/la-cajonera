@@ -6,11 +6,9 @@
       "text": "1-intro.md"
     },
     "steps": [
-
       {
         "text": "2-docker-compose.md"
       },
-
       {
         "text": "3-ejecutando-sql.md"
       },
@@ -18,7 +16,10 @@
         "text": "4-ejecutando-algo-mas.md"
       },
       {
-        "text": "5-revision-final.md"
+        "text": "5-crud-python.md"
+      },
+      {
+        "text": "6-revision-final.md"
       }
     ]
   },
