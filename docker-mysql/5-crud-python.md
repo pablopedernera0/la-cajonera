@@ -1,58 +1,41 @@
 #### Desplegando una aplicación CRUD con Python y Flask
 
-Ahora que tenemos MySQL y PhpMyAdmin corriendo, vamos a desplegar una aplicación web CRUD que ya está desarrollada. La idea es la misma que antes: solo ejecutamos comandos, nosotros no programamos nada.
+Ahora que tenemos MySQL corriendo con nuestra base de datos `alumnos`, vamos a desplegar una aplicación web CRUD ya desarrollada. La idea es la misma que antes: solo ejecutamos comandos, nosotros no programamos nada.
 
 #### Clonando el repositorio
 
-`git clone https://github.com/urian121/CRUD-COMPLETO-con-Python-MySQL-y-un-Dashboard.git crud-app`{{exec}}
+`git clone https://github.com/pablopedernera0/crud-python.git`{{exec}}
 
-`cd crud-app/my-app`{{exec}}
-
-#### Creando el archivo de configuración
-
-La aplicación necesita saber cómo conectarse a la base de datos MySQL que ya está corriendo en Docker. Para eso vamos a generar el archivo de configuración usando el siguiente comando:
-
-`cat > conexionBD.py << 'EOF'
-import mysql.connector
-
-def get_connection():
-    return mysql.connector.connect(
-        host="127.0.0.1",
-        port=3306,
-        user="root",
-        password="mysecretpassword",
-        database="crud_python"
-    )
-EOF`{{exec}}
-
-#### Precargando la base de datos
-
-La aplicación necesita su propia base de datos con tablas y datos de ejemplo. Vamos a importarla directamente al servidor MySQL que ya está corriendo en Docker.
-
-Primero copiamos el archivo SQL al container:
-
-`docker cp ../crud_python.sql $(docker ps --filter "ancestor=mysql:latest" -q):/crud_python.sql`{{exec}}
-
-Ahora lo importamos:
-
-`docker exec -i $(docker ps --filter "ancestor=mysql:latest" -q) mysql -u root -pmysecretpassword -e "source /crud_python.sql;"`{{exec}}
-
-Verificamos que la base de datos fue creada correctamente:
-
-`docker exec -i $(docker ps --filter "ancestor=mysql:latest" -q) mysql -u root -pmysecretpassword -e "SHOW DATABASES;"`{{exec}}
+`cd crud-python`{{exec}}
 
 #### Instalando las dependencias de Python
 
-`pip install -r ../requirements.txt --break-system-packages`{{exec}}
+`pip install flask mysql-connector-python --break-system-packages --ignore-installed`{{exec}}
+
+#### Obteniendo la IP del container MySQL
+
+La aplicación necesita conectarse al servidor MySQL que corre dentro de Docker. A diferencia de NGINX o PhpMyAdmin, MySQL no tiene su puerto expuesto al host, por lo que necesitamos usar su IP interna dentro de la red de Docker.
+
+`MYSQL_IP=$(docker inspect $(docker ps --filter "ancestor=mysql:latest" -q) --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}')`{{exec}}
+
+`echo "IP del servidor MySQL: $MYSQL_IP"`{{exec}}
+
+#### Configurando la conexión a la base de datos
+
+Con la IP obtenida, actualizamos el archivo de configuración de la aplicación:
+
+`sed -i "s/172.18.0.2/$MYSQL_IP/" app.py`{{exec}}
 
 #### Iniciando la aplicación
 
 `python app.py &`{{exec}}
 
-La aplicación queda corriendo en segundo plano en el puerto **5600**.
+Esperamos un momento y verificamos que levantó correctamente:
 
-Podemos verificar que está escuchando con:
+`sleep 2 && curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8888/`{{exec}}
 
-`curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:5600/`{{exec}}
+Si el resultado es `200`, la aplicación está funcionando en el puerto **8888**.
 
-Si el resultado es `200`, la aplicación está funcionando correctamente.
+Para acceder desde el navegador, hacemos click en el ícono hamburger arriba a la derecha, seleccionamos **"Traffic / Ports"**.
+
+Buscamos la opción "Custom Ports" escribimos **8888** y le damos click al botón "Access".

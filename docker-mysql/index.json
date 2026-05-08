@@ -1,6 +1,6 @@
 {
-  "title": "MySQL y PhpMyAdmin con Docker",
-  "description": "Instalando MySQL y PhpMyAdmin dentro con Docker",
+  "title": "Nginx, MySQL, PhpMyAdmin y Flask con Docker",
+  "description": "Instalando Nginx, MySQL y PhpMyAdmin dentro con Docker, y ejecutando una app con Flask",
   "details": {
     "intro": {
       "text": "1-intro.md"
