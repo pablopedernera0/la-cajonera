@@ -10,23 +10,23 @@
     "steps": [
       {
         "title": "Paso 1 — Preparar el entorno",
-        "text": "step1/step1.md"
+        "text": "steps/step1.md"
       },
       {
         "title": "Paso 2 — Crear usuario IAM y API Keys",
-        "text": "step2/step2.md"
+        "text": "steps/step2.md"
       },
       {
         "title": "Paso 3 — Configurar el proyecto",
-        "text": "step3/step3.md"
+        "text": "steps/step3.md"
       },
       {
         "title": "Paso 4 — Usar el CRUD y subir fotos",
-        "text": "step4/step4.md"
+        "text": "steps/step4.md"
       },
       {
         "title": "Paso 5 — Verificar en Floci Panel",
-        "text": "step5/step5.md"
+        "text": "steps/step5.md"
       }
     ],
     "finish": {
