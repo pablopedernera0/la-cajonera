@@ -1,5 +1,14 @@
 # Troubleshooting de servicios de red
 
+## Preparar el entorno
+
+El entorno necesita configurarse, hay que instalar servicios y una interfaz de red virtual para practicar sin riesgo.
+Ejecutá este comando antes de continuar:
+
+```bash
+bash /root/setup.sh
+```
+
 El entorno tiene `isc-dhcp-server` y `bind9` instalados y configurados, pero **ninguno de los dos está funcionando correctamente**.
 
 Tu tarea es diagnosticar qué falló en cada servicio y repararlo.
