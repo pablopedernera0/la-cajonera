@@ -10,7 +10,7 @@ set -e
 CYAN='\033[0;36m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-NC='\033[0m' # sin color
+NC='\033[0m'
 
 banner() { echo -e "\n${CYAN}[$1]${NC} $2"; }
 ok()     { echo -e "${GREEN}  ✓${NC} $1"; }
@@ -33,12 +33,12 @@ ok "Dependencias instaladas"
 
 # ── 2. Dependencias Python ────────────────────────────────────────────────────
 banner "2/5" "Instalando dependencias Python..."
-pip install flask mysql-connector-python boto3 python-dotenv \
+pip3 install flask mysql-connector-python boto3 python-dotenv \
     --break-system-packages --quiet
-ok "Flask, boto3 y python-dotenv instalados"
+ok "flask, mysql-connector-python, boto3, python-dotenv instalados"
 
-# ── 3. Levantar MySQL + Floci con Docker Compose ──────────────────────────────
-banner "3/5" "Levantando MySQL y Floci..."
+# ── 3. Levantar MySQL + Floci + floci-panel con Docker Compose ────────────────
+banner "3/5" "Levantando servicios con Docker Compose..."
 
 mkdir -p /root/cloud-storage-101
 
@@ -63,6 +63,22 @@ services:
     environment:
       - FLOCI_STORAGE_MODE=memory
       - FLOCI_DEFAULT_REGION=us-east-1
+      - FLOCI_HOSTNAME=floci
+    networks:
+      - redpractica
+
+  floci-panel:
+    image: ghcr.io/pablopedernera0/floci-panel:latest
+    restart: always
+    ports:
+      - "4580:80"
+    environment:
+      - FLOCI_ENDPOINT=http://floci:4566
+      - FLOCI_REGION=us-east-1
+      - FLOCI_ACCESS_KEY=test
+      - FLOCI_SECRET_KEY=test
+    depends_on:
+      - floci
     networks:
       - redpractica
 
@@ -77,24 +93,27 @@ ok "Contenedores iniciados"
 # ── 4. Esperar que los servicios estén listos ─────────────────────────────────
 banner "4/5" "Esperando que los servicios estén listos..."
 
-# Esperar MySQL
+# Esperar MySQL — hasta 60 segundos
 echo -n "  Esperando MySQL"
+MYSQL_READY=0
 for i in $(seq 1 30); do
     if docker exec $(docker ps -qf "ancestor=mysql:latest") \
         mysqladmin ping -uroot -pmysecretpassword --silent 2>/dev/null; then
         echo ""
         ok "MySQL listo"
+        MYSQL_READY=1
         break
     fi
     echo -n "."
     sleep 2
 done
 
-# Crear tabla con columna foto_url
-MYSQL_IP=$(docker inspect \
-    $(docker ps -qf "ancestor=mysql:latest") \
-    --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}')
+if [ $MYSQL_READY -eq 0 ]; then
+    warn "MySQL tardó demasiado. Reintentando en 10 segundos..."
+    sleep 10
+fi
 
+# Crear tabla alumnos con columna foto_url
 docker exec $(docker ps -qf "ancestor=mysql:latest") \
     mysql -uroot -pmysecretpassword alumnos << 'EOSQL'
 CREATE TABLE IF NOT EXISTS alumnos (
@@ -107,7 +126,12 @@ CREATE TABLE IF NOT EXISTS alumnos (
 EOSQL
 ok "Tabla 'alumnos' creada"
 
-# Esperar Floci
+# Obtener IP de MySQL para el .env
+MYSQL_IP=$(docker inspect \
+    $(docker ps -qf "ancestor=mysql:latest") \
+    --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}')
+
+# Esperar Floci — hasta 40 segundos
 echo -n "  Esperando Floci"
 for i in $(seq 1 20); do
     if curl -s http://localhost:4566 > /dev/null 2>&1; then
@@ -119,8 +143,8 @@ for i in $(seq 1 20); do
     sleep 2
 done
 
-# ── 5. Crear bucket S3 ────────────────────────────────────────────────────────
-banner "5/5" "Creando bucket S3..."
+# ── 5. Crear bucket y clonar proyecto ────────────────────────────────────────
+banner "5/5" "Configurando S3 y clonando el proyecto..."
 
 export AWS_ACCESS_KEY_ID=test
 export AWS_SECRET_ACCESS_KEY=test
@@ -130,14 +154,13 @@ export AWS_ENDPOINT_URL=http://localhost:4566
 aws s3 mb s3://fotos-alumnos
 ok "Bucket 'fotos-alumnos' creado"
 
-# ── Clonar el CRUD ────────────────────────────────────────────────────────────
-banner "+" "Clonando el proyecto CRUD..."
 cd /root
 git clone --branch aws-s3-floci \
     https://github.com/pablopedernera0/crud-python.git \
     crud-python 2>/dev/null || true
+ok "Proyecto clonado en /root/crud-python"
 
-# Generar .env con la IP real de MySQL (el alumno completará las keys)
+# Generar .env con IP real de MySQL
 cat > /root/crud-python/.env << ENVEOF
 # ── MySQL ──────────────────────────────────────────────────────────────────
 MYSQL_HOST=${MYSQL_IP}
@@ -157,19 +180,20 @@ AWS_SECRET_ACCESS_KEY=REEMPLAZAR
 ENVEOF
 ok "Archivo .env generado en /root/crud-python/.env"
 
-# ── Resumen final ─────────────────────────────────────────────────────────────
+# ── Resumen ───────────────────────────────────────────────────────────────────
 echo ""
 echo "=============================================="
 echo -e "${GREEN}  Entorno listo. Podés continuar con el Paso 1.${NC}"
 echo "=============================================="
 echo ""
 echo "  Servicios corriendo:"
-echo "    MySQL  → interno en la red Docker"
-echo "    Floci  → http://localhost:4566"
+echo "    MySQL       → red interna Docker"
+echo "    Floci       → http://localhost:4566"
+echo "    Floci Panel → http://localhost:4580"
 echo ""
-echo "  Bucket creado: s3://fotos-alumnos"
-echo "  CRUD clonado:  /root/crud-python"
+echo "  Bucket creado:  s3://fotos-alumnos"
+echo "  CRUD clonado:   /root/crud-python"
 echo ""
-echo "  Próximo paso: crear tu usuario IAM y obtener las API Keys."
+echo "  Próximo paso: verificar el entorno en el Paso 1."
 echo "=============================================="
 echo ""

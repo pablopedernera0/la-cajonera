@@ -1,42 +1,42 @@
 # Paso 5 — Verificar en Floci Panel
 
-**Floci Panel** es una interfaz web que muestra el contenido de los buckets S3 de Floci de forma visual, similar a la consola de AWS. En este paso la levantamos y verificamos que los archivos subidos en el Paso 4 están realmente almacenados.
+**Floci Panel** es una interfaz web que muestra el contenido de los buckets S3 de Floci de forma visual, similar a la consola de AWS. Ya está corriendo desde que ejecutaste el `setup.sh` — no hace falta levantarlo.
 
-## 5.1 — Levantar Floci Panel
-
-```bash
-docker run -d \
-  --name floci-panel \
-  --network cloud-storage-101_redpractica \
-  -p 4580:80 \
-  -e FLOCI_ENDPOINT=http://floci:4566 \
-  -e FLOCI_REGION=us-east-1 \
-  -e FLOCI_ACCESS_KEY=test \
-  -e FLOCI_SECRET_KEY=test \
-  ghcr.io/pablopedernera0/floci-panel:latest
-```
-
-> **Nota:** Floci Panel todavía está en desarrollo como parte de este proyecto educativo. Si la imagen no está disponible aún, usá la verificación por CLI del punto 5.4.
-
-## 5.2 — Acceder al panel
+## 5.1 — Acceder al panel
 
 1. Hacé click en el ícono **hamburger** (≡) arriba a la derecha
 2. Seleccioná **"Traffic / Ports"**
 3. En **Custom Ports** escribí `4580` y hacé click en **Access**
 
-## 5.3 — Explorar el panel
+Se abre Floci Panel en una nueva pestaña.
+
+## 5.2 — Explorar el bucket
 
 En el panel vas a ver:
 
-- **Lista de buckets** — debería aparecer `fotos-alumnos`
-- Al hacer click en el bucket, los **objetos almacenados** con nombre, tamaño y fecha
-- Al hacer click en un objeto, una **preview** de la imagen
+- **Sidebar izquierdo** — S3 e IAM
+- **Lista de buckets** — aparece `fotos-alumnos`
+- Al hacer click en el bucket — los objetos subidos con nombre (key), tamaño y fecha
+- Al hacer click en un objeto — preview con los metadatos del archivo
 
-Esto es exactamente lo que muestra la consola de AWS S3, pero con tu Floci local.
+## 5.3 — Verificar los objetos subidos
 
-## 5.4 — Verificación alternativa por CLI
+Cada foto que subiste en el Paso 4 aparece como un objeto con la key `alumnos/<id>.png` o `alumnos/<id>.jpg`. El panel muestra:
 
-Si el panel no está disponible, podés verificar todo desde la terminal:
+| Campo | Descripción |
+|-------|-------------|
+| Nombre (key) | Ruta del objeto dentro del bucket |
+| Tamaño | Peso del archivo en KB o MB |
+| Última modificación | Fecha y hora de la subida |
+| Tipo | Extensión del archivo (png, jpg) |
+
+## 5.4 — Verificar usuarios IAM
+
+Hacé click en **IAM** en el sidebar. Vas a ver el usuario `alumno` que creaste en el Paso 2 con su ARN y fecha de creación.
+
+## 5.5 — Verificación alternativa por CLI
+
+Si preferís confirmar desde la terminal:
 
 ```bash
 export AWS_ACCESS_KEY_ID=test
@@ -45,34 +45,27 @@ export AWS_DEFAULT_REGION=us-east-1
 export AWS_ENDPOINT_URL=http://localhost:4566
 ```
 
-**Listar todos los buckets:**
 ```bash
-aws s3 ls
-```
-
-**Listar el contenido del bucket:**
-```bash
+# Listar objetos en el bucket
 aws s3 ls s3://fotos-alumnos/ --recursive
 ```
 
-**Ver los metadatos de un objeto:**
 ```bash
+# Ver metadatos de un objeto específico
 aws s3api head-object \
   --bucket fotos-alumnos \
   --key alumnos/1.jpg
 ```
 
-La respuesta incluye el `ContentType`, tamaño y fecha de la última modificación.
+## 5.6 — Reflexión
 
-## 5.5 — Reflexión
+Lo que construiste en esta práctica es exactamente el flujo que se usa en producción:
 
-Pensá en lo que construiste en esta práctica:
-
-- Una aplicación real que usa S3 como almacenamiento de archivos
-- Credenciales IAM generadas correctamente, separadas de las credenciales root
-- Un bucket con objetos organizados por clave (`alumnos/<id>.jpg`)
+- Una aplicación que delega el almacenamiento de archivos a S3
+- Credenciales IAM propias, separadas de las credenciales root
+- Objetos organizados por key dentro de un bucket
 - Verificación visual y por CLI del estado del almacenamiento
 
-Este es exactamente el flujo que se usa en producción con AWS real. La única diferencia es el endpoint — en vez de `http://localhost:4566` sería `https://s3.amazonaws.com`.
+La única diferencia con AWS real es el endpoint — en producción sería `https://s3.amazonaws.com` en lugar de `http://localhost:4566`. El código es idéntico.
 
-> Si ves los archivos en el panel o en la salida de `aws s3 ls`, completaste la práctica correctamente.
+> Si ves los objetos en el panel y los usuarios IAM en la sección IAM, completaste la práctica correctamente.
