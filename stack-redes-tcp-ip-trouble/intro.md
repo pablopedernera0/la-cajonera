@@ -9,7 +9,7 @@ Ejecutá este comando antes de continuar:
 bash /root/setup.sh
 ```
 
-El entorno tiene `isc-dhcp-server` y `bind9` instalados y configurados, pero **ninguno de los dos está funcionando correctamente**.
+El entorno tiene `isc-dhcp-server` y `named` instalados y configurados, pero **ninguno de los dos está funcionando correctamente**.
 
 Tu tarea es diagnosticar qué falló en cada servicio y repararlo.
 
@@ -25,17 +25,19 @@ Tu tarea es diagnosticar qué falló en cada servicio y repararlo.
 
 ## Antes de empezar
 
-Verificá que el entorno esté listo:
+Verificá que la interfaz existe:
 
+```bash
+ip link show dummy0
 ```
-ls /tmp/background_done
-```
+
+Si ves `dummy0` en la lista, estás listo para continuar.
 
 Luego verificá el estado inicial de los servicios:
 
 ```
 systemctl status isc-dhcp-server
-systemctl status bind9
+systemctl status named
 ```
 
 Ambos deberían aparecer como `failed`. Ese es el punto de partida.

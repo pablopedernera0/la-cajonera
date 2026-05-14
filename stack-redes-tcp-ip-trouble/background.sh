@@ -79,6 +79,6 @@ EOF
 
 # Intentar iniciar los servicios (van a fallar, eso es intencional)
 systemctl start isc-dhcp-server 2>/dev/null || true
-systemctl start bind9 2>/dev/null || true
+systemctl start named 2>/dev/null || true
 
 echo "Entorno listo" > /tmp/background_done

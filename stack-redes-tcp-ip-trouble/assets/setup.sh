@@ -19,9 +19,9 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
 
 echo "[3/4] Deteniendo servicios (los configurás vos)..."
 systemctl stop isc-dhcp-server 2>/dev/null || true
-systemctl stop bind9 2>/dev/null || true
+systemctl stop named 2>/dev/null || true
 systemctl disable isc-dhcp-server 2>/dev/null || true
-systemctl disable bind9 2>/dev/null || true
+systemctl disable named 2>/dev/null || true
 
 echo "[4/4] Configurando interfaz virtual dummy0..."
 modprobe dummy
@@ -93,7 +93,7 @@ EOF
 
 # Intentar iniciar los servicios (van a fallar, eso es intencional)
 systemctl start isc-dhcp-server 2>/dev/null || true
-systemctl start bind9 2>/dev/null || true
+systemctl start named 2>/dev/null || true
 
 echo ""
 echo "================================================"

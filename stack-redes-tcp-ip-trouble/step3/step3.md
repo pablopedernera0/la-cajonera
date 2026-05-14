@@ -87,7 +87,7 @@ Con ambos servicios reparados, ejecutá la verificación completa:
 ```
 echo "=== Estado de servicios ==="
 systemctl is-active isc-dhcp-server
-systemctl is-active bind9
+systemctl is-active named
 
 echo "=== Puertos en escucha ==="
 ss -ulnp | grep -E "67|53"

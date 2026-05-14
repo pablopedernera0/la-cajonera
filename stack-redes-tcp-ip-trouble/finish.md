@@ -4,7 +4,7 @@ Diagnosticaste y reparaste dos servicios de red con errores de configuración re
 
 ## Los errores que encontraste y reparaste
 
-### bind9
+### named (bind9)
 1. **`named.conf.options`** — faltaba la llave de cierre `};` del bloque `options`. Error de sintaxis que impide que el servicio inicie.
 2. **Archivo de zona** — el registro `NS` tenía el nombre sin punto final. En archivos de zona, los nombres de dominio completos (FQDN) siempre deben terminar con `.`
 

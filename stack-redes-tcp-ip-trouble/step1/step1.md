@@ -6,7 +6,7 @@ Antes de tocar cualquier archivo de configuración, hay que entender exactamente
 
 ```
 systemctl status isc-dhcp-server
-systemctl status bind9
+systemctl status named
 ```
 
 Prestá atención a los mensajes de error que aparecen debajo del estado.
@@ -17,7 +17,7 @@ Los logs son la primera fuente de verdad cuando un servicio falla:
 
 ```
 journalctl -u isc-dhcp-server -n 30
-journalctl -u bind9 -n 30
+journalctl -u named -n 30
 ```
 
 **¿Qué buscar en los logs?**
@@ -35,7 +35,7 @@ Comparar las interfaces que existen con las que están configuradas en los servi
 
 ## 1.4 — Verificar sintaxis de los archivos de configuración
 
-Para bind9, existe un comando específico para verificar la configuración:
+Para named, existe un comando específico para verificar la configuración:
 
 ```
 named-checkconf
@@ -53,7 +53,7 @@ cat /etc/default/isc-dhcp-server
 Antes de continuar, anotá:
 
 1. ¿Qué error aparece en los logs de `isc-dhcp-server`?
-2. ¿Qué error aparece en los logs de `bind9`?
+2. ¿Qué error aparece en los logs de `named`?
 3. ¿Qué dice `named-checkconf`?
 4. ¿Qué dice `named-checkzone`?
 

@@ -1,6 +1,6 @@
 # Paso 2 — Reparar el servidor DNS
 
-En este paso vas a identificar y corregir los errores en la configuración de `bind9`.
+En este paso vas a identificar y corregir los errores en la configuración de `named`.
 
 ## 2.1 — Analizar los errores de named-checkconf
 
@@ -8,7 +8,7 @@ En este paso vas a identificar y corregir los errores en la configuración de `b
 named-checkconf 2>&1
 ```
 
-Este comando valida la sintaxis de todos los archivos de configuración de bind9. Si hay un error, te dice exactamente en qué archivo y en qué línea.
+Este comando valida la sintaxis de todos los archivos de configuración de named. Si hay un error, te dice exactamente en qué archivo y en qué línea.
 
 ## 2.2 — Ver el archivo con errores
 
@@ -88,8 +88,8 @@ Debe responder `OK`.
 ## 2.9 — Iniciar bind9
 
 ```
-systemctl start bind9
-systemctl status bind9
+systemctl start named
+systemctl status named
 ```
 
 ## 2.10 — Probar la resolución
