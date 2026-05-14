@@ -26,16 +26,15 @@ banner "1/5" "Instalando dependencias del sistema..."
 apt-get update -qq
 DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
     docker-compose \
-    awscli \
     python3-pip \
     git
-ok "Dependencias instaladas"
+ok "Dependencias del sistema instaladas"
 
-# ── 2. Dependencias Python ────────────────────────────────────────────────────
+# ── 2. Dependencias Python (incluyendo awscli) ────────────────────────────────
 banner "2/5" "Instalando dependencias Python..."
-pip3 install flask mysql-connector-python boto3 python-dotenv \
+pip3 install flask mysql-connector-python boto3 python-dotenv awscli \
     --break-system-packages --quiet
-ok "flask, mysql-connector-python, boto3, python-dotenv instalados"
+ok "flask, mysql-connector-python, boto3, python-dotenv, awscli instalados"
 
 # ── 3. Levantar MySQL + Floci + floci-panel con Docker Compose ────────────────
 banner "3/5" "Levantando servicios con Docker Compose..."
