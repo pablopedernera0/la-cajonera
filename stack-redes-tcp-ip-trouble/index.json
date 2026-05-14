@@ -2,7 +2,7 @@
   "title": "Troubleshooting de servicios de red en Linux",
   "description": "El entorno tiene servicios de red configurados con errores. Tu tarea es diagnosticar qué falló y repararlo.",
   "difficulty": "intermediate",
-  "time": "30",
+  "time": "60",
   "details": {
     "intro": {
       "text": "intro.md"
@@ -26,6 +26,6 @@
     }
   },
   "backend": {
-    "imageid": "ubuntu:2204"
+    "imageid": "ubuntu"
   }
 }
