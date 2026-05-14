@@ -97,7 +97,7 @@ echo -n "  Esperando MySQL"
 MYSQL_READY=0
 for i in $(seq 1 30); do
     if docker exec $(docker ps -qf "name=mysql") \
-        mysqladmin ping -uroot -pmysecretpassword --silent 2>/dev/null; then
+        mysqladmin ping -h 127.0.0.1 -uroot -pmysecretpassword --silent 2>/dev/null; then
         echo ""
         ok "MySQL listo"
         MYSQL_READY=1
@@ -114,7 +114,7 @@ fi
 
 # Crear tabla alumnos con columna foto_url
 docker exec $(docker ps -qf "name=mysql") \
-    mysql -uroot -pmysecretpassword alumnos << 'EOSQL'
+    mysql -h 127.0.0.1 -uroot -pmysecretpassword alumnos << 'EOSQL'
 CREATE TABLE IF NOT EXISTS alumnos (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(50) NOT NULL,
