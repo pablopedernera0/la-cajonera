@@ -33,7 +33,7 @@ ok "Dependencias del sistema instaladas"
 # ── 2. Dependencias Python (incluyendo awscli) ────────────────────────────────
 banner "2/5" "Instalando dependencias Python..."
 pip3 install flask mysql-connector-python boto3 python-dotenv awscli \
-    --break-system-packages --quiet
+        --break-system-packages --ignore-installed --quiet
 ok "flask, mysql-connector-python, boto3, python-dotenv, awscli instalados"
 
 # ── 3. Levantar MySQL + Floci + floci-panel con Docker Compose ────────────────
