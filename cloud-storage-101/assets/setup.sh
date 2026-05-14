@@ -33,7 +33,7 @@ ok "Dependencias del sistema instaladas"
 # ── 2. Dependencias Python (incluyendo awscli) ────────────────────────────────
 banner "2/5" "Instalando dependencias Python..."
 pip3 install flask mysql-connector-python boto3 python-dotenv awscli \
-    --break-system-packages --ignore-installed --quiet
+    --break-system-packages --quiet
 ok "flask, mysql-connector-python, boto3, python-dotenv, awscli instalados"
 
 # ── 3. Levantar MySQL + Floci + floci-panel con Docker Compose ────────────────
@@ -159,7 +159,11 @@ git clone --branch aws-s3-floci \
     crud-python 2>/dev/null || true
 ok "Proyecto clonado en /root/crud-python"
 
-# Generar .env con IP real de MySQL
+# Obtener URL pública de Floci desde KillerCoda
+KILLERCODA_HOST=$(cat /etc/killercoda/host 2>/dev/null || echo "http://localhost:4566")
+S3_PUBLIC_URL=${KILLERCODA_HOST/PORT/4566}
+
+# Generar .env con IP real de MySQL y URL pública de Floci
 cat > /root/crud-python/.env << ENVEOF
 # ── MySQL ──────────────────────────────────────────────────────────────────
 MYSQL_HOST=${MYSQL_IP}
@@ -177,10 +181,6 @@ S3_BUCKET=fotos-alumnos
 # Completar con las keys que vas a generar en el Paso 2
 AWS_ACCESS_KEY_ID=REEMPLAZAR
 AWS_SECRET_ACCESS_KEY=REEMPLAZAR
-
-# Obtener URL pública de Floci desde KillerCoda
-KILLERCODA_HOST=$(cat /etc/killercoda/host)
-S3_PUBLIC_URL=${KILLERCODA_HOST/PORT/4566}
 ENVEOF
 ok "Archivo .env generado en /root/crud-python/.env"
 
