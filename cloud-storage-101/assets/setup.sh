@@ -96,7 +96,7 @@ banner "4/5" "Esperando que los servicios estén listos..."
 echo -n "  Esperando MySQL"
 MYSQL_READY=0
 for i in $(seq 1 30); do
-    if docker exec $(docker ps -qf "ancestor=mysql:latest") \
+    if docker exec $(docker ps -qf "name=mysql") \
         mysqladmin ping -uroot -pmysecretpassword --silent 2>/dev/null; then
         echo ""
         ok "MySQL listo"
@@ -113,7 +113,7 @@ if [ $MYSQL_READY -eq 0 ]; then
 fi
 
 # Crear tabla alumnos con columna foto_url
-docker exec $(docker ps -qf "ancestor=mysql:latest") \
+docker exec $(docker ps -qf "name=mysql") \
     mysql -uroot -pmysecretpassword alumnos << 'EOSQL'
 CREATE TABLE IF NOT EXISTS alumnos (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -127,7 +127,7 @@ ok "Tabla 'alumnos' creada"
 
 # Obtener IP de MySQL para el .env
 MYSQL_IP=$(docker inspect \
-    $(docker ps -qf "ancestor=mysql:latest") \
+    $(docker ps -qf "name=mysql") \
     --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}')
 
 # Esperar Floci — hasta 40 segundos
