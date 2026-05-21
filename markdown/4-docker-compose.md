@@ -100,10 +100,10 @@ Construimos la imagen:
 
 Levantamos el servicio:
 
-`docker-compose up -d`{{exec}}
+`docker compose up -d`{{exec}}
 
 Verificamos que esté corriendo:
 
-`docker-compose ps`{{exec}}
+`docker compose ps`{{exec}}
 
 Deberías ver el servicio `markdown-viewer` con estado **running**.
