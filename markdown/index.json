@@ -1,37 +1,35 @@
 {
-  "title": "Tutorial de Markdown",
-  "description": "Tutorial de conceptos basicos de markdown",
+  "title": "Markdown con Docker y NGINX",
+  "description": "Aprendé Markdown editando con nano y visualizá el resultado en el navegador a través de un contenedor Docker con NGINX y un renderizador",
   "details": {
     "intro": {
       "text": "1-intro.md"
     },
     "steps": [
-
       {
-        "text": "2-cli.md"
+        "title": "¿Qué es Markdown?",
+        "text": "2-markdown.md"
       },
       {
-        "text": "3-cli-practice.md"
+        "title": "Instalando Docker",
+        "text": "3-docker-install.md"
       },
       {
-        "text": "4-apt.md"
+        "title": "Armando el entorno con Docker Compose",
+        "text": "4-docker-compose.md"
       },
       {
-        "text": "5-apt-practice.md"
+        "title": "Editando Markdown con nano",
+        "text": "5-markdown-practice.md"
       },
       {
-        "text": "6-filesystem.md"
-      },
-      {
-        "text": "7-process-services.md"
-      },
-      {
-        "text": "8-process-services-practice.md"
-      },
-      {
-        "text": "9-final.md"
+        "title": "Visualizando el resultado",
+        "text": "6-visualize.md"
       }
-    ]
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
   },
   "backend": {
     "imageid": "ubuntu"

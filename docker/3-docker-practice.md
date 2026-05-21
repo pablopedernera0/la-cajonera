@@ -1,6 +1,10 @@
 ### Instalando Docker en Ubuntu
 
-#### Paso 1: Instalar Docker
+#### ACLARACION IMPORTANTE
+Los Pasos 1 a 3 son opcionales en este entorno killercoda, este escenario ya tiene todo lo necesario para trabajar con docker.
+Sin embargo, como en algunos entornos puede que no esté disponible, se incluye la guía de instalación como referencia.
+
+#### Paso 1: Instalar Docker (Opcional en esta práctica)
 
 Instalar algunos paquetes de requisitos previos que permitan a apt usar paquetes a través de HTTPS:
 
@@ -53,7 +57,7 @@ Memory: 46.4M
 CGroup: /system.slice/docker.service
 └─24321 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock`
 
-#### Paso 2 : Ejecutar el comando Docker sin sudo (opcional)
+#### Paso 2 : Ejecutar el comando Docker sin sudo ((Opcional en esta práctica))
 
 Por defecto, el comando docker solo puede ser ejecutado por el usuario root o un usuario del grupo docker, que se crea automáticamente durante el proceso de instalación de Docker. 
 Si se intenta ejecutar el comando docker sin sudo como prefijo o sin formar parte del grupo docker, se obtendrá un resultado como este:

@@ -1,6 +1,7 @@
 # ¡Escenario completado!
 
-Instalaste y configuraste Docker desde cero, levantaste tu primer contenedor y orquestaste servicios con Docker Compose. ¡Bien hecho!
+Instalaste y configuraste Docker desde cero, levantaste tu primer contenedor, orquestaste servicios con Docker Compose y 
+personalizaste la página de bienvenida. ¡Bien hecho!
 
 ## Lo que hiciste
 
@@ -9,6 +10,7 @@ Instalaste y configuraste Docker desde cero, levantaste tu primer contenedor y o
 - **Exposición de puertos** — mapeaste puertos del host al contenedor con el modificador `-p`
 - **Docker Compose** — definiste un servicio NGINX mediante un archivo `docker-compose.yml` y lo levantaste con un único comando
 - **Volúmenes** — montaste un directorio local dentro del contenedor para servir contenido estático personalizado
+- **Página de bievenida** — editaste un archivo, que se usa como página principal de bienvenida del servidor nginx
 
 ## Comandos clave para recordar
 
