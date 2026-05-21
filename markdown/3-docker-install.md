@@ -56,6 +56,6 @@ Deberías ver `docker` en la lista de grupos.
 
 #### Paso 7: Verificar Docker Compose
 
-`docker compose version`{{exec}}
+`docker-compose version`{{exec}}
 
-Si ves algo como `Docker Compose version v2.x.x`, estás listo para continuar.
+Si ves algo como `Docker Compose version vx.x.x`, estás listo para continuar.

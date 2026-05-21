@@ -15,18 +15,18 @@ Aprendiste a escribir Markdown con nano, a levantar un entorno con Docker Compos
 
 ## Comandos clave para recordar
 
-| Comando                          | Para qué sirve                                         |
-|----------------------------------|--------------------------------------------------------|
-| `nano archivo.md`                | Abrir o crear un archivo con el editor nano            |
-| `Ctrl + O` → `Enter`            | Guardar en nano                                        |
-| `Ctrl + X`                       | Salir de nano                                          |
-| `docker compose build`           | Construir la imagen definida en el Dockerfile          |
-| `docker compose up -d`           | Levantar los servicios en segundo plano                |
-| `docker compose restart`         | Reiniciar los servicios (para regenerar el HTML)       |
-| `docker compose ps`              | Ver el estado de los servicios                         |
-| `docker compose logs`            | Ver los logs de los contenedores                       |
-| `docker compose down`            | Detener y eliminar los servicios                       |
-| `curl http://localhost`          | Verificar que el servidor responde desde la terminal   |
+| Comando                  | Para qué sirve                                         |
+|--------------------------|--------------------------------------------------------|
+| `nano archivo.md`        | Abrir o crear un archivo con el editor nano            |
+| `Ctrl + O` → `Enter`     | Guardar en nano                                        |
+| `Ctrl + X`               | Salir de nano                                          |
+| `docker-compose build`   | Construir la imagen definida en el Dockerfile          |
+| `docker-compose up -d`   | Levantar los servicios en segundo plano                |
+| `docker-compose restart` | Reiniciar los servicios (para regenerar el HTML)       |
+| `docker-compose ps`      | Ver el estado de los servicios                         |
+| `docker-compose logs`    | Ver los logs de los contenedores                       |
+| `docker-compose down`   | Detener y eliminar los servicios                       |
+| `curl http://localhost`  | Verificar que el servidor responde desde la terminal   |
 
 ## Sintaxis Markdown para llevarte
 

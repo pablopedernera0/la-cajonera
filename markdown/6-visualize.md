@@ -4,7 +4,7 @@
 
 #### Paso 1: Verificar que el contenedor está corriendo
 
-`docker compose -f ~/markdown-lab/docker-compose.yml ps`{{exec}}
+`docker-compose -f ~/markdown-lab/docker-compose.yml ps`{{exec}}
 
 #### Paso 2: Verificar que el HTML fue generado
 
@@ -62,6 +62,6 @@ Recargá el navegador y deberías ver tu nueva sección.
 
 Si algo no funciona como esperás, podés inspeccionar los logs:
 
-`docker compose -f ~/markdown-lab/docker-compose.yml logs`{{exec}}
+`docker-compose -f ~/markdown-lab/docker-compose.yml logs`{{exec}}
 
 Ahí verás el output del script de conversión y cualquier error de NGINX.

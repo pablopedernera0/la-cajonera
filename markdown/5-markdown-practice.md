@@ -101,6 +101,6 @@ Deberías ver el contenido que acabás de escribir.
 
 Cada vez que modifiques el archivo Markdown, necesitás reiniciar el contenedor para que `pandoc` vuelva a convertirlo:
 
-`cd ~/markdown-lab && docker compose restart`{{exec}}
+`cd ~/markdown-lab && docker-compose restart`{{exec}}
 
 > **Nota:** En un entorno de producción esto se automatizaría con un *file watcher*. Por ahora lo hacemos manualmente para entender cada paso del proceso.
