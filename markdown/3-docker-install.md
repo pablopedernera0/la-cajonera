@@ -1,61 +1,49 @@
-### Instalando Docker en Ubuntu
+### Actualizando Docker Compose
 
-Antes de levantar nuestro entorno de visualización, necesitamos tener Docker instalado. Seguí los pasos a continuación.
+Este entorno ya tiene Docker instalado y corriendo. Sin embargo, la versión disponible es `docker-compose` (con guion), que es la versión 1 — escrita en Python y hoy en día **deprecada**.
 
-#### ACLARACION IMPORTANTE
-Los Pasos 1 a 6 son opcionales en este entorno killercoda, este escenario ya tiene todo lo necesario para trabajar con docker.
-Sin embargo, como en algunos entornos puede que no esté disponible, se incluye la guía de instalación como referencia.
+En este escenario vamos a usar `docker compose` (sin guion), que es el plugin oficial v2, integrado directamente en Docker. Vale la pena entender la diferencia antes de instalarlo.
 
-#### Paso 1: Instalar dependencias previas (Opcional en esta práctica)
+#### docker-compose vs docker compose
 
-Instalamos los paquetes necesarios para que `apt` pueda trabajar con repositorios HTTPS:
+| | `docker-compose` (v1) | `docker compose` (v2) |
+|---|---|---|
+| Instalación | Binario separado, en Python | Plugin integrado en Docker |
+| Sintaxis | `docker-compose` | `docker compose` |
+| Estado | **Deprecado** desde 2023 | **Estándar actual** |
 
-`sudo apt-get update`{{exec}}
+> **Regla práctica:** Si encontrás tutoriales que usan `docker-compose` (con guion), reemplazalo por `docker compose` (sin guion). En la mayoría de los casos funciona exactamente igual.
 
-`sudo apt-get install -y ca-certificates curl`{{exec}}
+#### Paso 1: Verificar lo que hay instalado
 
-#### Paso 2: Agregar la clave GPG oficial de Docker (Opcional en esta práctica)
+`docker-compose version`{{exec}}
 
-`sudo install -m 0755 -d /etc/apt/keyrings`{{exec}}
+`docker compose version`{{exec}}
 
-`sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc`{{exec}}
+El primero responde, el segundo falla. Eso es lo que vamos a corregir.
 
-`sudo chmod a+r /etc/apt/keyrings/docker.asc`{{exec}}
-
-#### Paso 3: Agregar el repositorio de Docker a las fuentes de APT (Opcional en esta práctica)
-
-`echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`{{exec}}
+#### Paso 2: Instalar el plugin Docker Compose v2
 
 `sudo apt-get update`{{exec}}
 
-#### Paso 4: Instalar Docker Engine y Docker Compose (Opcional en esta práctica)
+`sudo apt-get install -y docker-compose-plugin`{{exec}}
 
-`sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin`{{exec}}
+#### Paso 3: Verificar la instalación
 
-#### Paso 5: Verificar la instalación (Opcional en esta práctica)
+`docker compose version`{{exec}}
 
-Comprobamos que Docker esté activo:
+Deberías ver algo como `Docker Compose version v2.x.x`. Ya podemos usar `docker compose` en todos los pasos siguientes.
 
-`sudo systemctl status docker`{{exec}}
+#### Paso 4: Ejecutar Docker sin sudo
 
-El resultado debe mostrar que el servicio está **active (running)**.
-
-#### Paso 6: Ejecutar Docker sin sudo (recomendado - Opcional en esta práctica)
-
-Por defecto, el comando `docker` requiere permisos de root. Para evitar escribir `sudo` cada vez, agregamos nuestro usuario al grupo `docker`:
+Por defecto el comando `docker` requiere permisos de root. Agregamos nuestro usuario al grupo `docker` para no tener que escribir `sudo` en cada comando:
 
 `sudo usermod -aG docker ${USER}`{{exec}}
 
 `newgrp docker`{{exec}}
 
-Verificamos que el usuario pertenece al grupo:
+Verificamos:
 
 `id -nG`{{exec}}
 
-Deberías ver `docker` en la lista de grupos.
-
-#### Paso 7: Verificar Docker Compose
-
-`docker-compose version`{{exec}}
-
-Si ves algo como `Docker Compose version vx.x.x`, estás listo para continuar.
+Deberías ver `docker` en la lista. A partir de ahora usamos `docker` y `docker compose` directamente, sin `sudo`.
