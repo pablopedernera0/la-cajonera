@@ -27,7 +27,7 @@ Nano se maneja con atajos de teclado. Los más importantes:
 
 Dentro de nano, escribí el siguiente contenido (podés copiarlo y pegarlo con `Ctrl + Shift + V` en la mayoría de terminales):
 
-```markdown
+<pre>
 # Infraestructura de Redes
 
 ## Introducción
@@ -83,7 +83,7 @@ EXPOSE 80
 ---
 
 > *"La infraestructura bien documentada es infraestructura que funciona."*
-```
+</pre>
 
 #### Paso 3: Guardar y salir
 
