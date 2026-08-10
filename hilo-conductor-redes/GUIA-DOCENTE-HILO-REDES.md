@@ -2,6 +2,17 @@
 
 Esta guía es para el docente, no para el alumno. Cubre las **6 etapas del hilo conductor completo** que atraviesa la materia de redes: la misma infraestructura (MySQL + una app Flask CRUD, con Nginx/PhpMyAdmin en las primeras etapas) se despliega, se mide, se protege, se ataca, se investiga y finalmente se monitorea en vivo, a lo largo de seis prácticas encadenadas.
 
+## ⚠️ Incidente 2026-08-10 — etapas 3 y 4 pausadas, fuera de Killercoda
+
+Corriendo `ab` (Etapa 1) la cuenta de Killercoda quedó bloqueada por "security scanners,
+bruteforce or hacker-tools". Las etapas 3 y 4 instalan `nmap`, `hydra` y `sqlmap` —
+exactamente esas categorías — así que se sacaron de este repo (linkeado a Killercoda) como
+precaución, sin confirmar todavía si el bloqueo dependía de ese contenido. Están en
+[`pablopedernera0/hilo-conductor-redes-ataques`](https://github.com/pablopedernera0/hilo-conductor-redes-ataques)
+(privado), pendiente de migrar a un entorno con `docker-compose` que el alumno clona y
+corre en su propia máquina, en vez de Killercoda. El contenido pedagógico de esta guía para
+las etapas 3 y 4 (más abajo) sigue siendo válido — cambia dónde se ejecuta, no qué se enseña.
+
 ## Mapa del hilo conductor
 
 El repo está linkeado a Killercoda — cada push a `main` actualiza la plataforma automáticamente, sin publicación manual. Link directo para dar a los alumnos (patrón: `killercoda.com/pablop22/scenario/<carpeta>`), verificado que resuelve:
@@ -11,8 +22,8 @@ El repo está linkeado a Killercoda — cada push a `main` actualiza la platafor
 | 0 | `docker-mysql` (ya existía) | Deploy manual de Nginx + MySQL + PhpMyAdmin + `crud-python` | `main` | https://killercoda.com/pablop22/scenario/docker-mysql |
 | 1 | `crud-stress-test` | Mide la infraestructura con `ab`, compara Flask dev server vs. Gunicorn | `main` | https://killercoda.com/pablop22/scenario/crud-stress-test |
 | 2 | `crud-auth-login` | Agrega login + sesiones | `feature-login` | https://killercoda.com/pablop22/scenario/crud-auth-login |
-| 3 | `crud-ataques-red` | Reconocimiento con `nmap`, credenciales hardcodeadas, fuerza bruta con `hydra` | `feature-login` | https://killercoda.com/pablop22/scenario/crud-ataques-red |
-| 4 | `crud-sqli` | Bypass manual y explotación automatizada con `sqlmap` de la inyección SQL en `/login` | `feature-login` | https://killercoda.com/pablop22/scenario/crud-sqli |
+| 3 | `crud-ataques-red` | Reconocimiento con `nmap`, credenciales hardcodeadas, fuerza bruta con `hydra` | `feature-login` | **Pausada — ver nota arriba** |
+| 4 | `crud-sqli` | Bypass manual y explotación automatizada con `sqlmap` de la inyección SQL en `/login` | `feature-login` | **Pausada — ver nota arriba** |
 | 5 | `crud-logs-analisis-cli` | Forense con `grep`/`awk` sobre logs de la app y `general_log` de MySQL | `feature-login` | https://killercoda.com/pablop22/scenario/crud-logs-analisis-cli |
 | 6 | `crud-monitoreo-prometheus-grafana` | Prometheus + Grafana + cAdvisor + mysqld-exporter, en vivo | `monitoring` | https://killercoda.com/pablop22/scenario/crud-monitoreo-prometheus-grafana |
 
