@@ -41,8 +41,9 @@ monitorea.
 > con un loop de `curl` en vez de `ab`) para que quien no tiene PC propia siga la práctica en
 > Killercoda, y una versión **realista** (`ab` real, carga hasta romper la app) se sumó al
 > repo privado para quien sí tiene PC — el docente muestra esa corrida real en vivo desde su
-> computadora. Pendiente todavía responder el mail de Killercoda confirmando que se tomó nota
-> de la restricción. **No reagregues las etapas 3/4 (nmap/hydra/sqlmap) a `la-cajonera`.**
+> computadora. Ya se respondió el mail de Killercoda confirmando que se tomó nota de la
+> restricción (enviado 2026-08-10). **No reagregues las etapas 3/4 (nmap/hydra/sqlmap) a
+> `la-cajonera`.**
 
 | Etapa | Carpeta | Qué hace | Branch de `crud-python` | Estado |
 |---|---|---|---|---|
@@ -63,10 +64,9 @@ El código de la app vive en [`pablopedernera0/crud-python`](https://github.com/
 - Versión publicada (HTML + desarrollo de contenidos por etapa, para docente y para estudiantes) en el repo `pablopedernera0.github.io`, carpeta `hilo-conductor-redes/`
 
 **Pendiente:**
-1. Responder a `security@killercoda.com` confirmando que se tomó nota de la restricción — redactar y enviar.
-2. Confirmar que `docker-compose up -d --build` funciona en una máquina normal para `crud-ataques-red`/`crud-sqli` (Pablo está probando — ver `probar-entorno-ataques.md` que se le mandó como checklist). El entorno de `crud-stress-test` (dentro del mismo repo) ya está probado end-to-end.
-3. Adaptar `crud-ataques-red/steps/*.md` y `crud-sqli/steps/*.md` (dentro de `hilo-conductor-redes-ataques`) de formato Killercoda a "tu propia terminal contra localhost" — los comandos de nmap/hydra/sqlmap en sí no cambian, las rutas sí. (`crud-stress-test/steps/` en ese mismo repo ya está adaptado, sirve de referencia.)
-4. Pasar `hilo-conductor-redes-ataques` a público en GitHub (Settings → Danger Zone → Change visibility) — decidido, falta que Pablo lo ejecute.
+1. Confirmar que `docker-compose up -d --build` funciona en una máquina normal para `crud-ataques-red`/`crud-sqli` (Pablo está probando — ver `probar-entorno-ataques.md` que se le mandó como checklist). El entorno de `crud-stress-test` (dentro del mismo repo) ya está probado end-to-end.
+2. Adaptar `crud-ataques-red/steps/*.md` y `crud-sqli/steps/*.md` (dentro de `hilo-conductor-redes-ataques`) de formato Killercoda a "tu propia terminal contra localhost" — los comandos de nmap/hydra/sqlmap en sí no cambian, las rutas sí. (`crud-stress-test/steps/` en ese mismo repo ya está adaptado, sirve de referencia.)
+3. Pasar `hilo-conductor-redes-ataques` a público en GitHub (Settings → Danger Zone → Change visibility) — decidido, falta que Pablo lo ejecute.
 
 ---
 
