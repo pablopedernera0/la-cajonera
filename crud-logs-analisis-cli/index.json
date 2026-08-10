@@ -1,0 +1,40 @@
+{
+  "title": "Análisis de logs con herramientas de línea de comandos",
+  "description": "Investigá, con grep/awk/sort/uniq, qué evidencia dejaron el stress test, la fuerza bruta y la inyección SQL de las prácticas anteriores en los logs de la app y de MySQL.",
+  "difficulty": "intermediate",
+  "time": "40",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Paso 1 — Los logs de la app: encontrando el pico de carga",
+        "text": "steps/step1.md"
+      },
+      {
+        "title": "Paso 2 — Encontrando la fuerza bruta",
+        "text": "steps/step2.md"
+      },
+      {
+        "title": "Paso 3 — El general query log de MySQL: la prueba de la inyección",
+        "text": "steps/step3.md"
+      },
+      {
+        "title": "Paso 4 — Armando la línea de tiempo del incidente",
+        "text": "steps/step4.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {"file": "setup.sh", "target": "/root", "chmod": "+x"}
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
