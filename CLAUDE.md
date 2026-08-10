@@ -29,9 +29,12 @@ monitorea.
 > así que se sacaron de este repo (que está linkeado a Killercoda) como precaución, no solo
 > se dejaron de usar. Están en
 > [`pablopedernera0/hilo-conductor-redes-ataques`](https://github.com/pablopedernera0/hilo-conductor-redes-ataques)
-> (privado), pausadas hasta decidir si migran a una VM local (VirtualBox, TP N°5 del
-> programa de Infraestructura de Redes) en vez de Killercoda. **No las reagregues acá sin
-> resolver esto primero.**
+> (privado): ese repo ya tiene un entorno `docker-compose` (MySQL + PhpMyAdmin + la app
+> dockerizada) para que el alumno lo clone y lo corra en su propia máquina, sin Killercoda
+> de por medio. Probado parcialmente en local (MySQL/PhpMyAdmin/networking sí; el build de
+> la imagen de la app no, por falta de salida a internet en la máquina de desarrollo usada)
+> — pendiente que Pablo confirme que el build funciona en una máquina normal. **No
+> reagregues estas etapas a `la-cajonera` sin resolver esto primero.**
 
 | Etapa | Carpeta | Qué hace | Branch de `crud-python` | Estado |
 |---|---|---|---|---|
@@ -54,9 +57,11 @@ El código de la app vive en [`pablopedernera0/crud-python`](https://github.com/
 
 **Pendiente:**
 1. Resolver el bloqueo de Killercoda (mail a security@killercoda.com, respuesta pendiente).
-2. Decidir destino final de las etapas 3 y 4 (VM local vs. otra plataforma vs. Killercoda si se confirma que no era el contenido).
-3. Evaluar si la Etapa 1 necesita cambiar `ab` por otra cosa.
-4. Actualizar `hilo-conductor-redes/GUIA-DOCENTE-HILO-REDES.md` y el cronograma para reflejar el estado real (hoy todavía asumen 6 etapas completas en Killercoda).
+2. Confirmar que `docker-compose up -d --build` funciona en una máquina normal (Pablo está probando — ver `probar-entorno-ataques.md` que se le mandó como checklist).
+3. Adaptar `crud-ataques-red/steps/*.md` y `crud-sqli/steps/*.md` (dentro de `hilo-conductor-redes-ataques`) de formato Killercoda a "tu propia terminal contra localhost" — los comandos de nmap/hydra/sqlmap en sí no cambian, las rutas sí.
+4. Decidir visibilidad de `hilo-conductor-redes-ataques` (hoy privado, tiene que ser público o accesible a todo el curso para que se pueda clonar).
+5. Evaluar si la Etapa 1 (sigue en Killercoda, usa `ab`) necesita el mismo tratamiento.
+6. Actualizar `hilo-conductor-redes/CRONOGRAMA-HILO-REDES-2C-2026.md` para reflejar el estado real (todavía asume 6 etapas completas en Killercoda; la guía docente ya tiene la nota de incidente).
 
 ---
 
@@ -104,3 +109,7 @@ salvo pedido explícito.
 - `sistema-eidas` (`~/trabajos/pablo/terciario-urquiza/sistema-eidas`) — sistema de
   evaluación asistida por IA para Diseño de Sistemas Web (AF), no relacionado con Killercoda.
   Tiene su propio `CLAUDE.md` con el mismo espíritu que este archivo.
+- `hilo-conductor-redes-ataques` (privado) — etapas 3 y 4 del hilo conductor, sacadas de
+  acá por el incidente de Killercoda (ver arriba). Entorno `docker-compose` que el alumno
+  clona y corre en su propia máquina. Tiene su propio `CLAUDE.md` y un `NOTAS-DOCENTE.md`
+  con el detalle completo del incidente y el estado pendiente.
