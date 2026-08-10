@@ -20,7 +20,7 @@ En vez de sacar toda la Etapa 1, se dividió en dos:
 
 Las etapas 3 y 4 están en
 [`pablopedernera0/hilo-conductor-redes-ataques`](https://github.com/pablopedernera0/hilo-conductor-redes-ataques)
-(pendiente pasar a público), con un entorno `docker-compose` que el alumno clona y corre en
+(público), con un entorno `docker-compose` que el alumno clona y corre en
 su propia máquina. Ahí también vive la versión realista de la Etapa 1
 (`crud-stress-test/`, ya probada end-to-end). El contenido pedagógico de esta guía para las
 etapas 3 y 4 (más abajo) sigue siendo válido — cambia dónde se ejecuta, no qué se enseña.

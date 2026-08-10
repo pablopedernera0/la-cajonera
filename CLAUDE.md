@@ -35,12 +35,12 @@ monitorea.
 >
 > Todo lo movido está en
 > [`pablopedernera0/hilo-conductor-redes-ataques`](https://github.com/pablopedernera0/hilo-conductor-redes-ataques)
-> (privado, pendiente pasar a público): entorno `docker-compose` para que el alumno lo clone
+> (público): entorno `docker-compose` para que el alumno lo clone
 > y lo corra en su propia máquina, sin Killercoda de por medio. La Etapa 1 se dividió en dos
 > en vez de moverse entera: una versión **liviana** se quedó acá (`crud-stress-test/`, mide
 > con un loop de `curl` en vez de `ab`) para que quien no tiene PC propia siga la práctica en
 > Killercoda, y una versión **realista** (`ab` real, carga hasta romper la app) se sumó al
-> repo privado para quien sí tiene PC — el docente muestra esa corrida real en vivo desde su
+> repo aparte para quien sí tiene PC — el docente muestra esa corrida real en vivo desde su
 > computadora. Ya se respondió el mail de Killercoda confirmando que se tomó nota de la
 > restricción (enviado 2026-08-10). **No reagregues las etapas 3/4 (nmap/hydra/sqlmap) a
 > `la-cajonera`.**
@@ -66,7 +66,6 @@ El código de la app vive en [`pablopedernera0/crud-python`](https://github.com/
 **Pendiente:**
 1. Confirmar que `docker-compose up -d --build` funciona en una máquina normal para `crud-ataques-red`/`crud-sqli` (Pablo está probando — ver `probar-entorno-ataques.md` que se le mandó como checklist). El entorno de `crud-stress-test` (dentro del mismo repo) ya está probado end-to-end.
 2. Adaptar `crud-ataques-red/steps/*.md` y `crud-sqli/steps/*.md` (dentro de `hilo-conductor-redes-ataques`) de formato Killercoda a "tu propia terminal contra localhost" — los comandos de nmap/hydra/sqlmap en sí no cambian, las rutas sí. (`crud-stress-test/steps/` en ese mismo repo ya está adaptado, sirve de referencia.)
-3. Pasar `hilo-conductor-redes-ataques` a público en GitHub (Settings → Danger Zone → Change visibility) — decidido, falta que Pablo lo ejecute.
 
 ---
 
@@ -114,7 +113,7 @@ salvo pedido explícito.
 - `sistema-eidas` (`~/trabajos/pablo/terciario-urquiza/sistema-eidas`) — sistema de
   evaluación asistida por IA para Diseño de Sistemas Web (AF), no relacionado con Killercoda.
   Tiene su propio `CLAUDE.md` con el mismo espíritu que este archivo.
-- `hilo-conductor-redes-ataques` (privado, pendiente pasar a público) — etapas 1
+- `hilo-conductor-redes-ataques` (público) — etapas 1
   (`crud-stress-test`, versión realista con `ab`), 3 y 4 del hilo conductor, sacadas de acá
   por el incidente de Killercoda (ver arriba). Entorno `docker-compose` que el alumno clona
   y corre en su propia máquina. Tiene su propio `CLAUDE.md` y un `NOTAS-DOCENTE.md` con el
