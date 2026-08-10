@@ -1,0 +1,40 @@
+{
+  "title": "Login y control de acceso en una app Flask + MySQL",
+  "description": "Agregale una pantalla de login a la app CRUD y entendé cómo funcionan las sesiones y el control de acceso — la base de las próximas prácticas de ataques.",
+  "difficulty": "intermediate",
+  "time": "35",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Paso 1 — Autenticación, autorización y sesiones",
+        "text": "steps/step1.md"
+      },
+      {
+        "title": "Paso 2 — Explorando el código del login",
+        "text": "steps/step2.md"
+      },
+      {
+        "title": "Paso 3 — Iniciando sesión",
+        "text": "steps/step3.md"
+      },
+      {
+        "title": "Paso 4 — Cerrando sesión y reflexión final",
+        "text": "steps/step4.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {"file": "setup.sh", "target": "/root", "chmod": "+x"}
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
