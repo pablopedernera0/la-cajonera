@@ -4,15 +4,17 @@ Esta guía es para el docente, no para el alumno. Cubre las **6 etapas del hilo 
 
 ## Mapa del hilo conductor
 
-| Orden | Escenario | Qué hace | Branch de la app |
-|---|---|---|---|
-| 0 | `docker-mysql` (ya existía) | Deploy manual de Nginx + MySQL + PhpMyAdmin + `crud-python` | `main` |
-| 1 | `crud-stress-test` | Mide la infraestructura con `ab`, compara Flask dev server vs. Gunicorn | `main` |
-| 2 | `crud-auth-login` | Agrega login + sesiones | `feature-login` |
-| 3 | `crud-ataques-red` | Reconocimiento con `nmap`, credenciales hardcodeadas, fuerza bruta con `hydra` | `feature-login` |
-| 4 | `crud-sqli` | Bypass manual y explotación automatizada con `sqlmap` de la inyección SQL en `/login` | `feature-login` |
-| 5 | `crud-logs-analisis-cli` | Forense con `grep`/`awk` sobre logs de la app y `general_log` de MySQL | `feature-login` |
-| 6 | `crud-monitoreo-prometheus-grafana` | Prometheus + Grafana + cAdvisor + mysqld-exporter, en vivo | `monitoring` |
+El repo está linkeado a Killercoda — cada push a `main` actualiza la plataforma automáticamente, sin publicación manual. Link directo para dar a los alumnos (patrón: `killercoda.com/pablop22/scenario/<carpeta>`), verificado que resuelve:
+
+| Orden | Escenario | Qué hace | Branch de la app | Link para el alumno |
+|---|---|---|---|---|
+| 0 | `docker-mysql` (ya existía) | Deploy manual de Nginx + MySQL + PhpMyAdmin + `crud-python` | `main` | https://killercoda.com/pablop22/scenario/docker-mysql |
+| 1 | `crud-stress-test` | Mide la infraestructura con `ab`, compara Flask dev server vs. Gunicorn | `main` | https://killercoda.com/pablop22/scenario/crud-stress-test |
+| 2 | `crud-auth-login` | Agrega login + sesiones | `feature-login` | https://killercoda.com/pablop22/scenario/crud-auth-login |
+| 3 | `crud-ataques-red` | Reconocimiento con `nmap`, credenciales hardcodeadas, fuerza bruta con `hydra` | `feature-login` | https://killercoda.com/pablop22/scenario/crud-ataques-red |
+| 4 | `crud-sqli` | Bypass manual y explotación automatizada con `sqlmap` de la inyección SQL en `/login` | `feature-login` | https://killercoda.com/pablop22/scenario/crud-sqli |
+| 5 | `crud-logs-analisis-cli` | Forense con `grep`/`awk` sobre logs de la app y `general_log` de MySQL | `feature-login` | https://killercoda.com/pablop22/scenario/crud-logs-analisis-cli |
+| 6 | `crud-monitoreo-prometheus-grafana` | Prometheus + Grafana + cAdvisor + mysqld-exporter, en vivo | `monitoring` | https://killercoda.com/pablop22/scenario/crud-monitoreo-prometheus-grafana |
 
 **Importante:** cada escenario despliega su propia infraestructura desde cero (vía `setup.sh`) — no hace falta que el alumno haya completado literalmente el escenario anterior en la misma sesión de Killercoda para poder hacer el siguiente. Lo que sí importa es el orden narrativo/pedagógico: cada `finish.md` da por sentado que el alumno ya vio lo anterior. La etapa 5 además genera su propio tráfico de referencia (uso normal, pico de carga, fuerza bruta, SQLi) en el `setup.sh`, así que tampoco depende de que el alumno haya hecho las etapas 1-4 antes.
 

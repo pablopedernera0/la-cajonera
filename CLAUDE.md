@@ -4,6 +4,11 @@ Repositorio de escenarios Killercoda para las materias que dicta Pablo Pedernera
 Terciario Urquiza (Rosario). Cada carpeta de primer nivel es un escenario independiente,
 servido tal cual por Killercoda — por eso ningún escenario se anida dentro de otra carpeta.
 
+El repo está linkeado a la cuenta de Killercoda `pablop22` — cada push a `main` actualiza la
+plataforma automáticamente, sin publicación manual. Link directo a un escenario para dar a
+los alumnos: `https://killercoda.com/pablop22/scenario/<carpeta>` (patrón verificado
+contra la plataforma real, no asumido).
+
 Este archivo existe para que cualquier sesión de Claude Code, en cualquier computadora,
 pueda retomar el trabajo sin depender de la memoria de una conversación anterior — Pablo
 trabaja desde dos máquinas distintas con instalaciones locales separadas, así que lo único
