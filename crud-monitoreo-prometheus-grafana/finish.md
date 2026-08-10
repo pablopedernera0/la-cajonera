@@ -32,7 +32,7 @@ Armaste un stack de monitoreo real (Prometheus + Grafana + cAdvisor + mysqld-exp
 ## Todo el hilo conductor, de punta a punta
 
 1. **`docker-mysql`** — desplegaste la infraestructura base a mano
-2. **`crud-stress-test`** — la mediste con `ab`, y descubriste el límite del servidor de desarrollo de Flask
+2. **`crud-stress-test`** — la mediste con `curl`, y entendiste por qué el servidor de desarrollo de Flask no escala
 3. **`crud-auth-login`** — le agregaste autenticación y sesiones
 4. **`crud-ataques-red`** — la atacaste con reconocimiento, credenciales filtradas y fuerza bruta
 5. **`crud-sqli`** — explotaste una inyección SQL real en el login, manual y con `sqlmap`

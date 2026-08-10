@@ -15,10 +15,16 @@ Someter una aplicación a **stress testing** significa generarle tráfico artifi
 
 Al finalizar esta práctica vas a haber:
 
-- Generado carga con **Apache Bench (`ab`)** contra un endpoint de lectura y uno de escritura
+- Generado carga liviana con un loop de **`curl`** contra un endpoint de lectura y uno de escritura
 - Comparado el costo de leer contra el costo de escribir en la base de datos
-- Encontrado el límite del servidor de desarrollo de Flask
+- Entendido por qué el servidor de desarrollo de Flask no escala con concurrencia
 - Levantado la misma app con **Gunicorn** (un servidor apto para producción) y comprobado la diferencia
+
+> Esta plataforma (Killercoda) no permite correr herramientas de stress testing reales — no
+> es una cuestión de qué tan fuerte sea la carga, prohíben la categoría de herramienta
+> completa. Acá vamos a medir con `curl`, que alcanza para entender los conceptos. La prueba
+> de carga real (con `ab`, empujando la app hasta que falla) existe aparte, para correr en tu
+> propia computadora — tu docente te la va a mostrar en vivo.
 
 ## Preparar el entorno
 

@@ -26,10 +26,9 @@ banner "1/6" "Instalando dependencias del sistema..."
 apt-get update -qq
 DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
     docker-compose \
-    apache2-utils \
     python3-pip \
     git
-ok "Dependencias del sistema instaladas (incluye 'ab' de apache2-utils)"
+ok "Dependencias del sistema instaladas (curl y xargs ya vienen en la imagen base)"
 
 # ── 2. Dependencias Python ─────────────────────────────────────────────────
 banner "2/6" "Instalando dependencias Python..."

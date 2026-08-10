@@ -2,6 +2,14 @@
 
 Cruce entre el hilo conductor de Killercoda y el programa de la materia. Las 6 etapas se ubican en semanas **virtuales** (acceso a computadora); las semanas **presenciales** son repaso conceptual con pizarrón/proyector, sin ejecutar nada.
 
+> **Nota (incidente Killercoda, ver `GUIA-DOCENTE-HILO-REDES.md` para el detalle completo):** las
+> Etapas 3 y 4 ya no corren en Killercoda — necesitan Docker instalado en la máquina del
+> alumno (repo [`hilo-conductor-redes-ataques`](https://github.com/pablopedernera0/hilo-conductor-redes-ataques)),
+> a diferencia del resto del hilo, que solo necesita navegador. Tenerlo presente al planificar
+> la Semana Virtual 2: confirmar antes de esa clase quién tiene Docker funcionando, y prever
+> una demo del docente para quien no llegue a levantarlo. La Etapa 1 no cambia de logística
+> (sigue en Killercoda) — solo cambió la herramienta de medición (`curl` en vez de `ab`).
+
 **Versión comprimida:** las 6 etapas y el arranque del Trabajo n°7 entran en las primeras **4** semanas virtuales (18/ago a 29/sep), en vez de las 5 disponibles. Eso deja la 5ª semana virtual (13/oct) y su jueves (15/oct) completamente libres para ajustes y consultas — con Trabajo n°7 ya entregado antes, no para terminarlo ahí.
 
 **Contrapartida de comprimir:** al pasar de 5 a 4 semanas para las etapas, se pierde el margen extra que tenía el cronograma original. Si alguna etapa se atrasa en clase (típicamente la 4, por `sqlmap`, o la 6, por la cantidad de contenedores), el margen sale de la clase de arranque del Trabajo n°7 (jueves 01/oct), no de las clases de ajuste que se están liberando. Vale la pena tenerlo presente al dar las clases, no hace falta decidir nada ahora.

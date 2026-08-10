@@ -2,16 +2,28 @@
 
 Esta guía es para el docente, no para el alumno. Cubre las **6 etapas del hilo conductor completo** que atraviesa la materia de redes: la misma infraestructura (MySQL + una app Flask CRUD, con Nginx/PhpMyAdmin en las primeras etapas) se despliega, se mide, se protege, se ataca, se investiga y finalmente se monitorea en vivo, a lo largo de seis prácticas encadenadas.
 
-## ⚠️ Incidente 2026-08-10 — etapas 3 y 4 pausadas, fuera de Killercoda
+## ⚠️ Incidente 2026-08-10 — etapas 1, 3 y 4 fuera de Killercoda (etapa 1 dividida)
 
 Corriendo `ab` (Etapa 1) la cuenta de Killercoda quedó bloqueada por "security scanners,
 bruteforce or hacker-tools". Las etapas 3 y 4 instalan `nmap`, `hydra` y `sqlmap` —
 exactamente esas categorías — así que se sacaron de este repo (linkeado a Killercoda) como
-precaución, sin confirmar todavía si el bloqueo dependía de ese contenido. Están en
+precaución. Killercoda desbloqueó la cuenta el mismo día, pero confirmó por escrito que
+prohíbe esas categorías de herramienta **sin importar la intensidad de la carga** — así que
+la Etapa 1 (`ab`) necesitaba el mismo tratamiento, aunque se usara con carga liviana.
+
+En vez de sacar toda la Etapa 1, se dividió en dos:
+- **Liviana** (se queda acá, en Killercoda): mide los mismos conceptos con un loop de
+  `curl` + `xargs` en vez de `ab` — no llega a romper la app, lo explica leyendo código y
+  procesos en el Paso 4.
+- **Realista** (en el repo aparte, más abajo): la versión con `ab` y carga real que rompe la
+  app, para el alumno con PC propia — o para que el docente la muestre en vivo.
+
+Las etapas 3 y 4 están en
 [`pablopedernera0/hilo-conductor-redes-ataques`](https://github.com/pablopedernera0/hilo-conductor-redes-ataques)
-(privado), pendiente de migrar a un entorno con `docker-compose` que el alumno clona y
-corre en su propia máquina, en vez de Killercoda. El contenido pedagógico de esta guía para
-las etapas 3 y 4 (más abajo) sigue siendo válido — cambia dónde se ejecuta, no qué se enseña.
+(pendiente pasar a público), con un entorno `docker-compose` que el alumno clona y corre en
+su propia máquina. Ahí también vive la versión realista de la Etapa 1
+(`crud-stress-test/`, ya probada end-to-end). El contenido pedagógico de esta guía para las
+etapas 3 y 4 (más abajo) sigue siendo válido — cambia dónde se ejecuta, no qué se enseña.
 
 ## Mapa del hilo conductor
 
@@ -20,7 +32,7 @@ El repo está linkeado a Killercoda — cada push a `main` actualiza la platafor
 | Orden | Escenario | Qué hace | Branch de la app | Link para el alumno |
 |---|---|---|---|---|
 | 0 | `docker-mysql` (ya existía) | Deploy manual de Nginx + MySQL + PhpMyAdmin + `crud-python` | `main` | https://killercoda.com/pablop22/scenario/docker-mysql |
-| 1 | `crud-stress-test` | Mide la infraestructura con `ab`, compara Flask dev server vs. Gunicorn | `main` | https://killercoda.com/pablop22/scenario/crud-stress-test |
+| 1 | `crud-stress-test` | Mide la infraestructura con `curl` (liviano), compara Flask dev server vs. Gunicorn — versión realista con `ab` en el repo aparte | `main` | https://killercoda.com/pablop22/scenario/crud-stress-test |
 | 2 | `crud-auth-login` | Agrega login + sesiones | `feature-login` | https://killercoda.com/pablop22/scenario/crud-auth-login |
 | 3 | `crud-ataques-red` | Reconocimiento con `nmap`, credenciales hardcodeadas, fuerza bruta con `hydra` | `feature-login` | **Pausada — ver nota arriba** |
 | 4 | `crud-sqli` | Bypass manual y explotación automatizada con `sqlmap` de la inyección SQL en `/login` | `feature-login` | **Pausada — ver nota arriba** |
@@ -29,7 +41,7 @@ El repo está linkeado a Killercoda — cada push a `main` actualiza la platafor
 
 **Importante:** cada escenario despliega su propia infraestructura desde cero (vía `setup.sh`) — no hace falta que el alumno haya completado literalmente el escenario anterior en la misma sesión de Killercoda para poder hacer el siguiente. Lo que sí importa es el orden narrativo/pedagógico: cada `finish.md` da por sentado que el alumno ya vio lo anterior. La etapa 5 además genera su propio tráfico de referencia (uso normal, pico de carga, fuerza bruta, SQLi) en el `setup.sh`, así que tampoco depende de que el alumno haya hecho las etapas 1-4 antes.
 
-El código de la app vive fuera de este repo, en [`pablopedernera0/crud-python`](https://github.com/pablopedernera0/crud-python): branch `feature-login` (login vulnerable, usada en las etapas 2 a 5) y branch `monitoring` (métricas Prometheus vía `prometheus_flask_exporter`, usada en la etapa 6, basada en `main` — sin login, para poder pegarle `ab` directo). La vulnerabilidad de SQLi está documentada en ese repo, no en el de Killercoda.
+El código de la app vive fuera de este repo, en [`pablopedernera0/crud-python`](https://github.com/pablopedernera0/crud-python): branch `feature-login` (login vulnerable, usada en las etapas 2 a 5) y branch `monitoring` (métricas Prometheus vía `prometheus_flask_exporter`, usada en la etapa 6, basada en `main` — sin login, para poder generarle carga directo). La vulnerabilidad de SQLi está documentada en ese repo, no en el de Killercoda.
 
 ## Nota ética (repetir en clase antes de las etapas 3 y 4)
 
@@ -47,28 +59,34 @@ Las etapas 3 y 4 usan herramientas de ataque reales (`nmap`, `hydra`, `sqlmap`) 
 - **Verificar antes de la clase:** el plan de Killercoda utilizado y el tiempo de sandbox disponible por sesión — las etapas 3, 4 y 6 en particular pueden extenderse (`sqlmap` con *time-based blind*, o levantar 5 contenedores de monitoreo).
 - Todas las etapas usan las mismas credenciales base, lo que ayuda a que el alumno no tenga que volver a aprenderlas: MySQL root `mysecretpassword`, usuario de la app `admin` / `admin123`.
 
-## Etapa 1 — `crud-stress-test` (45 min)
+## Etapa 1 — `crud-stress-test` (45 min, dividida en liviana + realista)
 
-📄 [Guía docente](https://github.com/pablopedernera0/pablopedernera0.github.io/blob/master/hilo-conductor-redes/documentacion/crud-stress-test-guia-docente.md) · [Guía para estudiantes](https://github.com/pablopedernera0/pablopedernera0.github.io/blob/master/hilo-conductor-redes/documentacion/crud-stress-test-guia-estudiantes.md) — throughput, latencia, concurrencia, tasa de error, `ab` y Gunicorn explicados en profundidad.
+📄 [Guía docente](https://github.com/pablopedernera0/pablopedernera0.github.io/blob/master/hilo-conductor-redes/documentacion/crud-stress-test-guia-docente.md) · [Guía para estudiantes](https://github.com/pablopedernera0/pablopedernera0.github.io/blob/master/hilo-conductor-redes/documentacion/crud-stress-test-guia-estudiantes.md) — throughput, latencia, concurrencia, tasa de error, `curl`/`ab` y Gunicorn explicados en profundidad, con nota del incidente y la división.
 
-**Objetivos de aprendizaje:**
-- Explicar qué miden throughput, latencia, concurrencia y tasa de error
-- Usar `ab` contra un endpoint de lectura y uno de escritura, e interpretar la salida
-- Explicar por qué el servidor de desarrollo de Flask (single-threaded) se degrada bajo concurrencia
-- Levantar la misma app con Gunicorn y comparar métricas
+**Versión liviana (Killercoda, todos los alumnos):**
+- Objetivos de aprendizaje: explicar qué miden throughput, latencia, concurrencia y tasa de
+  error; usar un loop de `curl` + `xargs` contra un endpoint de lectura y uno de escritura,
+  e interpretar la salida; leer código y procesos para entender por qué el servidor de
+  desarrollo de Flask (single-threaded) no escala; levantar la misma app con Gunicorn y
+  repetir la medición liviana.
+- Qué debería poder mostrar/explicar el alumno: el resultado de `seq 1 50 | xargs -P 5 ...`
+  contra `GET /` (todas `200`); el mismo test contra `POST /nuevo` (`302` esperado, no
+  falla); que a esta escala la diferencia lectura/escritura puede no notarse — es la lección
+  del Paso 3, no un error; `ps aux | grep app.py` mostrando un único proceso.
+- **Riesgo/ética:** ninguno — no hay carga real ni ataques en esta versión.
 
-**Qué debería poder mostrar/explicar el alumno al final:**
-- El resultado de `ab -n 500 -c 20` contra `GET /` (throughput alto, `Failed requests: 0`)
-- Que el mismo test contra `POST /nuevo` da menos throughput que el de lectura
-- Un resultado con `Failed requests > 0` al forzar `-c 200` contra el puerto 8888 (Flask dev server)
-- El mismo test contra el puerto 8889 (Gunicorn, 4 workers) con throughput sensiblemente mayor y menos (o cero) fallos
+**Versión realista (repo aparte, alumno con PC propia — o demo en vivo del docente):**
+- Está en [`hilo-conductor-redes-ataques`](https://github.com/pablopedernera0/hilo-conductor-redes-ataques)`/crud-stress-test/`, probada end-to-end.
+- Qué debería poder mostrar/explicar el alumno: el resultado de `ab -n 500 -c 20` contra
+  `GET /` (throughput alto, `Failed requests: 0`); que el mismo test contra `POST /nuevo` da
+  menos throughput que el de lectura; un resultado con `Failed requests > 0` al forzar
+  `-c 200` contra el puerto 8888 (Flask dev server); el mismo test contra el puerto 8889
+  (Gunicorn, 4 workers) con throughput sensiblemente mayor y menos (o cero) fallos.
+- `ps aux | grep gunicorn` → un proceso master + 4 workers en el puerto 8889.
+- **Riesgo/ética:** ninguno particular, pero aclarar por qué esta parte no corre en
+  Killercoda (restricción de la plataforma) para que no quede como algo arbitrario.
 
-**Resultados esperados (referencia rápida para corregir):**
-- Base de datos sembrada con 5 alumnos
-- `ps aux | grep app.py` → un único proceso Python en el puerto 8888
-- `ps aux | grep gunicorn` → un proceso master + 4 workers en el puerto 8889
-
-**Riesgo/ética:** ninguno — no hay ataques en esta etapa.
+**Resultados esperados en ambas versiones:** base de datos sembrada con 5 alumnos.
 
 ## Etapa 2 — `crud-auth-login` (35 min)
 
@@ -164,11 +182,11 @@ Table: usuarios
 **Qué debería poder mostrar/explicar el alumno al final:**
 - Los 4 targets de Prometheus (`prometheus`, `cadvisor`, `mysql`, `crud-app`) en verde (`UP`) en `/targets`
 - Un dashboard de Grafana con al menos 2 paneles propios (requests/segundo de la app, conexiones de MySQL)
-- El panel de requests/segundo subiendo en vivo mientras corre `ab -n 2000 -c 50` contra el puerto 8888
+- El panel de requests/segundo subiendo en vivo mientras corre `seq 1 2000 | xargs -P 50 -I{} curl ...` contra el puerto 8888
 
 **Riesgo/ética:** ninguno — cierra el hilo con el enfoque proactivo, sin ataques.
 
-**Nota de infraestructura:** esta etapa dropea PhpMyAdmin y Nginx (no aportan al monitoreo) y usa la branch `monitoring` de `crud-python` (sin login, basada en `main`), para poder pegarle `ab` directo al endpoint `/` como en la etapa 1. La app sigue corriendo en el host (no dockerizada); Prometheus la alcanza vía `host.docker.internal:8888`.
+**Nota de infraestructura:** esta etapa dropea PhpMyAdmin y Nginx (no aportan al monitoreo) y usa la branch `monitoring` de `crud-python` (sin login, basada en `main`), para poder generarle carga directo al endpoint `/` con `curl`+`xargs`, igual que en la etapa 1 (mismos números que la versión liviana de esa etapa: `ab` está descartado en todo Killercoda, no solo en la Etapa 1 — ver el incidente al principio de esta guía). La app sigue corriendo en el host (no dockerizada); Prometheus la alcanza vía `host.docker.internal:8888`.
 
 ## Notas técnicas para quien mantenga estos escenarios (no para dar en clase)
 

@@ -2,41 +2,38 @@
 
 Leer datos (`SELECT`) es barato. Escribir datos (`INSERT`) implica un lock más costoso en la base y, en este caso, un commit por cada petición. Vamos a comprobarlo generando carga sobre `POST /nuevo`, el endpoint que da de alta un alumno.
 
-## 3.1 — Preparar el body de la petición
-
-`ab` necesita el body en un archivo aparte para peticiones `POST`:
-
-```bash
-printf 'nombre=Carga&apellido=DeTest&fecha_nacimiento=2000-01-01' > /root/post-data.txt
-```
-
-## 3.2 — Contar los alumnos antes de la prueba
+## 3.1 — Contar los alumnos antes de la prueba
 
 ```bash
 docker exec $(docker ps -qf "name=mysql") \
   mysql -h 127.0.0.1 -uroot -pmysecretpassword -N -e "SELECT COUNT(*) FROM alumnos.alumnos;"
 ```
 
-## 3.3 — Generar la carga de escritura
+## 3.2 — Generar la carga de escritura
+
+Mismos números que en el Paso 2 (50 peticiones, 5 en simultáneo), para poder comparar directo:
 
 ```bash
-ab -n 200 -c 10 -p /root/post-data.txt -T application/x-www-form-urlencoded \
-  http://127.0.0.1:8888/nuevo
+time ( seq 1 50 | xargs -P 5 -I{} curl -s -o /dev/null -w "%{http_code}\n" \
+  -d "nombre=Carga&apellido=DeTest&fecha_nacimiento=2000-01-01" \
+  http://127.0.0.1:8888/nuevo | sort | uniq -c )
 ```
 
-Usamos menos peticiones y menos concurrencia que en el Paso 2 a propósito — ya vas a ver por qué.
+(La respuesta esperada es `302`, no `200` — el endpoint redirige al listado después de guardar, no es una falla.)
 
-## 3.4 — Contar los alumnos después
+## 3.3 — Contar los alumnos después
 
 ```bash
 docker exec $(docker ps -qf "name=mysql") \
   mysql -h 127.0.0.1 -uroot -pmysecretpassword -N -e "SELECT COUNT(*) FROM alumnos.alumnos;"
 ```
 
-El número debería haber crecido en 200 (o cerca, si hubo alguna petición fallida).
+El número debería haber crecido en 50 (o cerca, si hubo alguna petición fallida).
 
-## 3.5 — Comparar contra el Paso 2
+## 3.4 — Comparar contra el Paso 2
 
-Compará el `Requests per second` de esta corrida contra el de `/root/resultado-lectura.txt`. Vas a ver un throughput bastante menor: cada escritura le suma a la app el costo de un `INSERT` y un `commit` contra MySQL, mientras que la lectura solo hace un `SELECT`.
+Compará el `real` (tiempo total) de esta corrida contra el de `tiempo-lectura.txt`. Con esta carga tan liviana (50 peticiones, tabla de pocas filas) la diferencia puede ser chica, nula, o incluso ir al revés de lo esperado — a este volumen el ruido de medición pesa tanto como la diferencia real entre un `SELECT` y un `INSERT` con `commit`.
 
-> Guardate mentalmente esta diferencia — en el Paso 4 vamos a llevar la app a su límite real.
+Eso **no es un error tuyo, es la razón por la que existen las herramientas de stress testing reales**: con cientos o miles de peticiones sostenidas, el ruido se promedia y la diferencia entre leer y escribir se vuelve consistente y notoria. Con 50 peticiones sueltas no alcanza para verla con confianza — es la misma razón por la que esta plataforma no te deja generar esa carga real (ver la nota de la intro).
+
+> En el Paso 4 vamos a ver, leyendo el código en vez de forzándolo, por qué esa diferencia se vuelve un problema serio bajo carga real.

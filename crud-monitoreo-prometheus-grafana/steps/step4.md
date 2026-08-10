@@ -1,6 +1,6 @@
-# Paso 4 — El stress test, ahora en vivo
+# Paso 4 — La carga, ahora en vivo
 
-En la práctica 1 medimos esta misma infraestructura con `ab`, leyendo los números al final de cada corrida. Ahora vamos a repetirlo mirando el dashboard de Grafana mientras corre.
+En la práctica 1 medimos esta misma infraestructura con un loop de `curl`, leyendo los números al final de cada corrida. Ahora vamos a repetirlo mirando el dashboard de Grafana mientras corre.
 
 ## 4.1 — Dejar el dashboard a la vista
 
@@ -11,10 +11,10 @@ Volvé a la pestaña de Grafana con el dashboard del Paso 3. Arriba a la derecha
 En una terminal, ejecutá:
 
 ```bash
-ab -n 2000 -c 50 http://127.0.0.1:8888/
+seq 1 2000 | xargs -P 50 -I{} curl -s -o /dev/null http://127.0.0.1:8888/
 ```
 
-Mientras corre (puede tardar uno o dos minutos), volvé a Grafana y mirá el panel "Requests por segundo": debería subir de golpe y mantenerse arriba mientras dura la carga, y volver a bajar cuando termina.
+Mismos números que la práctica 1 (2000 peticiones, 50 en simultáneo), solo que acá con `curl` + `xargs` en vez de `ab`. Mientras corre (puede tardar uno o dos minutos), volvé a Grafana y mirá el panel "Requests por segundo": debería subir de golpe y mantenerse arriba mientras dura la carga, y volver a bajar cuando termina.
 
 ## 4.3 — Ver el impacto en MySQL
 
@@ -33,7 +33,7 @@ Hoy viste el pico **mientras pasaba**, sin tocar un archivo. Esa es la diferenci
 
 ## 4.5 — Un panel más: CPU de MySQL bajo carga
 
-Si te sobra tiempo, agregá un tercer panel con esta consulta y repetí el `ab` mirándolo:
+Si te sobra tiempo, agregá un tercer panel con esta consulta y repetí la carga mirándolo:
 
 ```
 rate(container_cpu_usage_seconds_total{container_label_com_docker_compose_service="mysql"}[1m])

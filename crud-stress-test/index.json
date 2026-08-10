@@ -1,6 +1,6 @@
 {
-  "title": "Stress Testing de una app Flask + MySQL",
-  "description": "Someté a carga la infraestructura CRUD (Flask + MySQL) para medir throughput, latencia y encontrar el límite del servidor de desarrollo frente a uno de producción.",
+  "title": "Medición de carga de una app Flask + MySQL",
+  "description": "Medí con carga liviana (curl) la infraestructura CRUD (Flask + MySQL): throughput, latencia, y por qué el servidor de desarrollo no escala frente a uno de producción.",
   "difficulty": "intermediate",
   "time": "45",
   "details": {
@@ -13,7 +13,7 @@
         "text": "steps/step1.md"
       },
       {
-        "title": "Paso 2 — Apache Bench contra un endpoint de lectura",
+        "title": "Paso 2 — Carga liviana contra un endpoint de lectura",
         "text": "steps/step2.md"
       },
       {
@@ -21,7 +21,7 @@
         "text": "steps/step3.md"
       },
       {
-        "title": "Paso 4 — Encontrando el límite del servidor",
+        "title": "Paso 4 — Por qué el servidor de desarrollo no escala",
         "text": "steps/step4.md"
       },
       {

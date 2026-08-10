@@ -23,27 +23,22 @@ nohup gunicorn -w 4 -b 0.0.0.0:8889 app:app > /root/crud-python/gunicorn.log 2>&
 sleep 2 && curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8889/
 ```
 
-## 5.4 — Repetir la prueba que rompió la app en el Paso 4
+## 5.4 — Repetir la carga liviana del Paso 2, ahora contra Gunicorn
 
 ```bash
-ab -n 3000 -c 200 -s 5 http://127.0.0.1:8889/
+time ( seq 1 50 | xargs -P 5 -I{} curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8889/ | sort | uniq -c )
 ```
 
-## 5.5 — Comparar
-
-| | Flask dev server (8888) | Gunicorn 4 workers (8889) |
-|---|---|---|
-| Requests per second | (el que anotaste en el Paso 4) | |
-| Failed requests | (el que anotaste en el Paso 4) | |
-
-Completá la columna de Gunicorn con el resultado que acabás de obtener. La diferencia no es magia: son 4 procesos atendiendo en paralelo en vez de 1.
-
-## 5.6 — Confirmá los procesos
+## 5.5 — Confirmá los procesos
 
 ```bash
 ps aux | grep gunicorn | grep -v grep
 ```
 
-Vas a ver varios procesos `gunicorn` — el master y los 4 workers.
+Vas a ver varios procesos `gunicorn` — el master y los 4 workers — a diferencia del proceso único que viste en el Paso 4.
+
+## 5.6 — Por qué esto resuelve el problema
+
+Con la carga liviana de esta práctica, la diferencia de tiempos entre el Paso 2 (dev server) y este paso puede no notarse mucho — 5 peticiones a la vez no alcanzan a saturar ni siquiera un solo hilo. La diferencia real aparece bajo carga alta: ahí el servidor de desarrollo hace cola con un solo proceso mientras Gunicorn reparte el trabajo entre sus 4 workers en paralelo. Esa comparación con carga real es la que te va a mostrar tu docente.
 
 > Con esto cerramos la parte de performance. La misma infraestructura (mismas credenciales, mismos puertos expuestos) que acabás de medir es la que vamos a atacar en la próxima práctica.
