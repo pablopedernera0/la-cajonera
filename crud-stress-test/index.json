@@ -1,0 +1,44 @@
+{
+  "title": "Stress Testing de una app Flask + MySQL",
+  "description": "Someté a carga la infraestructura CRUD (Flask + MySQL) para medir throughput, latencia y encontrar el límite del servidor de desarrollo frente a uno de producción.",
+  "difficulty": "intermediate",
+  "time": "45",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Paso 1 — Conceptos de stress testing",
+        "text": "steps/step1.md"
+      },
+      {
+        "title": "Paso 2 — Apache Bench contra un endpoint de lectura",
+        "text": "steps/step2.md"
+      },
+      {
+        "title": "Paso 3 — Carga sobre un endpoint de escritura",
+        "text": "steps/step3.md"
+      },
+      {
+        "title": "Paso 4 — Encontrando el límite del servidor",
+        "text": "steps/step4.md"
+      },
+      {
+        "title": "Paso 5 — Gunicorn: un servidor apto para producción",
+        "text": "steps/step5.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {"file": "setup.sh", "target": "/root", "chmod": "+x"}
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
