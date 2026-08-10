@@ -1,0 +1,40 @@
+{
+  "title": "Monitoreo en vivo con Prometheus y Grafana",
+  "description": "Instrumentá la app, la base de datos y los contenedores con Prometheus, armá tu primer dashboard en Grafana, y observá en vivo el mismo stress test de la práctica 1.",
+  "difficulty": "intermediate",
+  "time": "45",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Paso 1 — Métricas vs. logs",
+        "text": "steps/step1.md"
+      },
+      {
+        "title": "Paso 2 — Levantando el stack de monitoreo",
+        "text": "steps/step2.md"
+      },
+      {
+        "title": "Paso 3 — Grafana: el primer dashboard",
+        "text": "steps/step3.md"
+      },
+      {
+        "title": "Paso 4 — El stress test, ahora en vivo",
+        "text": "steps/step4.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {"file": "setup.sh", "target": "/root", "chmod": "+x"}
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
