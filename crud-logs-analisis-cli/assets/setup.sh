@@ -181,10 +181,12 @@ curl -s -b /root/normal-cookies.txt -o /dev/null http://127.0.0.1:8888/
 sleep 2
 
 # Pico de carga (imita el stress test de la práctica 1)
+# Secuencial, no en paralelo: la app Flask no corre con threaded=True, así que
+# atiende un request a la vez — lanzar 60 procesos curl de golpe solo forkea
+# de más sin acelerar nada, y en Killercoda genera cuelgues notorios.
 for i in $(seq 1 60); do
-    curl -s -o /dev/null http://127.0.0.1:8888/ &
+    curl -s -o /dev/null --max-time 5 http://127.0.0.1:8888/
 done
-wait
 sleep 1
 
 # Fuerza bruta (imita la práctica 3)
