@@ -127,3 +127,11 @@ salvo pedido explícito.
   por el incidente de Killercoda (ver arriba). Entorno `docker-compose` que el alumno clona
   y corre en su propia máquina. Tiene su propio `CLAUDE.md` y un `NOTAS-DOCENTE.md` con el
   detalle completo del incidente y el estado pendiente.
+- `alternativas-claude-code` (público) — infraestructura Docker Compose (Ollama+Aider,
+  OpenCode, Gemini CLI, GitHub Copilot CLI) para que los alumnos prueben alternativas
+  gratuitas a Claude Code en su propia máquina. Acompaña a la página
+  `pablopedernera0.github.io/alternativas-claude-code/`, que documenta hallazgos reales de
+  probar cada herramienta (no solo lo que dice cada documentación oficial) — ver el `README.md`
+  de ese repo para el detalle de bugs encontrados (Ollama necesita `OLLAMA_HOST=0.0.0.0`
+  explícito, `@github/copilot` pide Node 22+, etc.). No relacionado con el hilo conductor de
+  redes ni con Killercoda.
