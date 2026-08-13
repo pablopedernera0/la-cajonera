@@ -2,6 +2,20 @@
 
 Esta guía es para el docente, no para el alumno. Cubre las **6 etapas del hilo conductor completo** que atraviesa la materia de redes: la misma infraestructura (MySQL + una app Flask CRUD, con Nginx/PhpMyAdmin en las primeras etapas) se despliega, se mide, se protege, se ataca, se investiga y finalmente se monitorea en vivo, a lo largo de seis prácticas encadenadas.
 
+## ¿Por qué "hilo conductor"?
+
+*(Pensado como gancho de apertura para la primera clase — se puede leer directo o adaptar.)*
+
+Un conductor eléctrico es un material que deja pasar la corriente con poca resistencia — el cobre es el ejemplo de manual, y es literalmente lo que tenés adentro de cualquier cable UTP que vas a cablear en esta materia. Dos hilos de cobre trenzados entre sí (un *par trenzado*), repetidos varias veces dentro de la misma funda: eso es un cable de red.
+
+Este curso tiene su propio hilo conductor, en el otro sentido de la palabra: la misma infraestructura —una app CRUD con su base de datos— te acompaña de punta a punta, de la misma forma que un par de cobre lleva la señal de un extremo del cable al otro sin perderla en el camino. Deploy → medición → login → ataque → investigación → monitoreo: si en algún punto se corta el hilo, se corta la señal — por eso cada etapa da por sentado que ya viste la anterior.
+
+**Gancho técnico opcional para la apertura** (capa física real, no solo metáfora):
+
+- **Por qué se trenzan los pares:** cada par trenzado reduce la interferencia entre pares (*crosstalk*) — dos cables paralelos sin trenzar actúan como antena uno del otro.
+- **UTP vs. STP:** con blindaje (*shielded*) o sin él — el blindaje protege de interferencia externa, a costo de un cable más caro y menos flexible.
+- **Categorías (Cat5e, Cat6, Cat6a...):** cada una soporta más ancho de banda a costa de trenzado más apretado y mejores materiales — la misma idea de "llevar más señal sin degradarla" que atraviesa todo este hilo conductor.
+
 ## ⚠️ Incidente 2026-08-10 — etapas 1, 3 y 4 fuera de Killercoda (etapa 1 dividida)
 
 Corriendo `ab` (Etapa 1) la cuenta de Killercoda quedó bloqueada por "security scanners,
