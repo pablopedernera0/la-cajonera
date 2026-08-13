@@ -27,6 +27,15 @@ Le agregaste una pantalla de login a la app CRUD y protegiste todo el sistema de
 
 **Contraseña en texto plano** — guardar la contraseña tal cual, sin hashear. Si alguien accede a la base de datos, se lleva la contraseña real de cada usuario.
 
+## 📮 Antes de seguir: mini-reporte de la etapa
+
+Mandanos un mensaje corto (mail al docente o la plataforma de la materia) con:
+
+1. La salida de `curl -sI http://127.0.0.1:8888/` sin haber iniciado sesión (el `302` a `/login`).
+2. En 2-3 líneas: ¿por qué HTTP necesita un mecanismo de sesión? ¿Qué pasaría si alguien consiguiera copiar tu cookie de sesión?
+
+No suma nota — es un checkpoint para confirmar que la etapa quedó entendida antes de pasar a la siguiente.
+
 ## Próximo paso
 
 En las próximas prácticas vamos a atacar esta misma infraestructura: reconocimiento de red, la contraseña de MySQL hardcodeada en el código, fuerza bruta contra el login, y una vulnerabilidad puntual en la forma en que `/login` arma su consulta SQL. Vas a ver que "funciona bien" y "es seguro" no siempre son lo mismo.

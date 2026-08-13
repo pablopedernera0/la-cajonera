@@ -29,6 +29,15 @@ Armaste un stack de monitoreo real (Prometheus + Grafana + cAdvisor + mysqld-exp
 
 **Dashboard** — un conjunto de paneles en Grafana, cada uno con su propia consulta PromQL.
 
+## 📮 Antes de seguir: mini-reporte de la etapa
+
+Mandanos un mensaje corto (mail al docente o la plataforma de la materia) con:
+
+1. Una captura o la salida de una consulta PromQL que hayas corrido (por ejemplo `up`, o `rate(...)` de algún panel del dashboard).
+2. En 2-3 líneas: ¿qué diferencia hay entre una métrica y un log, y por qué el pico de carga de la Etapa 1 se pudo ver en vivo acá pero no en aquella práctica?
+
+No suma nota — es un checkpoint para confirmar que la etapa quedó entendida antes del cierre del hilo conductor.
+
 ## Todo el hilo conductor, de punta a punta
 
 1. **`docker-mysql`** — desplegaste la infraestructura base a mano

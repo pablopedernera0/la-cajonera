@@ -29,6 +29,15 @@ Mediste con carga liviana la infraestructura CRUD (Flask + MySQL) que desplegast
 
 **Servidor de desarrollo vs. servidor de producción** — `app.run()` (Werkzeug) atiende una petición a la vez; Gunicorn (u otro servidor WSGI) reparte la carga entre varios workers.
 
+## 📮 Antes de seguir: mini-reporte de la etapa
+
+Mandanos un mensaje corto (mail al docente o la plataforma de la materia) con:
+
+1. La salida de `ps aux | grep app.py` corriendo la app en modo desarrollo — mostrando que es un único proceso.
+2. En 2-3 líneas: ¿por qué `app.run()` (el servidor de desarrollo de Flask) no escala bajo carga concurrente, aunque el código no tenga ningún error? ¿Qué cambia al levantar la misma app con Gunicorn?
+
+No suma nota — es un checkpoint para confirmar que la etapa quedó entendida antes de pasar a la siguiente.
+
 ## Próximo paso
 
 En el siguiente escenario vamos a **atacar** esta misma infraestructura: reconocimiento con `nmap`, la password de MySQL que quedó hardcodeada en el código fuente, y fuerza bruta contra PhpMyAdmin. Vas a ver que los mismos servicios que hoy mediste son los que hay que asegurar.

@@ -58,6 +58,7 @@ Las etapas 3 y 4 usan herramientas de ataque reales (`nmap`, `hydra`, `sqlmap`) 
 - **Regla general para reprogramar en otros cuatrimestres/comisiones:** killercoda va siempre en clases virtuales (acceso a computadora); las presenciales son para demostración y repaso conceptual.
 - **Verificar antes de la clase:** el plan de Killercoda utilizado y el tiempo de sandbox disponible por sesión — las etapas 3, 4 y 6 en particular pueden extenderse (`sqlmap` con *time-based blind*, o levantar 5 contenedores de monitoreo).
 - Todas las etapas usan las mismas credenciales base, lo que ayuda a que el alumno no tenga que volver a aprenderlas: MySQL root `mysecretpassword`, usuario de la app `admin` / `admin123`.
+- **Mini-reporte por etapa (agregado 2026-08-13):** cada `finish.md` (de las 6 etapas, incluidas las 2 que viven en `hilo-conductor-redes-ataques`) termina con una sección "📮 Antes de seguir" que le pide al alumno un mensaje corto — un comando+resultado real más una pregunta conceptual puntual de esa etapa — por mail o por la plataforma de la materia. Es un **checkpoint de finalización, no suma nota**: sirve para detectar quién se quedó atrás antes de llegar al parcial, en paralelo al Trabajo n°7 y al examen escrito.
 
 ## Etapa 1 — `crud-stress-test` (45 min, dividida en liviana + realista)
 

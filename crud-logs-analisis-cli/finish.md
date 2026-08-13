@@ -26,6 +26,15 @@ Reconstruiste, solo con logs y línea de comandos, la evidencia de un pico de ca
 
 **Correlación de logs** — ninguna fuente de log individual suele contar la historia completa; un incidente real se reconstruye cruzando varias.
 
+## 📮 Antes de seguir: mini-reporte de la etapa
+
+Mandanos un mensaje corto (mail al docente o la plataforma de la materia) con:
+
+1. La salida de `grep -- "-- " /var/lib/mysql/general.log` con la línea de la inyección.
+2. En 2-3 líneas: ¿por qué el `general_log` de MySQL no está prendido por defecto, y por qué fue la única fuente que permitió confirmar el contenido exacto de la inyección (a diferencia del log de acceso de la app)?
+
+No suma nota — es un checkpoint para confirmar que la etapa quedó entendida antes de pasar a la siguiente.
+
 ## Próximo paso
 
 Todo lo que hiciste hoy fue manual: ir a buscar un archivo, filtrarlo, contar líneas. En la próxima práctica vamos a automatizar esa parte con **Prometheus y Grafana** — métricas y alertas en tiempo real, en vez de logs que hay que revisar después de que ya pasó todo.
