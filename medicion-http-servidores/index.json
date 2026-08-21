@@ -1,0 +1,41 @@
+{
+  "title": "Medición de tiempos de respuesta y tamaño: HTML vs. JSON",
+  "description": "Medí con curl, contra sitios reales, cuánto pesa y cuánto tarda una página HTML completa frente a un backend que solo devuelve JSON — y documentá la comparación.",
+  "difficulty": "beginner",
+  "time": "30",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Paso 1 — Qué vamos a medir y con qué",
+        "text": "steps/step1.md"
+      },
+      {
+        "title": "Paso 2 — Medir una página HTML completa",
+        "text": "steps/step2.md"
+      },
+      {
+        "title": "Paso 3 — Medir un backend que devuelve JSON",
+        "text": "steps/step3.md"
+      },
+      {
+        "title": "Paso 4 — Comparar y documentar",
+        "text": "steps/step4.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {"file": "setup.sh", "target": "/root", "chmod": "+x"},
+        {"file": "obtener-metricas.sh", "target": "/root", "chmod": "+x"}
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
