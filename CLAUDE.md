@@ -63,18 +63,16 @@ El código de la app vive en [`pablopedernera0/crud-python`](https://github.com/
 - `CRONOGRAMA-HILO-REDES-2C-2026.md` — cruce con el programa oficial y el cronograma real de clases (comisión ITI 2°1°, 2C 2026), incluye el Trabajo n°7 reformulado
 - Versión publicada (HTML + desarrollo de contenidos por etapa, para docente y para estudiantes) en el repo `pablopedernera0.github.io`, carpeta `hilo-conductor-redes/`
 
-**Pendiente:**
-1. `docker-compose up -d --build` para `crud-ataques-red`/`crud-sqli` **ya se probó y
-   funciona** (2026-08-10, en la máquina de desarrollo usada esa sesión) — el bloqueante
-   original (sin salida a internet) no aplica ahí. Sigue pendiente confirmarlo en la máquina
-   habitual de Pablo si es distinta. El entorno de `crud-stress-test` ya estaba probado
-   end-to-end desde antes.
-2. Adaptar `crud-ataques-red/steps/*.md` y `crud-sqli/steps/*.md` (dentro de
-   `hilo-conductor-redes-ataques`) de formato Killercoda a "tu propia terminal contra
-   localhost" — **arrancado el 2026-08-10, a mitad de camino**. Ver el detalle completo del
-   progreso y los hallazgos (topología real sin servicio nginx, nombre de red, etc.) en
-   `hilo-conductor-redes-ataques/NOTAS-DOCENTE.md`, sección "Estado" — no asumir que ese
-   contenido sigue igual a como estaba antes de esta fecha.
+**Estado (actualizado 2026-08-11): la migración de las etapas 3/4 a `hilo-conductor-redes-ataques`
+quedó completa y confirmada end-to-end.** Se adaptaron `crud-ataques-red/steps/*.md` y
+`crud-sqli/steps/*.md` de formato Killercoda a "tu propia terminal contra `docker-compose`",
+se sacaron los artefactos de Killercoda que quedaron sin uso (`index.json`,
+`assets/setup.sh`) y se agregó un servicio `toolbox` (nmap/hydra/sqlmap dockerizados, para
+no pedirle a cada alumno que instale herramientas distintas según su SO). Pablo recorrió las
+**6 etapas completas del hilo conductor de punta a punta como lo haría un alumno**
+(Killercoda + terminal local) y quedaron confirmadas sin excepciones pendientes. Detalle
+completo (hallazgos, bugs corregidos, topología real) en
+`hilo-conductor-redes-ataques/NOTAS-DOCENTE.md`.
 
 ---
 
