@@ -22,7 +22,7 @@ Cruce entre el hilo conductor de Killercoda y el programa de la materia. Las 6 e
 | Jueves 20/ago | 19:20–20:40 (80 min) | **Etapa 2** — `crud-auth-login` (35 min de práctica + tiempo para dudas) |
 
 ## Semana Presencial — 25/ago y 27/ago
-Repaso con pizarrón: diagramar autenticación/sesión, WSGI y el modelo de workers de Gunicorn sin computadora.
+Repaso con pizarrón: diagramar autenticación/sesión, WSGI y el modelo de workers de Gunicorn sin computadora. Guion completo y slide deck en `GUIA-DOCENTE-HILO-REDES.md`, sección "Clase presencial — Autenticación, WSGI y workers de Gunicorn".
 
 ## Semana Virtual 2 — 01/sep
 
