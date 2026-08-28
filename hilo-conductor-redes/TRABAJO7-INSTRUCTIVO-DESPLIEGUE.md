@@ -13,9 +13,10 @@ el `Dockerfile` ya armado — y son responsables de todo lo que hace falta alred
 para que quede corriendo de forma correcta: red, persistencia de datos, configuración,
 y la documentación de por qué tomaron cada decisión.
 
-Trabajan en equipo. Cada integrante corre su propia sesión en Killercoda — no hay una
-terminal compartida entre compañeros — así que la coordinación del grupo pasa por el
-repositorio de GitHub: cada uno prueba en su sesión, y sincronizan por `push`/`pull`.
+Trabajan en equipo, cada integrante en su propia sesión de **GitHub Codespaces** — no
+hace falta PC propia, corre en el navegador — así que la coordinación del grupo pasa
+por el repositorio de GitHub: cada uno prueba en su sesión, y sincronizan por
+`push`/`pull`.
 
 ## Lo que reciben
 
@@ -29,6 +30,22 @@ repositorio de GitHub: cada uno prueba en su sesión, y sincronizan por `push`/`
 - Este instructivo.
 
 Lo que **no** reciben es un `docker-compose.yml` ya armado. Ese es el trabajo.
+
+## Cómo arrancar
+
+1. Un integrante del equipo hace **fork** de
+   [`pablopedernera0/crud-python`](https://github.com/pablopedernera0/crud-python)
+   (asegurándose de forkear la rama `trabajo7-deploy`, no `main`) a la cuenta de
+   GitHub del equipo o de ese integrante. Ese fork es el repositorio de entrega —
+   ahí va a vivir el `docker-compose.yml` que diseñen y el `README.md` con las
+   decisiones.
+2. El resto del equipo clona ese fork (no el original) para tener permiso de
+   `push`.
+3. Cada integrante abre su propia Codespace sobre el fork: **Code → pestaña
+   Codespaces → Create codespace**. No hace falta instalar nada, ni Docker — ya
+   viene en la Codespace.
+4. Diseñan y prueban el `docker-compose.yml` ahí, cada uno en su sesión, sincronizando
+   por `git push`/`git pull` como con cualquier repo.
 
 ## Qué tiene que cumplir el despliegue
 
