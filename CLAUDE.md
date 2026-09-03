@@ -14,6 +14,13 @@ pueda retomar el trabajo sin depender de la memoria de una conversación anterio
 trabaja desde dos máquinas distintas con instalaciones locales separadas, así que lo único
 que viaja entre ellas es lo que está commiteado acá.
 
+**Antes de arrancar, leer también** `~/trabajos/pablo/terciario-urquiza/contexto-docente/CONTEXTO.md`
+(repo privado `pablopedernera0/contexto-docente`) — contexto que cruza este repo con
+`sistema-eidas`, `sistema-eidas-datos`, `hilo-conductor-redes-ataques` y
+`pablopedernera0.github.io` (cuentas de GitHub, incidente Killercoda, hábito de dos
+máquinas). La memoria de Claude Code es por proyecto y no viaja sola entre sesiones en
+distintos directorios — ese repo es el complemento manual para lo que sí es transversal.
+
 ---
 
 ## Hilo conductor de redes (Infraestructura de Redes, ITI)
