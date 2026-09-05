@@ -124,6 +124,49 @@ Las etapas 3 y 4 usan herramientas de ataque reales (`nmap`, `hydra`, `sqlmap`) 
 
 **Riesgo/ética:** ninguno particular — esta etapa solo deja la vulnerabilidad instalada, no la explota ni la menciona explícitamente. Evitar spoilear las etapas 3 y 4 si un alumno pregunta "¿esto no es inseguro?" — la respuesta corta es "vamos a verlo pronto", no explicar el bypass acá.
 
+## Clase presencial — Autenticación, WSGI y workers de Gunicorn (25/ago y 27/ago)
+
+Repaso con pizarrón/proyector, sin computadora — cierra los conceptos que la Etapa 1 y la
+Etapa 2 dejaron funcionando pero no explicaron a fondo, antes de entrar a la Semana Virtual 2.
+
+📄 Slide deck para proyectar (con los diagramas ya armados, sirve también como guion de qué
+dibujar): [`repaso-auth-wsgi-gunicorn`](https://pablopedernera0.github.io/repaso-auth-wsgi-gunicorn/).
+
+**Día 1 (25/ago) — Autenticación, sesión y el "portero":**
+- Arrancar recordando que HTTP no tiene memoria (sin estado) — dibujar dos peticiones GET
+  sueltas, sin ninguna línea que las una, y preguntar "¿cómo sabe el servidor que sos el mismo
+  que se logueó recién?"
+- Completar el dibujo con el flujo real: `POST /login` → el servidor valida contra `usuarios`
+  → `session["logged_in"] = True` + `Set-Cookie` → el navegador guarda la cookie y la manda
+  sola en cada pedido siguiente.
+- Proyectar el código real de `requerir_login` (`@app.before_request`) y remarcar que corre
+  antes de cualquier ruta — así protege todo el CRUD sin tocarlo ruta por ruta.
+- Cerrar con autenticación vs. autorización: la Etapa 2 solo implementa la primera (un único
+  usuario, con acceso a todo).
+- Ejercicio en vivo: elegir a un alumno para redibujar el flujo completo sin mirar la
+  proyección.
+
+**Día 2 (27/ago) — WSGI y el modelo de workers de Gunicorn:**
+- Retomar el Paso 5 de la Etapa 1: el mismo `app.py`, sin cambiar una línea, corrió primero
+  con Werkzeug y después con Gunicorn. Preguntar "¿cómo puede ser que la misma app funcione
+  con dos servidores distintos?" → WSGI.
+- Diferenciar proceso (memoria propia, aislado) de hilo (comparte memoria, más liviano) — es
+  la misma distinción que reaparece en la Etapa 3 con `ps aux`.
+- Explicar el GIL en una frase: CPython deja correr un solo hilo de bytecode a la vez, aunque
+  haya varios núcleos — por eso Gunicorn usa procesos, no hilos, para paralelismo real.
+- Dibujar el contraste: Werkzeug (1 proceso, 1 hilo, cola/backlog cuando se satura) vs.
+  Gunicorn `-w 4` (proceso master + 4 workers, cada uno con su copia de la app y su propio
+  GIL).
+- Cerrar con el trade-off: más workers = más paralelismo real, a costa de más RAM (cada
+  worker carga su propia copia completa de la app) — y que Gunicorn no resuelve un cuello de
+  botella que esté en MySQL, solo lo empuja más lejos.
+- Ejercicio en vivo: otro alumno dibuja Werkzeug vs. Gunicorn recibiendo 4 peticiones al mismo
+  tiempo.
+
+**Riesgo/ética:** ninguno particular — mismo cuidado que en la Etapa 2: si preguntan "¿esto no
+es inseguro, guardar la contraseña así?", responder "vamos a verlo pronto", sin spoilear la
+Etapa 3/4.
+
 ## Etapa 3 — `crud-ataques-red` (45 min)
 
 **Objetivos de aprendizaje:**
