@@ -1,8 +1,8 @@
 {
-  "title": "Medición de carga de una app Flask + MySQL",
-  "description": "Medí con carga liviana (curl) la infraestructura CRUD (Flask + MySQL): throughput, latencia, y por qué el servidor de desarrollo no escala frente a uno de producción.",
+  "title": "Medición de carga y dimensionamiento de una app Flask + MySQL",
+  "description": "Medí con carga liviana (curl) la infraestructura CRUD (Flask + MySQL): throughput, latencia, y por qué el servidor de desarrollo no escala frente a uno de producción. Analizá casos reales de dimensionamiento (healthcare.gov, Pokémon GO, Shopify, Ticketmaster) y calculá cuántos workers necesita tu propia infraestructura.",
   "difficulty": "intermediate",
-  "time": "45",
+  "time": "70",
   "details": {
     "intro": {
       "text": "intro.md"
@@ -27,6 +27,14 @@
       {
         "title": "Paso 5 — Gunicorn: un servidor apto para producción",
         "text": "steps/step5.md"
+      },
+      {
+        "title": "Paso 6 — Casos reales de dimensionamiento",
+        "text": "steps/step6.md"
+      },
+      {
+        "title": "Paso 7 — Dimensioná tu propia infraestructura",
+        "text": "steps/step7.md"
       }
     ],
     "finish": {

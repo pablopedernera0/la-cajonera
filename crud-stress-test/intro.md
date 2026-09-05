@@ -19,6 +19,8 @@ Al finalizar esta práctica vas a haber:
 - Comparado el costo de leer contra el costo de escribir en la base de datos
 - Entendido por qué el servidor de desarrollo de Flask no escala con concurrencia
 - Levantado la misma app con **Gunicorn** (un servidor apto para producción) y comprobado la diferencia
+- Analizado casos reales de dimensionamiento —healthcare.gov, Pokémon GO, Shopify, Ticketmaster— para ver qué pasa cuando ese cálculo se hace mal, o no se hace
+- Calculado cuántos workers necesita tu propia infraestructura para sostener un pico de tráfico dado, con margen de seguridad
 
 > Esta plataforma (Killercoda) no permite correr herramientas de stress testing reales — no
 > es una cuestión de qué tan fuerte sea la carga, prohíben la categoría de herramienta

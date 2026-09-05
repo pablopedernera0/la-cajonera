@@ -41,4 +41,4 @@ Vas a ver varios procesos `gunicorn` — el master y los 4 workers — a diferen
 
 Con la carga liviana de esta práctica, la diferencia de tiempos entre el Paso 2 (dev server) y este paso puede no notarse mucho — 5 peticiones a la vez no alcanzan a saturar ni siquiera un solo hilo. La diferencia real aparece bajo carga alta: ahí el servidor de desarrollo hace cola con un solo proceso mientras Gunicorn reparte el trabajo entre sus 4 workers en paralelo. Esa comparación con carga real es la que te va a mostrar tu docente.
 
-> Con esto cerramos la parte de performance. La misma infraestructura (mismas credenciales, mismos puertos expuestos) que acabás de medir es la que vamos a atacar en la próxima práctica.
+> Ya sabés medir throughput y por qué un servidor de producción como Gunicorn resuelve lo que el servidor de desarrollo no puede. En el Paso 6 vas a ver qué pasa cuando ese cálculo —cuánta capacidad hace falta— se hace mal, o no se hace, en casos reales de la industria.

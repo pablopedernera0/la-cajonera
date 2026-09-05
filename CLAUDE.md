@@ -48,7 +48,7 @@ monitorea.
 | Etapa | Carpeta | Qué hace | Branch de `crud-python` | Estado |
 |---|---|---|---|---|
 | 0 (previa) | `docker-mysql` | Deploy manual de la infraestructura base | `main` | En Killercoda |
-| 1 | `crud-stress-test` | Medición de carga (versión liviana con `curl`), Flask dev server vs. Gunicorn | `main` | En Killercoda — versión liviana. Versión realista con `ab` real en `hilo-conductor-redes-ataques/crud-stress-test` |
+| 1 | `crud-stress-test` | Medición de carga (versión liviana con `curl`), Flask dev server vs. Gunicorn, casos reales de dimensionamiento y cálculo de workers necesarios (Pasos 6-7, agregados 2026-09-05) | `main` | En Killercoda — versión liviana. Versión realista con `ab` real en `hilo-conductor-redes-ataques/crud-stress-test` |
 | 2 | `crud-auth-login` | Login + sesiones (vulnerabilidad SQLi instalada, no explotada) | `feature-login` | En Killercoda |
 | 3 | `crud-ataques-red` | Reconocimiento con `nmap`, credenciales hardcodeadas, `hydra` | `feature-login` | **Pausada, movida a `hilo-conductor-redes-ataques`** |
 | 4 | `crud-sqli` | Bypass manual + `sqlmap` sobre la inyección de la etapa 2 | `feature-login` | **Pausada, movida a `hilo-conductor-redes-ataques`** |

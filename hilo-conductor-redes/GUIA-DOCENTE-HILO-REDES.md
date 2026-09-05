@@ -46,7 +46,7 @@ El repo está linkeado a Killercoda — cada push a `main` actualiza la platafor
 | Orden | Escenario | Qué hace | Branch de la app | Link para el alumno |
 |---|---|---|---|---|
 | 0 | `docker-mysql` (ya existía) | Deploy manual de Nginx + MySQL + PhpMyAdmin + `crud-python` | `main` | https://killercoda.com/pablop22/scenario/docker-mysql |
-| 1 | `crud-stress-test` | Mide la infraestructura con `curl` (liviano), compara Flask dev server vs. Gunicorn — versión realista con `ab` en el repo aparte | `main` | https://killercoda.com/pablop22/scenario/crud-stress-test |
+| 1 | `crud-stress-test` | Mide la infraestructura con `curl` (liviano), compara Flask dev server vs. Gunicorn, analiza casos reales de dimensionamiento (healthcare.gov, Pokémon GO, Shopify, Ticketmaster) y calcula cuántos workers hacen falta para un pico dado — versión realista con `ab` en el repo aparte | `main` | https://killercoda.com/pablop22/scenario/crud-stress-test |
 | 2 | `crud-auth-login` | Agrega login + sesiones | `feature-login` | https://killercoda.com/pablop22/scenario/crud-auth-login |
 | 3 | `crud-ataques-red` | Reconocimiento con `nmap`, credenciales hardcodeadas, fuerza bruta con `hydra` | `feature-login` | **Pausada — ver nota arriba** |
 | 4 | `crud-sqli` | Bypass manual y explotación automatizada con `sqlmap` de la inyección SQL en `/login` | `feature-login` | **Pausada — ver nota arriba** |
@@ -67,14 +67,14 @@ Las etapas 3 y 4 usan herramientas de ataque reales (`nmap`, `hydra`, `sqlmap`) 
 
 ## Logística general
 
-- **Duración total de las 6 etapas:** 45 + 35 + 45 + 45 + 40 + 45 = **255 minutos** (~4 horas 15). No entra en pocas clases; conviene repartirlo en varios encuentros virtuales.
+- **Duración total de las 6 etapas:** 70 + 35 + 45 + 45 + 40 + 45 = **280 minutos** (~4 horas 40). No entra en pocas clases; conviene repartirlo en varios encuentros virtuales.
 - **Cronograma real (Infraestructura de Redes, ITI 2°1°, 2do cuatrimestre 2026):** ver [`CRONOGRAMA-HILO-REDES-2C-2026.md`](./CRONOGRAMA-HILO-REDES-2C-2026.md) — versión comprimida: las 6 etapas y el arranque del Trabajo n°7 entran en 4 semanas virtuales (18/ago a 29/sep), dejando la 5ª semana virtual (13/oct) y su jueves (15/oct) libres para ajustes y consultas, con el Trabajo n°7 ya entregado antes. Incluye también la estructura del parcial (entrega/aprobación + examen escrito) y el Trabajo n°7 reformulado con dos opciones de entrega (repo técnico completo o informe del proceso, para no dejar afuera a quien no llegue a levantar el stack solo).
 - **Regla general para reprogramar en otros cuatrimestres/comisiones:** killercoda va siempre en clases virtuales (acceso a computadora); las presenciales son para demostración y repaso conceptual.
 - **Verificar antes de la clase:** el plan de Killercoda utilizado y el tiempo de sandbox disponible por sesión — las etapas 3, 4 y 6 en particular pueden extenderse (`sqlmap` con *time-based blind*, o levantar 5 contenedores de monitoreo).
 - Todas las etapas usan las mismas credenciales base, lo que ayuda a que el alumno no tenga que volver a aprenderlas: MySQL root `mysecretpassword`, usuario de la app `admin` / `admin123`.
 - **Mini-reporte por etapa (agregado 2026-08-13):** cada `finish.md` (de las 6 etapas, incluidas las 2 que viven en `hilo-conductor-redes-ataques`) termina con una sección "📮 Antes de seguir" que le pide al alumno un mensaje corto — un comando+resultado real más una pregunta conceptual puntual de esa etapa — por mail o por la plataforma de la materia. Es un **checkpoint de finalización, no suma nota**: sirve para detectar quién se quedó atrás antes de llegar al parcial, en paralelo al Trabajo n°7 y al examen escrito.
 
-## Etapa 1 — `crud-stress-test` (45 min, dividida en liviana + realista)
+## Etapa 1 — `crud-stress-test` (70 min, dividida en liviana + realista)
 
 📄 [Guía docente](https://github.com/pablopedernera0/pablopedernera0.github.io/blob/master/hilo-conductor-redes/documentacion/crud-stress-test-guia-docente.md) · [Guía para estudiantes](https://github.com/pablopedernera0/pablopedernera0.github.io/blob/master/hilo-conductor-redes/documentacion/crud-stress-test-guia-estudiantes.md) — throughput, latencia, concurrencia, tasa de error, `curl`/`ab` y Gunicorn explicados en profundidad, con nota del incidente y la división.
 
@@ -83,11 +83,16 @@ Las etapas 3 y 4 usan herramientas de ataque reales (`nmap`, `hydra`, `sqlmap`) 
   error; usar un loop de `curl` + `xargs` contra un endpoint de lectura y uno de escritura,
   e interpretar la salida; leer código y procesos para entender por qué el servidor de
   desarrollo de Flask (single-threaded) no escala; levantar la misma app con Gunicorn y
-  repetir la medición liviana.
+  repetir la medición liviana; analizar casos reales de dimensionamiento (Pasos 6-7,
+  agregados 2026-09-05) y calcular con una fórmula de capacity planning cuántos workers
+  hacen falta para sostener un pico de tráfico dado, con margen de seguridad.
 - Qué debería poder mostrar/explicar el alumno: el resultado de `seq 1 50 | xargs -P 5 ...`
   contra `GET /` (todas `200`); el mismo test contra `POST /nuevo` (`302` esperado, no
   falla); que a esta escala la diferencia lectura/escritura puede no notarse — es la lección
-  del Paso 3, no un error; `ps aux | grep app.py` mostrando un único proceso.
+  del Paso 3, no un error; `ps aux | grep app.py` mostrando un único proceso; sus tres
+  números del Paso 7 (`T_normal`, `capacidad_por_worker`, `workers_necesarios`) con la cuenta
+  hecha, y a cuál de los casos del Paso 6 (healthcare.gov, Pokémon GO, Shopify, Ticketmaster)
+  se pareció más su propio ejercicio.
 - **Riesgo/ética:** ninguno — no hay carga real ni ataques en esta versión.
 
 **Versión realista (repo aparte, alumno con PC propia — o demo en vivo del docente):**
