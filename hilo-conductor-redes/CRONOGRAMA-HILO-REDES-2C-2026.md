@@ -32,7 +32,7 @@ Repaso con pizarrón: diagramar autenticación/sesión, WSGI y el modelo de work
 | Jueves 03/sep | 19:20–20:40 | **Etapa 4** — `crud-sqli` (45 min, puede extenderse por `sqlmap` con time-based blind — la sesión completa de 80 min le da margen) |
 
 ## Semana Presencial — 08/sep y 10/sep
-Repaso con pizarrón: diagramar la red (host vs. red interna de Docker), `nmap`/`hydra` conceptualmente, y la query vulnerable vs. la parametrizada.
+Repaso con pizarrón: diagramar la red (host vs. red interna de Docker), `nmap`/`hydra` conceptualmente, y la query vulnerable vs. la parametrizada. Guion completo y slide deck en `GUIA-DOCENTE-HILO-REDES.md`, sección "Clase presencial — Reconocimiento, fuerza bruta y SQLi".
 
 ## Semana Virtual 3 — 15/sep
 

@@ -216,6 +216,60 @@ Table: usuarios
 
 **Riesgo/ética:** repetir la nota ética general. Cerrar mostrando el fix real (una línea: parametrizar la query) para que la clase no termine con "esto queda roto para siempre" sino con "así se arregla".
 
+## Clase presencial — Reconocimiento, fuerza bruta y SQLi (08/sep y 10/sep)
+
+Repaso con pizarrón/proyector, sin computadora — cierra los conceptos que la Etapa 3 y la
+Etapa 4 dejaron funcionando (en la máquina del alumno, vía `hilo-conductor-redes-ataques`)
+pero no explicaron a fondo, antes de entrar a la Semana Virtual 3.
+
+📄 Slide deck para proyectar: [`repaso-red-ataques`](https://pablopedernera0.github.io/repaso-red-ataques/).
+Cheat sheet complementario (referencia rápida de sintaxis conceptual, no para ejecutar en
+Killercoda): [`repaso-red-ataques/cheatsheet.html`](https://pablopedernera0.github.io/repaso-red-ataques/cheatsheet.html).
+
+**Día 1 (08/sep) — La red desde afuera y desde adentro:**
+- Arrancar por la URL: esquema, dominio (+ subdominio si tiene), puerto, path y query. El
+  dominio (con su subdominio) es lo que DNS resuelve a una IP — recién ahí entra en juego el
+  puerto.
+- Seguir con el ruteo: una vez que la petición llega al proceso correcto, ¿quién adentro de la
+  app atiende cada `path`? Mostrar que Flask/Werkzeug compila `@app.route("/alumnos/<int:id>")`
+  a una regex interna (`^/alumnos/(?P<id>[0-9]+)$`), y que nginx hace lo mismo con
+  `location ~ ^/api/(\d+)$`. Cerrar la idea: el ruteo de la Etapa 4 hizo bien su trabajo con
+  `POST /login` aunque el body traiga una inyección — el problema está después del ruteo, no
+  en él.
+- Recién ahí dibujar los dos puntos de vista de puertos: qué publica `docker-compose.yml` al
+  host (`80`, `8080`, `8888`) vs. qué es visible solo dentro de la red interna que Docker crea
+  para el stack (`3306`, cerrado desde `localhost` pero abierto a la IP interna del contenedor
+  de MySQL).
+- Explicar `nmap -sV` como fingerprinting de servicio: no solo "está abierto", sino intentar
+  identificar el software real detrás comparando la respuesta contra una base de firmas
+  conocidas — la misma idea que "fingerprinting de servidores" en general (identificar
+  software/SO/configuración de un servidor remoto por cómo responde, sin acceso directo).
+- Mencionar `host.docker.internal` como el camino inverso: un nombre que, resuelto desde
+  *adentro* de un contenedor, apunta al host — no funciona escrito en el navegador del host.
+- Cerrar con el hallazgo de la Etapa 3: `root` / `mysecretpassword` hardcodeada en `app.py`,
+  visible con solo leer el código, sin ninguna herramienta de ataque.
+- Ejercicio en vivo: un alumno redibuja el diagrama de puertos (host vs. interno) sin mirar
+  la proyección.
+
+**Día 2 (10/sep) — Fuerza bruta y la consulta vulnerable:**
+- Retomar `hydra`: fuerza bruta sistemática contra `/login` con una wordlist. Preguntar
+  "¿por qué funciona?" → no hay límite de intentos ni bloqueo temporal, esa ausencia es la
+  vulnerabilidad real, no la herramienta.
+- Mostrar la tabla vulnerable vs. parametrizada (f-string/concatenación vs. placeholders) y
+  remarcar la idea de fondo: el input del usuario se trata como código SQL en un caso, como
+  dato en el otro.
+- Diagramar el bypass manual: `usuario=admin' -- ` comenta el resto del `WHERE`, la
+  verificación de password nunca ocurre. La variante `' OR '1'='1' -- ` funciona sin conocer
+  el nombre de usuario.
+- Cerrar con `sqlmap` como automatización de la misma idea (detecta el parámetro, vuelca la
+  tabla) y el fix real: una línea, parametrizar la query — para no terminar la clase con
+  "esto queda roto para siempre".
+- Ejercicio en vivo: otro alumno escribe de memoria una consulta vulnerable y su versión
+  parametrizada para el mismo caso.
+
+**Riesgo/ética:** repetir la nota ética general — se corre contra un entorno propio y
+descartable, nunca sin autorización explícita.
+
 ## Etapa 5 — `crud-logs-analisis-cli` (40 min)
 
 **Objetivos de aprendizaje:**
