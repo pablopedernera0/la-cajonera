@@ -22,9 +22,11 @@ Usamos el nombre del servicio (`prometheus`), no `localhost` — Grafana y Prome
 
 ## 3.3 — Crear tu primer panel
 
-1. Andá a **Dashboards → New → New dashboard**
-2. Click en **Add visualization** y elegí la fuente de datos **Prometheus**
-3. En el campo de consulta, pegá:
+1. En el menú lateral (≡) andá a **Dashboards**, y arriba a la derecha click en **New → New dashboard**.
+2. Grafana te pregunta el **layout** del tablero: elegí **Auto grid** (ubica y dimensiona los paneles solo).
+3. En el panel **Add** de la derecha, click en la tarjeta **Panel** ("Drag or click to add a panel"). Se abre el editor del panel.
+4. Arriba a la derecha del editor, en el selector de **fuente de datos**, elegí **Prometheus** (si no quedó seleccionada sola).
+5. En el editor de consulta, pegá:
 
 ```
 rate(flask_http_request_duration_seconds_count[1m])
@@ -32,11 +34,13 @@ rate(flask_http_request_duration_seconds_count[1m])
 
 Esto grafica la cantidad de peticiones por segundo que recibe la app, calculada sobre una ventana de 1 minuto. Todavía no va a mostrar mucho — la app casi no tiene tráfico.
 
-4. Ponele un título al panel, por ejemplo "Requests por segundo", y guardá el dashboard.
+6. En las opciones del panel (columna derecha) ponele un **título**, por ejemplo "Requests por segundo". Después, arriba a la derecha, click en **Save dashboard**, ponele un nombre al dashboard y confirmá.
+
+> Nota: la pantalla del dashboard cambia entre versiones de Grafana. Estas instrucciones son para **Grafana 13.2.2** (la que instala el `setup.sh`). En versiones más viejas el botón se llamaba "Add visualization" en vez de la tarjeta "Panel".
 
 ## 3.4 — Agregar un segundo panel
 
-Repetí el proceso y agregá un panel más con esta consulta, para tener a la vista las conexiones a MySQL:
+Volvé a **Edit** el dashboard, click de nuevo en la tarjeta **Panel** para agregar otro, y usá esta consulta para tener a la vista las conexiones a MySQL:
 
 ```
 mysql_global_status_threads_connected

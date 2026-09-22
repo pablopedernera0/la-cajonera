@@ -121,7 +121,10 @@ services:
       - mynetwork
 
   grafana:
-    image: grafana/grafana:latest
+    # Versión fijada a propósito: la UI de Grafana cambia entre releases y la guía
+    # (Paso 3) describe pantallas concretas. Con :latest la navegación descrita se
+    # desincroniza sola. 13.2.2 es la versión contra la que está escrito el Paso 3.
+    image: grafana/grafana:13.2.2
     restart: always
     ports:
       - "3000:3000"

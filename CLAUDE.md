@@ -108,6 +108,13 @@ completo (hallazgos, bugs corregidos, topología real) en
   para evitar el falso positivo — pasó en la etapa 6, el exporter se llama `dbexporter`.
 - `prom/mysqld-exporter:latest` (v0.19+) no soporta `DATA_SOURCE_NAME` por variable de
   entorno — necesita un `.my.cnf` montado y `--config.my-cnf=/.my.cnf`.
+- **Si una guía describe la UI de una herramienta con pantallas concretas, fijar la versión
+  de esa imagen (no `:latest`).** La UI de Grafana cambia entre releases y el Paso 3 de la
+  etapa 6 quedó desincronizado con `grafana/grafana:latest` (en 13.2.2 desapareció el botón
+  "Add visualization", ahora es un selector de layout + tarjeta "Panel"). Se fijó a
+  `grafana/grafana:13.2.2`, la versión contra la que está escrito el Paso 3 (verificado en
+  Killercoda, 2026-09-22). Prometheus/cAdvisor/mysqld-exporter no tienen UI acoplada a la
+  guía, así que ahí `:latest` no molesta.
 - **Antes de dar un escenario por terminado, probar el `setup.sh` real contra Docker local**
   (hay Docker disponible en este entorno de desarrollo), no alcanza con `bash -n` y
   `python3 -m json.tool`. Varios bugs reales de los de arriba solo aparecieron corriendo
