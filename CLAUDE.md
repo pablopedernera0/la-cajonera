@@ -89,7 +89,12 @@ completo (hallazgos, bugs corregidos, topología real) en
   sueltos numerados), `finish.md`, `assets/setup.sh`. Mirar `cloud-storage-101/` como
   plantilla — es más nueva que `docker-mysql/`, que usa la convención vieja de
   `` `comando`{{exec}} `` inline (no replicar esa).
-- Comandos en bloques ` ```bash ` normales, sin `{{exec}}`.
+- Comandos en bloques ` ```bash ` normales, sin `{{exec}}` — **con una excepción: el
+  comando que ejecuta el `setup.sh` va clickable** (`` `bash /root/setup.sh`{{exec}} ``
+  inline, no en bloque). Killercoda no persiste ni deja nada corriendo entre sesiones, así
+  que el setup es lo único que *tiene* que correr sí o sí; dejarlo clickable evita que un
+  alumno abra el escenario y no tenga nada levantado. Los comandos de los pasos siguen como
+  bloques normales sin `{{exec}}`. Aplicado a las 4 etapas CRUD (2026-09-22).
 - `setup.sh`: banner con colores (`banner()`, `ok()`, `warn()`), pasos numerados `[n/N]`,
   `set -e`, espera con loop + timeout para servicios, resumen final con puertos/servicios.
 - La imagen `ubuntu` de Killercoda ya trae Docker — nunca instalar `docker.io`, solo

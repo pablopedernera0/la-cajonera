@@ -22,11 +22,9 @@ Al finalizar esta práctica vas a tener:
 
 ## Preparar el entorno
 
-Antes de continuar con el Paso 1, ejecutá este comando para levantar toda la infraestructura:
+Antes de continuar con el Paso 1, ejecutá el setup para levantar toda la infraestructura. Hacé clic en el comando de abajo y se corre solo en la terminal (Killercoda no deja nada corriendo por su cuenta, así que este paso es obligatorio):
 
-```bash
-bash /root/setup.sh
-```
+`bash /root/setup.sh`{{exec}}
 
 El script levanta Nginx + MySQL + PhpMyAdmin con Docker Compose, crea las tablas `alumnos` y `usuarios` con datos de ejemplo, y clona y arranca la nueva versión de la app Flask (con login) en el puerto 8888.
 

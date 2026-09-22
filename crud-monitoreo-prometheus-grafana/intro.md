@@ -13,11 +13,9 @@ Al finalizar esta práctica vas a haber:
 
 ## Preparar el entorno
 
-Antes de continuar con el Paso 1, ejecutá este comando:
+Antes de continuar con el Paso 1, ejecutá el setup. Hacé clic en el comando de abajo y se corre solo en la terminal (Killercoda no deja nada corriendo por su cuenta, así que este paso es obligatorio):
 
-```bash
-bash /root/setup.sh
-```
+`bash /root/setup.sh`{{exec}}
 
 El script levanta MySQL, la app Flask (esta vez con métricas expuestas en `/metrics`), y todo el stack de monitoreo: `cAdvisor` (métricas de contenedores), `mysqld-exporter` (métricas de MySQL), `Prometheus` y `Grafana`. Puede tardar un par de minutos, son varios contenedores.
 

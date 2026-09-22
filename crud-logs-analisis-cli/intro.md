@@ -17,11 +17,9 @@ Todo esto con herramientas que ya conocés: `grep`, `awk`, `sort`, `uniq`.
 
 ## Preparar el entorno
 
-Antes de continuar con el Paso 1, ejecutá este comando:
+Antes de continuar con el Paso 1, ejecutá el setup. Hacé clic en el comando de abajo y se corre solo en la terminal (Killercoda no deja nada corriendo por su cuenta, así que este paso es obligatorio):
 
-```bash
-bash /root/setup.sh
-```
+`bash /root/setup.sh`{{exec}}
 
 Además de levantar Nginx + MySQL + PhpMyAdmin + la app Flask, el script genera el tráfico que vamos a analizar. Puede tardar un par de minutos.
 
