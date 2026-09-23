@@ -1,0 +1,51 @@
+{
+  "title": "MySQL con phpMyAdmin: SQL básico, JOINs e índices",
+  "description": "Manejá una base MySQL desde phpMyAdmin: consultas SQL básicas, JOINs entre tablas relacionadas y ejercicios, y medí con tus propios números cómo un índice convierte una búsqueda de segundos en una de milisegundos sobre un padrón de 3 millones de personas.",
+  "difficulty": "beginner",
+  "time": "80",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Paso 1 — Recorrida por phpMyAdmin",
+        "text": "steps/step1.md"
+      },
+      {
+        "title": "Paso 2 — SQL básico: SELECT, WHERE, ORDER BY y GROUP BY",
+        "text": "steps/step2.md"
+      },
+      {
+        "title": "Paso 3 — JOIN: consultar varias tablas a la vez",
+        "text": "steps/step3.md"
+      },
+      {
+        "title": "Paso 4 — Ejercicios de JOIN",
+        "text": "steps/step4.md"
+      },
+      {
+        "title": "Paso 5 — Índices: de segundos a milisegundos",
+        "text": "steps/step5.md"
+      },
+      {
+        "title": "Paso 6 — Práctica integradora",
+        "text": "steps/step6.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {"file": "setup.sh", "target": "/root", "chmod": "+x"},
+        {"file": "tienda.sql", "target": "/root"},
+        {"file": "padron.sql", "target": "/root"},
+        {"file": "buscar_lote.sh", "target": "/root", "chmod": "+x"}
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
