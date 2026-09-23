@@ -103,6 +103,15 @@ completo (hallazgos, bugs corregidos, topología real) en
   no llega al contenedor y falla en silencio (exit 0, sin crear nada). Bug real, ya
   corregido en las 6 etapas del hilo conductor. `cloud-storage-101/assets/setup.sh` (más
   viejo) todavía lo tiene sin corregir.
+- **`docker exec -i <container> mysql ...` necesita `--default-character-set=utf8mb4` si el
+  SQL tiene acentos o eñes.** Dentro del contenedor el cliente arranca en `latin1`, y todo
+  texto no-ASCII se guarda doble-codificado (`ó` → `C383C2B3`, phpMyAdmin muestra
+  "LÃ³pez"). La consola lo muestra bien porque decodifica con el mismo error, así que no se
+  nota a ojo: verificar con `HEX()` o `CHAR_LENGTH()`. Encontrado en `mysql-joins-indices`
+  (2026-09-23); ningún otro escenario tenía acentos en su SQL.
+- Para esperar a MySQL, `mysqladmin ping` tiene que ir por TCP (`-h 127.0.0.1`). Por socket
+  responde el servidor temporal que la imagen levanta para inicializar, que después se
+  reinicia: el loop sale antes de tiempo y la carga de datos falla.
 - Si un servicio de `docker-compose` puede colisionar por nombre con un filtro
   `docker ps -qf "name=mysql"` (ej. un exporter llamado `mysqld-exporter`), renombrarlo
   para evitar el falso positivo — pasó en la etapa 6, el exporter se llama `dbexporter`.
