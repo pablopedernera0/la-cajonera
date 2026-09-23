@@ -14,7 +14,8 @@ if [ -z "$BASH_VERSION" ]; then exec bash "$0" "$@"; fi
 set -e
 
 # Cantidad de filas del padrón. Calibrado para que una búsqueda sin índice
-# tarde un par de segundos y un lote de 10 logins supere los 10 segundos.
+# tarde unos segundos y un lote de 5 logins supere los 10 segundos (en
+# Killercoda: ~3.4 s por búsqueda, ~17 s el lote de 5; medido 2026-09-23).
 FILAS=${FILAS:-3000000}
 
 CYAN='\033[0;36m'

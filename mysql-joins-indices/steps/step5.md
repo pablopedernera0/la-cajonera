@@ -40,19 +40,19 @@ Para encontrar un email, MySQL lee los 3 millones de filas una por una y compara
 
 ## 5.3 — Un login no es una sola consulta
 
-Un segundo y medio parece tolerable. Pero una app no busca a un solo usuario: busca a **cada uno que inicia sesión**. En la terminal, simulá 10 logins seguidos:
+Unos segundos por búsqueda parecen tolerables. Pero una app no busca a un solo usuario: busca a **cada uno que inicia sesión**. En la terminal, simulá 5 logins seguidos:
 
 ```bash
-bash /root/buscar_lote.sh 10
+bash /root/buscar_lote.sh 5
 ```
 
 ```
-Simulando 10 logins contra un padrón de 3000000 personas (SIN índice sobre email)...
-  Tiempo total:       15,81 segundos
-  Promedio por login: 1581,3 milisegundos
+Simulando 5 logins contra un padrón de 3000000 personas (SIN índice sobre email)...
+  Tiempo total:       16.85 segundos
+  Promedio por login: 3370.0 milisegundos
 ```
 
-**Más de 15 segundos para 10 usuarios.** Si esos 10 llegan al mismo tiempo, el último espera todo eso con la pantalla de carga. Anotá tu tiempo total.
+**Más de 15 segundos para 5 usuarios.** Si esos 5 llegan al mismo tiempo, el último espera todo eso con la pantalla de carga. Anotá tu tiempo total.
 
 ## 5.4 — Crear un índice
 
@@ -89,11 +89,11 @@ EXPLAIN SELECT * FROM padron WHERE email = 'persona1500007@correo.com.ar';
 De revisar 3 millones de filas a revisar **una**. Y ahora los logins:
 
 ```bash
-bash /root/buscar_lote.sh 10
+bash /root/buscar_lote.sh 5
 bash /root/buscar_lote.sh 1000
 ```
 
-Los 10 logins bajan de más de 15 segundos a una fracción de segundo, y 1000 logins tardan menos de lo que tardaba **uno** sin índice.
+Los 5 logins bajan de más de 15 segundos a una fracción de segundo, y 1000 logins tardan menos de lo que tardaba **uno** sin índice.
 
 ## 5.6 — Lo que el índice NO arregla
 

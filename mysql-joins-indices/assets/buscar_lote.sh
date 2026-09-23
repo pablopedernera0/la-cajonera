@@ -3,14 +3,14 @@
 #  buscar_lote.sh — mysql-joins-indices
 #  Simula N usuarios que inician sesión: cada login busca a la persona por
 #  su email en `padron`. Mide cuánto tarda el lote completo.
-#  Uso: bash /root/buscar_lote.sh [N]     (N = cantidad de logins, default 10)
+#  Uso: bash /root/buscar_lote.sh [N]     (N = cantidad de logins, default 5)
 # =============================================================================
 
 # Si lo corrieron con "sh script.sh" (dash en Ubuntu), relanzar con bash:
 # dash no entiende "echo -e" ni tiene $RANDOM
 if [ -z "$BASH_VERSION" ]; then exec bash "$0" "$@"; fi
 
-N=${1:-10}
+N=${1:-5}
 TOTAL=$(docker exec mysql mysql --default-character-set=utf8mb4 -h127.0.0.1 -uroot -pmysecretpassword -N practica \
     -e "SELECT COUNT(*) FROM padron" 2>/dev/null)
 

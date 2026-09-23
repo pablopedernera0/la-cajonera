@@ -8,7 +8,7 @@ Recorriste una base MySQL desde phpMyAdmin, consultaste tablas relacionadas con 
 - **SQL básico**: `SELECT`, `WHERE`, `ORDER BY`, `LIMIT`, `COUNT` y `GROUP BY`
 - **JOIN**: juntaste tablas relacionadas por clave foránea, con `INNER JOIN` (solo filas con pareja) y `LEFT JOIN` (todas las de la izquierda)
 - **Ejercicios de JOIN**: totales por cliente, productos sin ventas, y conteos sobre un padrón de 3 millones de personas
-- **Índices**: pasaste de revisar 3 millones de filas a revisar una, y de 10 logins en más de 15 segundos a 10 logins en una fracción de segundo
+- **Índices**: pasaste de revisar 3 millones de filas a revisar una, y de 5 logins en más de 15 segundos a 5 logins en una fracción de segundo
 - **Límites de los índices**: `LIKE '%...%'`, el espacio que ocupan y cuándo hace falta un índice compuesto
 
 ## Comandos clave para recordar
@@ -39,7 +39,7 @@ Recorriste una base MySQL desde phpMyAdmin, consultaste tablas relacionadas con 
 
 Mandá un mensaje corto (mail al docente o la plataforma de la materia) con:
 
-1. La salida de `bash /root/buscar_lote.sh 10` **sin** índice y **con** índice sobre `email`.
+1. La salida de `bash /root/buscar_lote.sh 5` **sin** índice y **con** índice sobre `email`.
 2. Tu tabla del Paso 6 completa (tiempos, `rows` y el índice que creaste en cada caso).
 3. Tus respuestas a las dos preguntas del final del Paso 6.
 
@@ -47,4 +47,4 @@ No suma nota: es un checkpoint para confirmar que la práctica quedó entendida.
 
 ## Relación con la materia
 
-Cuando una aplicación anda lenta, la primera reacción suele ser "hace falta un servidor más grande". En esta práctica viste que la misma consulta, sobre el mismo servidor, pasó de 15 segundos a milisegundos **sin agregar ni un CPU**: el problema no era de capacidad, era de cómo se buscaban los datos. Antes de dimensionar hacia arriba, conviene mirar el `EXPLAIN`.
+Cuando una aplicación anda lenta, la primera reacción suele ser "hace falta un servidor más grande". En esta práctica viste que la misma consulta, sobre el mismo servidor, pasó de más de 15 segundos a milisegundos **sin agregar ni un CPU**: el problema no era de capacidad, era de cómo se buscaban los datos. Antes de dimensionar hacia arriba, conviene mirar el `EXPLAIN`.

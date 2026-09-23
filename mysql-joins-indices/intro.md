@@ -35,7 +35,7 @@ El script levanta MySQL y phpMyAdmin con Docker Compose, crea las tablas de la t
 Cuando termine, vas a ver un resumen con los servicios disponibles y una línea como esta:
 
 ```
-✓ Una búsqueda por email tarda 1,48 segundos en esta máquina
+✓ Una búsqueda por email tarda 3.37 segundos en esta máquina
 ```
 
 Anotá ese número: es tu primera medición, y en el Paso 5 lo vas a comparar. Si todo está bien, continuá con el **Paso 1**.
