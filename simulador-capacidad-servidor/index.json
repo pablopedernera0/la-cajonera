@@ -1,0 +1,48 @@
+{
+  "title": "Simulador de capacidad: romper un servidor y arreglarlo",
+  "description": "Subí la carga sobre un servidor simulado hasta encontrar sus dos cuellos de botella (procesos y memoria), resolvé cada uno con el script que corresponde, y cerrá escribiendo tu propio RNF de capacidad con tus números.",
+  "difficulty": "beginner",
+  "time": "40",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Paso 1 — Cómo está armado el simulador",
+        "text": "steps/step1.md"
+      },
+      {
+        "title": "Paso 2 — Primer cuello de botella: procesos",
+        "text": "steps/step2.md"
+      },
+      {
+        "title": "Paso 3 — Segundo cuello de botella: memoria",
+        "text": "steps/step3.md"
+      },
+      {
+        "title": "Paso 4 — Confirmar que ya aguanta la carga",
+        "text": "steps/step4.md"
+      },
+      {
+        "title": "Paso 5 — Tu propio RNF de capacidad",
+        "text": "steps/step5.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {"file": "setup.sh", "target": "/root", "chmod": "+x"},
+        {"file": "servidor.py", "target": "/root", "chmod": "+x"},
+        {"file": "subir_carga.sh", "target": "/root", "chmod": "+x"},
+        {"file": "sumar_cpu.sh", "target": "/root", "chmod": "+x"},
+        {"file": "sumar_ram.sh", "target": "/root", "chmod": "+x"}
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
