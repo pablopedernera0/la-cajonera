@@ -7,6 +7,10 @@
 #  Se ejecuta una sola vez al inicio del escenario
 # =============================================================================
 
+# Si lo corrieron con "sh script.sh" (dash en Ubuntu), relanzar con bash:
+# dash no entiende "echo -e" ni tiene $RANDOM
+if [ -z "$BASH_VERSION" ]; then exec bash "$0" "$@"; fi
+
 set -e
 
 # Cantidad de filas del padrón. Calibrado para que una búsqueda sin índice
