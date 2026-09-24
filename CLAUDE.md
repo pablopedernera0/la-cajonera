@@ -117,6 +117,14 @@ completo (hallazgos, bugs corregidos, topología real) en
   para evitar el falso positivo — pasó en la etapa 6, el exporter se llama `dbexporter`.
 - `prom/mysqld-exporter:latest` (v0.19+) no soporta `DATA_SOURCE_NAME` por variable de
   entorno — necesita un `.my.cnf` montado y `--config.my-cnf=/.my.cnf`.
+- **En consultas PromQL contra cAdvisor, no filtrar por `container_label_com_docker_compose_*`
+  — en Killercoda esas etiquetas vienen vacías** (`docker inspect` del contenedor no tiene
+  ningún label `com.docker.compose.*`, a diferencia de correrlo con Docker Compose en una
+  máquina de desarrollo normal). La consulta devuelve 0 resultados sin ningún error visible.
+  Usar el label `name` con regex en su lugar (`name=~".*mysql.*"`), que sale del nombre real
+  del contenedor y no depende de qué le haya puesto Docker Compose. Encontrado en
+  `crud-monitoreo-prometheus-grafana` (Paso 2.5 y 4.5), reportado por una estudiante en clase
+  (2026-09-24), reproducido localmente forzando un contenedor sin labels de compose.
 - **Si una guía describe la UI de una herramienta con pantallas concretas, fijar la versión
   de esa imagen (no `:latest`).** La UI de Grafana cambia entre releases y el Paso 3 de la
   etapa 6 quedó desincronizado con `grafana/grafana:latest` (en 13.2.2 desapareció el botón

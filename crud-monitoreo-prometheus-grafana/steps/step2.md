@@ -38,9 +38,9 @@ Te muestra cuántas conexiones activas tiene el servidor MySQL en este momento �
 ## 2.5 — Una métrica de contenedores
 
 ```
-rate(container_cpu_usage_seconds_total{container_label_com_docker_compose_service="mysql"}[1m])
+rate(container_cpu_usage_seconds_total{name=~".*mysql.*"}[1m])
 ```
 
-Esto muestra el uso de CPU del contenedor de MySQL en el último minuto. El filtro `container_label_com_docker_compose_service` es una etiqueta que pone Docker Compose automáticamente — no depende del nombre exacto que le haya tocado al contenedor.
+Esto muestra el uso de CPU del contenedor de MySQL en el último minuto. El filtro `name=~".*mysql.*"` busca por el nombre real del contenedor (`mysql` va a aparecer en él sea cual sea la convención de nombres que use Docker Compose en este entorno) — más confiable que filtrar por una etiqueta de Docker Compose, que en algunos entornos no llega a completarse.
 
 > Con Prometheus confirmando que junta las tres fuentes, pasá al Paso 3 para verlo todo junto en un dashboard de Grafana.

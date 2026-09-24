@@ -36,7 +36,7 @@ Hoy viste el pico **mientras pasaba**, sin tocar un archivo. Esa es la diferenci
 Si te sobra tiempo, agregá un tercer panel con esta consulta y repetí la carga mirándolo:
 
 ```
-rate(container_cpu_usage_seconds_total{container_label_com_docker_compose_service="mysql"}[1m])
+rate(container_cpu_usage_seconds_total{name=~".*mysql.*"}[1m])
 ```
 
 > Con esto cerramos el hilo conductor completo. Pasá a la reflexión final.
