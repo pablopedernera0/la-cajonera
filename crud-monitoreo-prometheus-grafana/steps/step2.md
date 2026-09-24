@@ -37,10 +37,21 @@ Te muestra cuántas conexiones activas tiene el servidor MySQL en este momento �
 
 ## 2.5 — Una métrica de contenedores
 
-```
-rate(container_cpu_usage_seconds_total{name=~".*mysql.*"}[1m])
+cAdvisor identifica cada contenedor por el ID de su cgroup, no por su nombre — en este
+entorno no llega a resolver el nombre real de cada uno. Para no andar copiando IDs a
+mano, corré:
+
+```bash
+query_cpu_mysql.sh
 ```
 
-Esto muestra el uso de CPU del contenedor de MySQL en el último minuto. El filtro `name=~".*mysql.*"` busca por el nombre real del contenedor (`mysql` va a aparecer en él sea cual sea la convención de nombres que use Docker Compose en este entorno) — más confiable que filtrar por una etiqueta de Docker Compose, que en algunos entornos no llega a completarse.
+Te imprime la consulta ya armada con el ID real de tu contenedor de MySQL, lista para
+copiar y pegar en Prometheus:
+
+```
+rate(container_cpu_usage_seconds_total{id=~".*<tu ID>.*"}[1m])
+```
+
+Esto muestra el uso de CPU del contenedor de MySQL en el último minuto.
 
 > Con Prometheus confirmando que junta las tres fuentes, pasá al Paso 3 para verlo todo junto en un dashboard de Grafana.

@@ -117,14 +117,20 @@ completo (hallazgos, bugs corregidos, topología real) en
   para evitar el falso positivo — pasó en la etapa 6, el exporter se llama `dbexporter`.
 - `prom/mysqld-exporter:latest` (v0.19+) no soporta `DATA_SOURCE_NAME` por variable de
   entorno — necesita un `.my.cnf` montado y `--config.my-cnf=/.my.cnf`.
-- **En consultas PromQL contra cAdvisor, no filtrar por `container_label_com_docker_compose_*`
-  — en Killercoda esas etiquetas vienen vacías** (`docker inspect` del contenedor no tiene
-  ningún label `com.docker.compose.*`, a diferencia de correrlo con Docker Compose en una
-  máquina de desarrollo normal). La consulta devuelve 0 resultados sin ningún error visible.
-  Usar el label `name` con regex en su lugar (`name=~".*mysql.*"`), que sale del nombre real
-  del contenedor y no depende de qué le haya puesto Docker Compose. Encontrado en
-  `crud-monitoreo-prometheus-grafana` (Paso 2.5 y 4.5), reportado por una estudiante en clase
-  (2026-09-24), reproducido localmente forzando un contenedor sin labels de compose.
+- **En Killercoda, cAdvisor no resuelve metadata de Docker para ningún contenedor —
+  ni `name`, ni `image`, ni ningún `container_label_*`.** Confirmado con la salida real de
+  Prometheus: cada contenedor aparece solo como
+  `container_cpu_usage_seconds_total{cpu="total", id="/system.slice/docker-<id>.scope", instance=..., job=...}`,
+  sin ninguna otra etiqueta — a diferencia de correr el mismo `docker-compose.yml` en una
+  máquina de desarrollo normal, donde cAdvisor sí trae `name`/`image`/labels vía la API de
+  Docker. No hay ningún filtro por etiqueta que funcione para identificar "el contenedor de
+  mysql" en este entorno. La única forma confiable es conseguir el ID real del contenedor
+  (`docker ps -qf "name=mysql"`) y usarlo como substring del `id` (`id=~".*<id>.*"`) — el ID
+  corto de `docker ps` es substring del ID completo que cAdvisor pone en el cgroup. Como
+  pedirle a cada alumno que copie un ID a mano es propenso a error, se armó un script
+  (`query_cpu_mysql.sh`) que busca el ID y imprime la consulta PromQL ya armada, lista para
+  copiar y pegar. Encontrado en `crud-monitoreo-prometheus-grafana` (Paso 2.5 y 4.5),
+  reportado por una estudiante en clase y confirmado en vivo (2026-09-24).
 - **Si una guía describe la UI de una herramienta con pantallas concretas, fijar la versión
   de esa imagen (no `:latest`).** La UI de Grafana cambia entre releases y el Paso 3 de la
   etapa 6 quedó desincronizado con `grafana/grafana:latest` (en 13.2.2 desapareció el botón

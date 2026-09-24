@@ -22,7 +22,7 @@ echo "  Preparando entorno — crud-monitoreo-prometheus-grafana"
 echo "=============================================="
 
 # ── 1. Dependencias del sistema ────────────────────────────────────────────
-banner "1/6" "Instalando dependencias del sistema..."
+banner "1/7" "Instalando dependencias del sistema..."
 apt-get update -qq
 DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
     docker-compose \
@@ -31,13 +31,13 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
 ok "Dependencias del sistema instaladas (curl y xargs ya vienen en la imagen base)"
 
 # ── 2. Dependencias Python ─────────────────────────────────────────────────
-banner "2/6" "Instalando dependencias Python..."
+banner "2/7" "Instalando dependencias Python..."
 pip3 install flask mysql-connector-python prometheus-flask-exporter \
     --break-system-packages --ignore-installed --quiet
 ok "flask, mysql-connector-python y prometheus-flask-exporter instalados"
 
 # ── 3. Levantar MySQL + stack de monitoreo con Docker Compose ─────────────
-banner "3/6" "Levantando MySQL, cAdvisor, mysqld-exporter, Prometheus y Grafana..."
+banner "3/7" "Levantando MySQL, cAdvisor, mysqld-exporter, Prometheus y Grafana..."
 
 mkdir -p /root/monitoreo
 cd /root/monitoreo
@@ -143,7 +143,7 @@ docker-compose up -d
 ok "Contenedores iniciados"
 
 # ── 4. Esperar MySQL y crear las tablas ────────────────────────────────────
-banner "4/6" "Esperando MySQL y creando la base de datos..."
+banner "4/7" "Esperando MySQL y creando la base de datos..."
 
 echo -n "  Esperando MySQL"
 MYSQL_READY=0
@@ -184,7 +184,7 @@ EOSQL
 ok "Base 'alumnos' con datos semilla creada"
 
 # ── 5. Clonar el CRUD (branch monitoring) y levantarlo ─────────────────────
-banner "5/6" "Clonando la app Flask instrumentada y conectándola a MySQL..."
+banner "5/7" "Clonando la app Flask instrumentada y conectándola a MySQL..."
 
 MYSQL_IP=$(docker inspect \
     "$(docker ps -qf "name=mysql")" \
@@ -210,7 +210,7 @@ for i in $(seq 1 20); do
 done
 
 # ── 6. Esperar a que Prometheus tenga todos los targets arriba ────────────
-banner "6/6" "Esperando a que Prometheus levante todos los targets..."
+banner "6/7" "Esperando a que Prometheus levante todos los targets..."
 
 echo -n "  Esperando Prometheus"
 for i in $(seq 1 30); do
@@ -222,6 +222,12 @@ for i in $(seq 1 30); do
     echo -n "."
     sleep 2
 done
+
+# ── 7. Dejar query_cpu_mysql.sh accesible como comando ─────────────────────
+banner "7/7" "Dejando query_cpu_mysql.sh accesible como comando..."
+cp /root/query_cpu_mysql.sh /usr/local/bin/query_cpu_mysql.sh
+chmod +x /usr/local/bin/query_cpu_mysql.sh
+ok "query_cpu_mysql.sh disponible como comando"
 
 # ── Resumen ──────────────────────────────────────────────────────────────────
 echo ""
@@ -236,6 +242,9 @@ echo "    cAdvisor     → métricas de contenedores para Prometheus"
 echo "    Prometheus   → puerto 9090"
 echo "    Grafana      → puerto 3000 (usuario: admin / password: admin)"
 echo "    CRUD Flask   → puerto 8888 (métricas en /metrics)"
+echo ""
+echo "  Comando disponible: query_cpu_mysql.sh (te da la consulta PromQL lista"
+echo "  para pegar, con el ID real del contenedor de MySQL en este entorno)"
 echo ""
 echo "  Próximo paso: entender qué es una métrica y cómo la junta Prometheus."
 echo "=============================================="

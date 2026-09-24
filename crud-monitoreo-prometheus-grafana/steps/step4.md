@@ -33,10 +33,12 @@ Hoy viste el pico **mientras pasaba**, sin tocar un archivo. Esa es la diferenci
 
 ## 4.5 — Un panel más: CPU de MySQL bajo carga
 
-Si te sobra tiempo, agregá un tercer panel con esta consulta y repetí la carga mirándolo:
+Si te sobra tiempo, agregá un tercer panel para verlo. Corré de nuevo:
 
+```bash
+query_cpu_mysql.sh
 ```
-rate(container_cpu_usage_seconds_total{name=~".*mysql.*"}[1m])
-```
+
+Pegá la consulta que te imprime en el panel nuevo, y repetí la carga mirándolo.
 
 > Con esto cerramos el hilo conductor completo. Pasá a la reflexión final.
