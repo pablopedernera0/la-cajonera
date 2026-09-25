@@ -62,6 +62,20 @@ monitorea.
 | 5 | `crud-logs-analisis-cli` | Forense con `grep`/`awk` sobre logs + `general_log` de MySQL | `feature-login` | En Killercoda — depende narrativamente de 3/4 pero no técnicamente (genera su propio tráfico) |
 | 6 | `crud-monitoreo-prometheus-grafana` | Prometheus + Grafana + cAdvisor + mysqld-exporter | `monitoring` | En Killercoda |
 
+**Escenario transversal (agregado 2026-09-25): `crud-sistema-operativo`.** No es una etapa
+más sino una mirada de sistemas operativos sobre la misma infraestructura: kernel y syscalls
+(`strace`), procesos (Gunicorn, `fork`, respawn de un worker), hilos (MySQL, un hilo por
+conexión, *thread cache*), memoria virtual vs. RSS y OOM killer, namespaces y cgroups
+(`cpu.stat` = lo que lee cAdvisor), y throttling con `docker update --cpus 0.5`. Es autónomo
+(su propio `setup.sh`, `main` de `crud-python` servida con Gunicorn, cAdvisor + Prometheus sin
+Grafana). Toda la carga va encapsulada en scripts con topes fijos (`carga_http.sh`,
+`carga_cpu_mysql.sh`, etc.) — nada de `stress-ng` ni CPU saturada sostenida, por la política
+de Killercoda. Presentación de conceptos (26 slides, con tablas Linux | Windows) en
+`hilo-conductor-redes/documentacion/crud-sistema-operativo-clase.html`, copiada a github.io.
+Hallazgos al probarlo: `SHA2('texto fijo')` dentro de `BENCHMARK` casi no trabaja (usar
+`SHA2(RAND())`); `docker update --cpus 0` **no** saca el límite (usar `--cpu-quota -1`);
+`rate(...[20s])` aplana un pico de pocos segundos, para eso se usa `irate()`.
+
 El código de la app vive en [`pablopedernera0/crud-python`](https://github.com/pablopedernera0/crud-python)
 — nunca en este repo. Cada `setup.sh` clona la branch que corresponde.
 

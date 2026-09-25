@@ -1,0 +1,54 @@
+{
+  "title": "El sistema operativo debajo de la infraestructura",
+  "description": "Kernel, llamadas al sistema, procesos, hilos, memoria, namespaces y cgroups: los conceptos de sistemas operativos que ya venías usando sin nombrarlos, mirados sobre la misma app Flask + MySQL del hilo conductor.",
+  "difficulty": "intermediate",
+  "time": "60",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Paso 1 — El kernel y las llamadas al sistema",
+        "text": "steps/step1.md"
+      },
+      {
+        "title": "Paso 2 — Procesos: Gunicorn por dentro",
+        "text": "steps/step2.md"
+      },
+      {
+        "title": "Paso 3 — Hilos: MySQL por dentro",
+        "text": "steps/step3.md"
+      },
+      {
+        "title": "Paso 4 — Memoria: virtual, real y el OOM killer",
+        "text": "steps/step4.md"
+      },
+      {
+        "title": "Paso 5 — Un contenedor es un proceso con anteojeras",
+        "text": "steps/step5.md"
+      },
+      {
+        "title": "Paso 6 — El scheduler y los límites de CPU",
+        "text": "steps/step6.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {"file": "setup.sh", "target": "/root", "chmod": "+x"},
+        {"file": "carga_http.sh", "target": "/root", "chmod": "+x"},
+        {"file": "abrir_conexiones.sh", "target": "/root", "chmod": "+x"},
+        {"file": "ver_cgroup.sh", "target": "/root", "chmod": "+x"},
+        {"file": "probar_oom.sh", "target": "/root", "chmod": "+x"},
+        {"file": "carga_cpu_mysql.sh", "target": "/root", "chmod": "+x"},
+        {"file": "consulta_cpu_mysql.sh", "target": "/root", "chmod": "+x"}
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
