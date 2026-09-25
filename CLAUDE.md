@@ -76,6 +76,18 @@ Hallazgos al probarlo: `SHA2('texto fijo')` dentro de `BENCHMARK` casi no trabaj
 `SHA2(RAND())`); `docker update --cpus 0` **no** saca el límite (usar `--cpu-quota -1`);
 `rate(...[20s])` aplana un pico de pocos segundos, para eso se usa `irate()`.
 
+**Escenario transversal (agregado 2026-09-25): `forense-archivos-borrados`.** Práctica de
+forense sobre dos imágenes **públicas de NIST** (CFReDS, serie Deleted File Recovery:
+`dfr-01-fat` y `dfr-07-fat`, ~2 MB comprimidas, 1 GB cada una descomprimida — NIST llenó el
+espacio libre con un patrón, no se pueden hacer sparse). Solo The Sleuth Kit (`mmls`,
+`fsstat`, `fls`, `istat`, `icat`, `blkcat`) + `sha256sum`; nada de montar, nada de carving ni
+crackeo. Los estudiantes comparan sus hallazgos con el documento oficial de NIST
+(`setup-july-10-2012.pdf`). Contexto: un primer intento con evidencia inventada por nosotros
+(un caso armado) fue cortado por el filtro de seguridad de Claude — por eso se usan imágenes
+de NIST y no un caso propio; no volver a la idea del caso inventado. Ojo al verificar: los
+números de entrada de `fls` son por partición (la entrada 5 de la partición FAT16 es un
+archivo activo, no el borrado).
+
 El código de la app vive en [`pablopedernera0/crud-python`](https://github.com/pablopedernera0/crud-python)
 — nunca en este repo. Cada `setup.sh` clona la branch que corresponde.
 

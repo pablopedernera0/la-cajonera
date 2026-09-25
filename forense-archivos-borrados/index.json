@@ -1,0 +1,48 @@
+{
+  "title": "Forense: recuperar archivos borrados con imágenes de NIST",
+  "description": "Verificá la integridad de dos imágenes de disco públicas de NIST (CFReDS), recorré sus particiones con The Sleuth Kit, recuperá archivos borrados y compará tus hallazgos con las respuestas oficiales.",
+  "difficulty": "beginner",
+  "time": "50",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Paso 1 — Las imágenes y su hash",
+        "text": "steps/step1.md"
+      },
+      {
+        "title": "Paso 2 — Las particiones",
+        "text": "steps/step2.md"
+      },
+      {
+        "title": "Paso 3 — Listar el sistema de archivos",
+        "text": "steps/step3.md"
+      },
+      {
+        "title": "Paso 4 — Recuperar un archivo borrado",
+        "text": "steps/step4.md"
+      },
+      {
+        "title": "Paso 5 — Cuando el archivo fue sobrescrito",
+        "text": "steps/step5.md"
+      },
+      {
+        "title": "Paso 6 — Cerrar el análisis",
+        "text": "steps/step6.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {"file": "setup.sh", "target": "/root", "chmod": "+x"}
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
