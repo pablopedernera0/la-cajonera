@@ -94,6 +94,7 @@ El código de la app vive en [`pablopedernera0/crud-python`](https://github.com/
 **Documentación del hilo conductor:** todo en `hilo-conductor-redes/`:
 - `GUIA-DOCENTE-HILO-REDES.md` — objetivos, evaluación y logística por etapa
 - `CRONOGRAMA-HILO-REDES-2C-2026.md` — cruce con el programa oficial y el cronograma real de clases (comisión ITI 2°1°, 2C 2026), incluye el Trabajo n°7 reformulado
+- `KAHOOT-ETAPA5-LA-NOCHE-DEL-INCIDENTE.md` — borrador del Kahoot de la Etapa 5 (pieza transmedia para el Taller de la UCU)
 - Versión publicada (HTML + desarrollo de contenidos por etapa, para docente y para estudiantes) en el repo `pablopedernera0.github.io`, carpeta `hilo-conductor-redes/`
 
 **Estado (actualizado 2026-08-11): la migración de las etapas 3/4 a `hilo-conductor-redes-ataques`
