@@ -1,0 +1,44 @@
+{
+  "title": "Un modelo de lenguaje a mano: cadenas de Markov en Python",
+  "description": "Un generador de texto que aprende contando qué palabra sigue a cuál, en treinta líneas de Python y después con markovify sobre el Martín Fierro. Para docentes de informática: entrenar es contar, generar es sortear.",
+  "difficulty": "beginner",
+  "time": "30",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Paso 1 — El texto y el código: contar y sortear",
+        "text": "steps/step1.md"
+      },
+      {
+        "title": "Paso 2 — La tabla es el modelo entero",
+        "text": "steps/step2.md"
+      },
+      {
+        "title": "Paso 3 — Cuánto contexto mirar",
+        "text": "steps/step3.md"
+      },
+      {
+        "title": "Paso 4 — markovify y el Martín Fierro",
+        "text": "steps/step4.md"
+      },
+      {
+        "title": "Paso 5 — El control anti-copia",
+        "text": "steps/step5.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {"file": "setup.sh", "target": "/root", "chmod": "+x"}
+      ]
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}

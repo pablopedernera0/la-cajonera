@@ -179,6 +179,18 @@ Carpetas preexistentes, sin relación con el hilo conductor: `docker`, `docker-i
 `stack-redes-tcp-ip-build`, `stack-redes-tcp-ip-trouble`, `cloud-storage-101`. No tocar
 salvo pedido explícito.
 
+**`generador-markov` (agregado 2026-09-29).** Para el Ciclo de Actualización Pedagógica en
+IA (repo `ciclo-actualizacion-pedagogica-ia`, unidad 1.1), no para estudiantes: público
+docentes de informática, tono de colegas. Es la sección optativa de código de una lectura
+sobre cadenas de Markov, versión en terminal del generador web
+`pablopedernera0.github.io/generador-markov/`. El código vive en
+[`pablopedernera0/generador-markov-python`](https://github.com/pablopedernera0/generador-markov-python)
+(`markov.py` en Python puro + `con_markovify.py` sobre el Martín Fierro), no en este repo;
+el `setup.sh` lo clona e instala `markovify` con `pip3 --break-system-packages`. Los
+números citados en los pasos salen de corridas reales; `markov.py` no empalma el final del
+texto con el principio como la web, así que sus tablas tienen menos filas (93 vs. 95 en
+`hechos` con n=2) — no mezclar cifras de las dos versiones.
+
 ---
 
 ## Repos relacionados (mismo docente, otras materias/propósitos)
