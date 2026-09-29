@@ -42,7 +42,7 @@ fi
 
 # ── 3. markovify ───────────────────────────────────────────────────────────
 banner "3/3" "Instalando markovify y Flask..."
-pip3 install markovify flask --break-system-packages --quiet --root-user-action=ignore
+pip3 install markovify flask --break-system-packages --ignore-installed --quiet --root-user-action=ignore
 ok "$(python3 -c 'import importlib.metadata as m; print(", ".join(f"{p} {m.version(p)}" for p in ("markovify", "flask")))') instalados"
 
 echo ""

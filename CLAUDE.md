@@ -136,6 +136,13 @@ completo (hallazgos, bugs corregidos, topología real) en
   "LÃ³pez"). La consola lo muestra bien porque decodifica con el mismo error, así que no se
   nota a ojo: verificar con `HEX()` o `CHAR_LENGTH()`. Encontrado en `mysql-joins-indices`
   (2026-09-23); ningún otro escenario tenía acentos en su SQL.
+- **`pip3 install` en la imagen `ubuntu` de Killercoda necesita `--ignore-installed`**
+  (además de `--break-system-packages`). La imagen trae paquetes Python instalados por apt
+  (ej. `python3-blinker 1.7.0`); si una dependencia pide una versión más nueva, pip intenta
+  desinstalar la de Debian, falla con "Cannot uninstall blinker 1.7.0, RECORD file not
+  found" y no instala **nada**. El `ubuntu:24.04` de Docker no trae esos paquetes, así que
+  no lo reproduce: para probar localmente, instalar antes `python3-blinker` con apt.
+  Encontrado en `generador-markov` con Flask 3.1 (2026-09-29).
 - Para esperar a MySQL, `mysqladmin ping` tiene que ir por TCP (`-h 127.0.0.1`). Por socket
   responde el servidor temporal que la imagen levanta para inicializar, que después se
   reinicia: el loop sale antes de tiempo y la carga de datos falla.
