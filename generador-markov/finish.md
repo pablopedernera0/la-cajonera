@@ -9,6 +9,8 @@ Vieron un modelo de lenguaje entero, de punta a punta:
   oraciones gramaticales y falsas armadas con tramos verdaderos (Paso 3).
 - **Más contexto** da más coherencia, pero con poco texto termina en copia; markovify la
   filtra, y cuando todo sería copia se queda sin nada que decir (Pasos 4 y 5).
+- **La aplicación no es el modelo**: la página web solo llama a `markov.py`, y cambiarlo
+  cambia lo que la página muestra (Paso 6, si lo hicieron).
 
 ## Lo que este generador no es
 

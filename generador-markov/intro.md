@@ -17,6 +17,7 @@ Van a leer y correr:
 |---|---|
 | `markov.py` | El generador completo en Python puro, sin bibliotecas. Unas treinta líneas. |
 | `con_markovify.py` | La misma idea con [markovify](https://github.com/jsvine/markovify), sobre *El gaucho Martín Fierro*. |
+| `app.py` | Una página web mínima con Flask que usa `markov.py` (Paso 6, optativo). |
 | `textos/` | Los textos de partida de la página web y el poema de Hernández. |
 
 El código está en [github.com/pablopedernera0/generador-markov-python](https://github.com/pablopedernera0/generador-markov-python):
@@ -25,7 +26,7 @@ lo pueden clonar y usar con sus estudiantes.
 ## Antes de empezar
 
 Preparen el entorno: instala `pip`, clona el repositorio en `/root/generador-markov-python`
-e instala `markovify`. Tarda menos de un minuto.
+e instala `markovify` y Flask. Tarda menos de un minuto.
 
 `bash /root/setup.sh`{{exec}}
 

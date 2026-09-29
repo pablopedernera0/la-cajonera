@@ -185,8 +185,10 @@ docentes de informática, tono de colegas. Es la sección optativa de código de
 sobre cadenas de Markov, versión en terminal del generador web
 `pablopedernera0.github.io/generador-markov/`. El código vive en
 [`pablopedernera0/generador-markov-python`](https://github.com/pablopedernera0/generador-markov-python)
-(`markov.py` en Python puro + `con_markovify.py` sobre el Martín Fierro), no en este repo;
-el `setup.sh` lo clona e instala `markovify` con `pip3 --break-system-packages`. Los
+(`markov.py` en Python puro + `con_markovify.py` sobre el Martín Fierro + `app.py`, página
+Flask del Paso 6 optativo, sin debug y con recarga automática al editar `markov.py`), no en
+este repo; el `setup.sh` lo clona e instala `markovify` y `flask` con
+`pip3 --break-system-packages`. Los
 números citados en los pasos salen de corridas reales; `markov.py` no empalma el final del
 texto con el principio como la web, así que sus tablas tienen menos filas (93 vs. 95 en
 `hechos` con n=2) — no mezclar cifras de las dos versiones.

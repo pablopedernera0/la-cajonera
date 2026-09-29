@@ -40,8 +40,10 @@ Arranca con un contexto que sigue a un punto (un comienzo de oración) y repite:
 Como la lista guarda cada aparición con sus repetidos, `random.choice` ya sortea con peso:
 lo que vino más veces sale más seguido. No hace falta calcular probabilidades.
 
-Si el contexto no está en la tabla, el modelo **se traba** y corta: nunca vio esa
-secuencia y no tiene con qué seguir.
+Termina en el primer punto después de 25 palabras. Antes de eso puede cortar por otro
+motivo: si el contexto no está en la tabla, el modelo **se traba**, porque nunca vio esa
+secuencia y no tiene con qué seguir. Pasa, por ejemplo, al llegar a la última oración del
+texto, que no tiene nada después.
 
 ## Probarlo
 

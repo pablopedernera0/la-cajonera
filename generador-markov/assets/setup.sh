@@ -1,7 +1,7 @@
 #!/bin/bash
 # =============================================================================
 #  setup.sh — generador-markov
-#  Clona el generador de Markov en Python e instala markovify
+#  Clona el generador de Markov en Python e instala markovify y Flask
 #  Se ejecuta una sola vez al inicio del escenario
 # =============================================================================
 
@@ -41,9 +41,9 @@ else
 fi
 
 # ── 3. markovify ───────────────────────────────────────────────────────────
-banner "3/3" "Instalando markovify..."
-pip3 install markovify --break-system-packages --quiet --root-user-action=ignore
-ok "markovify $(python3 -c 'import importlib.metadata as m; print(m.version("markovify"))') instalado"
+banner "3/3" "Instalando markovify y Flask..."
+pip3 install markovify flask --break-system-packages --quiet --root-user-action=ignore
+ok "$(python3 -c 'import importlib.metadata as m; print(", ".join(f"{p} {m.version(p)}" for p in ("markovify", "flask")))') instalados"
 
 echo ""
 echo "=============================================="
@@ -51,4 +51,5 @@ echo -e "  ${GREEN}Entorno listo${NC}"
 echo "=============================================="
 echo "  Carpeta:  $DIR"
 echo "  Probar:   cd $DIR && python3 markov.py textos/hechos.txt"
+echo "  Web:      puerto 5000, en el Paso 6 (optativo)"
 echo ""
